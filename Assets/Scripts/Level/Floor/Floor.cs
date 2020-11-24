@@ -13,6 +13,13 @@ using UnityEngine;
 /// </remarks>
 public class Floor : MonoBehaviour
 {
+    /// <summary>
+    /// Here we create rooms
+    /// </summary>
+    private void Start()
+    {
+        CreateRooms();
+    }
 
     /// <summary>
     /// Grid of rooms. Accessed by using location of the room.
@@ -29,7 +36,69 @@ public class Floor : MonoBehaviour
     /// </summary>
     public void CreateRooms()
     {
+        DestroyRooms();
+        var spawnRoom = CreateRoom<SpawnRoom>(new Room.GridLocation(0,0), true);
+        CreateSurroundingRooms(spawnRoom);
+        SetDoors();
+    }
 
+
+    /// <summary>
+    /// Destroys all child objects and clears <see cref="RoomGrid"/>
+    /// </summary>
+    public void DestroyRooms()
+    {
+        foreach(Transform room in transform)
+        {
+            Destroy(room);
+        }
+        RoomGrid = new Dictionary<Room.GridLocation, Room>();
+    }
+    /// <summary>
+    /// Tries to destroy room at specific location
+    /// </summary>
+    /// <param name="location">Location where to destroy</param>
+    /// <returns>Returns true if room was destroyed</returns>
+    public bool TryDestroyRoom(Room.GridLocation location)
+    {
+        if (RoomGrid.TryGetValue(location, out Room room))
+        {
+            Destroy(room);
+            RoomGrid.Remove(location);
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Creates room and adds it to <see cref="RoomGrid"/>
+    /// </summary>
+    /// <param name="location">Location in the grid</param>
+    /// <param name="replace">Will replace room at that location if set true</param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns>Returns created room</returns>
+    public Room CreateRoom<T>(Room.GridLocation location, bool replace = true) where T : Room
+    {
+        if(replace) TryDestroyRoom(location);
+        if (!replace && RoomGrid.ContainsKey(location)) return null;
+
+        var prefab = PrefabHelper.GetRoomPrefab<T>();
+        var newRoom = Instantiate(prefab, transform).GetComponent<Room>();
+        newRoom.Create(location);
+        newRoom.Populate();
+        RoomGrid.Add(location, newRoom);
+        return newRoom;
+    }
+
+    /// <summary>
+    /// This method sets automatically doors to all rooms.
+    /// </summary>
+    private void SetDoors()
+    {
+        foreach(var room in RoomGrid)
+        {
+            room.Value.SetDoors(GetSurroundingRooms(room.Value)?.Select(x => x.Key)?.Aggregate((a, b) => a | b) ?? Room.DoorLocation.None);
+        }
     }
 
     /// <summary>
@@ -62,19 +131,36 @@ public class Floor : MonoBehaviour
 
         foreach(var location in newRoomLocations)
         {
-            // Do no recreate room if it already exists
-            if (RoomGrid.Keys.Contains(location)) continue;
-
-            var prefab = GetPrefab(typeof(GenericRoom));
-            var newRoom = Instantiate(prefab, transform).GetComponent<Room>();
-            newRoom.Create();
+            var newRoom = CreateRoom<GenericRoom>(location, false);
+            if (newRoom == null) continue;
+            CreateSurroundingRooms(newRoom);
         }
     }
 
+
     /// <summary>
-    /// Returns prefab
+    /// This will get all surrounding rooms. This is used to "fix" doors after floor has been created.
     /// </summary>
-    /// <param name="roomType">Room type</param>
-    /// <returns>Unity Prefab</returns>
-    private GameObject GetPrefab(Type roomType) => ((RoomPrefabAttribute)(roomType.GetCustomAttributes(typeof(RoomPrefabAttribute)).First())).GetPrefab(roomType);
+    /// <param name="room">Reference Room</param>
+    /// <returns>Returns surrounding rooms</returns>
+    private Dictionary<Room.DoorLocation, Room> GetSurroundingRooms(Room room)
+    {
+        var rooms = new Dictionary<Room.DoorLocation, Room>();
+        if (RoomGrid.TryGetValue(new Room.GridLocation(room.Location.X, room.Location.Y + 1), out Room topRoom)) {
+            rooms.Add(Room.DoorLocation.Top, topRoom);
+        }
+        if (RoomGrid.TryGetValue(new Room.GridLocation(room.Location.X + 1, room.Location.Y), out Room rightRoom))
+        {
+            rooms.Add(Room.DoorLocation.Right, rightRoom);
+        }
+        if (RoomGrid.TryGetValue(new Room.GridLocation(room.Location.X, room.Location.Y - 1), out Room bottomRoom))
+        {
+            rooms.Add(Room.DoorLocation.Bottom, bottomRoom);
+        }
+        if (RoomGrid.TryGetValue(new Room.GridLocation(room.Location.X - 1, room.Location.Y), out Room leftRoom))
+        {
+            rooms.Add(Room.DoorLocation.Left, leftRoom);
+        }
+        return rooms.Count > 0 ? rooms : null;
+    }
 }
