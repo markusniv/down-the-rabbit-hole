@@ -1,0 +1,514 @@
+fileFormatVersion: 2
+guid: b22612390926b684aaedb22fcd6ed2a8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3644197827239678683
+    second: TilemapWall
+  - first:
+      213: 3101835961803437007
+    second: TilemapGround
+  - first:
+      213: 2032048028804203237
+    second: TilemapSprite_2
+  - first:
+      213: 4596553892141960821
+    second: TilemapDoor
+  - first:
+      213: -3501722973394901731
+    second: TilemapSprite_4
+  - first:
+      213: 1137157779385845231
+    second: TilemapSprite_5
+  - first:
+      213: -3992579806482696438
+    second: TilemapPoolLeftUpCorner
+  - first:
+      213: 2069430739580044344
+    second: TilemapPoolUp
+  - first:
+      213: 2652367646726730285
+    second: TilemapPoolRightUpCorner
+  - first:
+      213: -8078931116155968072
+    second: TilemapSprite_9
+  - first:
+      213: 8418553181311167190
+    second: TilemapSprite_10
+  - first:
+      213: -5939404589274465223
+    second: TilemapSprite_11
+  - first:
+      213: -3555626864782263186
+    second: TilemapPoolLeft
+  - first:
+      213: 2943593973167040280
+    second: TilemapPoolCenter
+  - first:
+      213: -3692903957932611601
+    second: TilemapPoolRight
+  - first:
+      213: -4727567718211159454
+    second: TilemapSprite_15
+  - first:
+      213: -8026987508744941381
+    second: TilemapSprite_16
+  - first:
+      213: 1286566340049505098
+    second: TilemapPoolLeftDownCorner
+  - first:
+      213: -2831124240923251442
+    second: TilemapPoolDown
+  - first:
+      213: 160507297612616859
+    second: TilemapPoolRightDownCorner
+  - first:
+      213: 146228712980333164
+    second: TilemapSprite_20
+  - first:
+      213: -2902097428689493186
+    second: TilemapSprite_21
+  - first:
+      213: -4883122088095437717
+    second: TilemapSprite_22
+  - first:
+      213: 8963982225509112900
+    second: TilemapSprite_23
+  - first:
+      213: -7355469905157575018
+    second: TilemapSprite_24
+  - first:
+      213: 4047168569056853875
+    second: TilemapSprite_25
+  - first:
+      213: -2639356565237938061
+    second: TilemapSprite_26
+  - first:
+      213: 8341357617759374731
+    second: TilemapSprite_27
+  - first:
+      213: -3315048250908197391
+    second: TilemapSprite_28
+  - first:
+      213: 6348907927090245051
+    second: TilemapSprite_29
+  - first:
+      213: 89938130086848010
+    second: TilemapSprite_30
+  - first:
+      213: 1185388765084287514
+    second: TilemapSprite_31
+  - first:
+      213: -8375686823649778369
+    second: TilemapSprite_32
+  - first:
+      213: 824928878539511918
+    second: TilemapSprite_33
+  - first:
+      213: 5938653003320554981
+    second: TilemapSprite_34
+  - first:
+      213: 434686793341219021
+    second: TilemapSprite_35
+  - first:
+      213: 6159146675012913669
+    second: TilemapSprite_36
+  - first:
+      213: -8539690429627955222
+    second: TilemapSprite_37
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TilemapWall
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd21fd7bd9ac29230800000000000000
+      internalID: 3644197827239678683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapGround
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc373de7f5feb0b20800000000000000
+      internalID: 3101835961803437007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapSprite_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e2486b7ae8433c10800000000000000
+      internalID: 2032048028804203237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapDoor
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57e8f0c496d3acf30800000000000000
+      internalID: 4596553892141960821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapSprite_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15e8f43281676fc0800000000000000
+      internalID: -3501722973394901731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapPoolLeftUpCorner
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a077331d1d18798c0800000000000000
+      internalID: -3992579806482696438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapPoolUp
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83441f71b4818bc10800000000000000
+      internalID: 2069430739580044344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapPoolRightUpCorner
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d22b2e4625a1fc420800000000000000
+      internalID: 2652367646726730285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapPoolLeft
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6c31da7430e7aec0800000000000000
+      internalID: -3555626864782263186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapPoolCenter
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8172a9d6f1fb9d820800000000000000
+      internalID: 2943593973167040280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapPoolRight
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe7eac58a6b20ccc0800000000000000
+      internalID: -3692903957932611601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapPoolLeftDownCorner
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4b00ae054dcad110800000000000000
+      internalID: 1286566340049505098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapPoolDown
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0da5c8b083d5b8d0800000000000000
+      internalID: -2831124240923251442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapPoolRightDownCorner
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b94de0a698c3a3200800000000000000
+      internalID: 160507297612616859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
