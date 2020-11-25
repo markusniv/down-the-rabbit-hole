@@ -42,6 +42,20 @@ public abstract class Room : MonoBehaviour
     public DoorLocation Doors { get; private set; }
 
     /// <summary>
+    /// Gets door count
+    /// </summary>
+    /// <returns>Returns count of doors</returns>
+    public int DoorCount() {
+        int count = 0;
+        foreach(DoorLocation d in Enum.GetValues(typeof(DoorLocation)))
+        {
+            if (d == DoorLocation.None) continue;
+            if (Doors.HasFlag(d)) count++;
+        }
+        return count;
+    }
+
+    /// <summary>
     /// This will set <see cref="Doors"/> and it will modify tilemap and set doors into correct places
     /// </summary>
     /// <param name="doorLocations"></param>

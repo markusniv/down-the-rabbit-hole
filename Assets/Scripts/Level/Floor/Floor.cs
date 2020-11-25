@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using static Room;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Generates and controls rooms. Level has multiple floors, but only one is shown at the time.
@@ -39,6 +41,7 @@ public class Floor : MonoBehaviour
         DestroyRooms();
         var spawnRoom = CreateRoom<SpawnRoom>(new Room.GridLocation(0,0), true);
         CreateSurroundingRooms(spawnRoom);
+        CreateRabbitHoleRoom();
         SetDoors();
     }
 
@@ -90,6 +93,24 @@ public class Floor : MonoBehaviour
         return newRoom;
     }
 
+    /// <summary>
+    /// Finds suitable room and replaces it with rabbit hole room. Floor should contain single rabbit hole
+    /// </summary>
+    public Room CreateRabbitHoleRoom()
+    {
+        var suitableRooms = Enumerable.Empty<KeyValuePair<GridLocation, Room>>();
+        int roomC = 1;
+        do
+        {
+            suitableRooms = RoomGrid.Where(x => x.Value.DoorCount() == roomC);
+            roomC++;
+            if (roomC >= 5) throw new Exception("Didn't find suitable room for rabbit hole");
+        } while (suitableRooms.Count() < 1);
+
+        var rabbitHole = suitableRooms.ElementAt(Random.Range(0, suitableRooms.Count()));
+        var rabbitHoleRoom = CreateRoom<RabbitHoleRoom>(rabbitHole.Key);
+        return rabbitHoleRoom;
+    }
     /// <summary>
     /// This method sets automatically doors to all rooms.
     /// </summary>
