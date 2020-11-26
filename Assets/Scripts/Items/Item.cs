@@ -3,32 +3,105 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Abtract base class for all items.
+/// </summary>
 public abstract class Item : MonoBehaviour
 {
+    /// <summary>
+    /// Icon used in UI (Inventory and hotbar)
+    /// </summary>
+    public Sprite Icon;
+
+    /// <summary>
+    /// This is reference to the Character who dropped this item. This is used to prevent item pickup immediately after dropping it.
+    /// </summary>
+    public Character RecentlyDroppedBy;
+
+    /// <summary>
+    /// Items value in some currency
+    /// </summary>
     public int Value;
 
-    [SerializeField] private Sprite _icon = null;
-    public Sprite Icon => _icon;
-
     #region Components
-    public SpriteRenderer SpriteRenderer { get; set; }
+    public SpriteRenderer SpriteRenderer { get; private set; }
     #endregion
 
-    public virtual string Tooltip { get; }
+    /// <summary>
+    /// Cursor that is used when this item is active
+    /// </summary>
+    // TODO: Finish this implementation
+    public virtual object Cursor { get; }
 
+    /// <summary>
+    /// Reference to the Inventory where this item is stored. This value is null if item is on the ground.
+    /// </summary>
     public Inventory Inventory { get; set; }
 
-    private GameObject RecentlyDroppedBy;
+    /// <summary>
+    /// Tooltip that is shown when mouse is over this item in the UI
+    /// </summary>
+    public virtual string Tooltip { get; }
+    public virtual void FixedUpdate() { }
 
-    // Start is called before the first frame update
-    public virtual void Start()
+    /// <summary>
+    /// This is called when this item is dropped from inventory
+    /// </summary>
+    /// <param name="droppedBy">Who dropped this item</param>
+    public virtual void OnDrop(Character droppedBy) { }
+
+    /// <summary>
+    /// This is called when this item is added to inventory.
+    /// </summary>
+    /// <param name="pickedUpBy">Who picked this item</param>
+    public virtual void OnPickup(Character pickedUpBy) { }
+    public virtual void OnTriggerExit2D(Collider2D other)
     {
-        
+
+        if (RecentlyDroppedBy != other.gameObject) return;
+        RecentlyDroppedBy = null;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Completely destroys item from the world. Can destroy item even if its in someones inventory.
+    /// </summary>
+    public virtual void Destroy()
     {
-        
+        if (Inventory != null) Inventory.RemoveItem(this);
+        Destroy(gameObject);
     }
+
+    /// <summary>
+    /// Toggles tooltip.
+    /// </summary>
+    /// <param name="show">Tooltip will show if set to true</param>
+    public virtual void ToggleTooltip(bool show)
+    {
+        // TODO: Do the tooltip code
+    }
+
+    protected virtual void OnMouseEnter()
+    {
+        ToggleTooltip(true);
+    }
+
+    protected virtual void OnMouseExit()
+    {
+        ToggleTooltip(false);
+    }
+
+    /// <summary>
+    /// This is called when player click this item while its in the inventory
+    /// </summary>
+    /// <param name="eventData">Event data</param>
+    public virtual void OnClick(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            Inventory.DropItem(this);
+        }
+    }
+
+    public virtual void Start() { }
+    public virtual void Update() { }
 }
