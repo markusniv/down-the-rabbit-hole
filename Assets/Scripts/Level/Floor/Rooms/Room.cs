@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// Abstract definition of room.
 /// </summary>
+[RequireComponent(typeof(Tilemap))]
+[RequireComponent(typeof(BoxCollider2D))]
 public abstract class Room : MonoBehaviour
 {
     /// <summary>
