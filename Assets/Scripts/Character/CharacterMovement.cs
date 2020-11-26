@@ -55,6 +55,8 @@ public abstract class CharacterMovement : MonoBehaviour
     protected CircleCollider2D Collider { get; private set; }
     public Character Character { get; private set; }
 
+    public Animator Animator { get; private set; }
+
     #endregion Components
 
     #region Events
@@ -72,19 +74,22 @@ public abstract class CharacterMovement : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<CircleCollider2D>();
         Character = GetComponent<Character>();
+        Animator = GetComponent<Animator>();
     }
 
     protected virtual void Update()
     {
+        Animator.SetFloat("MovementInX", Movement.x);
+        Animator.SetFloat("MovementInY", Movement.y);
         CurrentState?.OnUpdate();
+        // TODO: Check if Character is dodging
+
+        Rigidbody.MovePosition(Rigidbody.position + Movement * (BaseMovementSpeed * MovementSpeedModifier) * Time.deltaTime);
     }
 
     protected virtual void FixedUpdate()
     {
         CurrentState.OnFixedUpdate();
-        // TODO: Check if Character is dodging
-
-        Rigidbody.MovePosition(Rigidbody.position + Movement * (BaseMovementSpeed * MovementSpeedModifier) * Time.fixedDeltaTime);
 
     }
 

@@ -5,8 +5,6 @@ using UnityEngine;
 /// Abstract character. This defines common character features.
 /// </summary>
 [RequireComponent(typeof(Inventory))]
-[RequireComponent(typeof(CharacterCombat))]
-[RequireComponent(typeof(CharacterMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Character : MonoBehaviour
 {
