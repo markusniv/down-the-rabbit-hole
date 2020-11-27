@@ -7,25 +7,25 @@ TextureImporter:
     second: playerSpriteDown
   - first:
       213: 2161606344497605075
-    second: playerSpriteSmall-sheet_1
+    second: playerSpriteDownLeft
   - first:
       213: -8037178621665802065
     second: playerSpriteLeft
   - first:
       213: -1639707931394307755
-    second: playerSpriteSmall-sheet_3
+    second: playerSpriteUpLeft
   - first:
       213: -3359815474152832882
     second: playerSpriteUp
   - first:
       213: 2340657659898338680
-    second: playerSpriteSmall-sheet_5
+    second: playerSpriteUpRight
   - first:
       213: 8367000663188263031
     second: playerSpriteRight
   - first:
       213: 8547880990395431653
-    second: playerSpriteSmall-sheet_7
+    second: playerSpriteDownRight
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -134,7 +134,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerSpriteSmall-sheet_1
+      name: playerSpriteDownLeft
       rect:
         serializedVersion: 2
         x: 41
@@ -176,7 +176,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerSpriteSmall-sheet_3
+      name: playerSpriteUpLeft
       rect:
         serializedVersion: 2
         x: 105
@@ -218,7 +218,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerSpriteSmall-sheet_5
+      name: playerSpriteUpRight
       rect:
         serializedVersion: 2
         x: 169
@@ -260,7 +260,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerSpriteSmall-sheet_7
+      name: playerSpriteDownRight
       rect:
         serializedVersion: 2
         x: 231
