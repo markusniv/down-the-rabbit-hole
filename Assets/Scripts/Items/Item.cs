@@ -42,7 +42,7 @@ public abstract class Item : MonoBehaviour
     /// Tooltip that is shown when mouse is over this item in the UI
     /// </summary>
     public virtual string Tooltip { get; }
-    public virtual void FixedUpdate() { }
+    protected virtual void FixedUpdate() { }
 
     /// <summary>
     /// This is called when this item is dropped from inventory
@@ -102,6 +102,6 @@ public abstract class Item : MonoBehaviour
         }
     }
 
-    public virtual void Start() { }
-    public virtual void Update() { }
+    protected virtual void Start() { }
+    protected virtual void Update() { }
 }

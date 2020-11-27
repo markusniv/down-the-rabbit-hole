@@ -6,8 +6,8 @@
 
     public override void Consume()
     {
-        if (Inventory == null && Inventory.Parent.CurrentHealth == Inventory.Parent.MaxHealth) return;
-        Inventory.Parent.CurrentHealth += HealthRestoredOnUse;
+        if (Inventory == null && Inventory.Character.CurrentHealth == Inventory.Character.MaxHealth) return;
+        Inventory.Character.CurrentHealth += HealthRestoredOnUse;
         base.Consume();
 
     }
