@@ -11,38 +11,6 @@ public class CharacterCombat : MonoBehaviour
     // TODO: Add Weapon Type
     public object CurrentWeapon { get; set; }
 
-    /// <summary>
-    /// Private backing field for <see cref="CurrentState"/>. DO NOT SET DIRECTLY.
-    /// </summary>
-    private State _currentState;
-    
-    
-    /// <summary>
-    /// Current combat state.
-    /// </summary>
-    public State CurrentState
-    {
-        get
-        {
-            return _currentState;
-        }
-        set
-        {
-            _currentState?.OnStateExit();
-            _currentState = value;
-            _currentState?.OnStateEnter();
-            OnStateChange?.Invoke(_currentState);
-        }
-    }
-
-
-    #region Events
-    /// <summary>
-    /// Called when state changes. State parameter contains new current state.
-    /// </summary>
-    public event Action<State> OnStateChange;
-    #endregion
-
     #region Components
     /// <summary>
     /// Reference to the main Character script
@@ -53,25 +21,25 @@ public class CharacterCombat : MonoBehaviour
     /// Reference to the hand that should be inside the character
     /// </summary>
     public Transform Hand;
+
+    public Animator Animator;
     #endregion
     protected virtual void Awake()
     {
         Character = GetComponent<Character>();
+        Animator = GetComponent<Animator>();
         Hand = Character.gameObject.transform.Find("Hand");
     }
 
     protected virtual void Start()
     {
-        CurrentState = new Idle(Character);
     }
 
     protected virtual void FixedUpdate()
     {
-        CurrentState?.OnFixedUpdate();
     }
 
     protected virtual void Update()
     {
-        CurrentState?.OnUpdate();
     }
 }
