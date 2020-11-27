@@ -4,6 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Abstract base class for character movement
 /// </summary>
+[RequireComponent(typeof(Animator))]
 public abstract class CharacterMovement : MonoBehaviour
 {
     /// <summary>
@@ -26,28 +27,22 @@ public abstract class CharacterMovement : MonoBehaviour
     /// </summary>
     public Room CurrentRoom;
 
-    /// <summary>
-    /// Private backing field for <see cref="CurrentState"/>. DO NOT SET DIRECTLY
-    /// </summary>
-    private State _currentState;
+    private bool _immobile;
 
     /// <summary>
-    /// Current movement state
+    /// Character cannot move if this is set to true. Setting this automatically sets Animator paramater.
     /// </summary>
-    public State CurrentState
-    {
-        get
+    public bool Immobile { get
         {
-            return _currentState;
+            return _immobile;
         }
         set
         {
-            _currentState?.OnStateEnter();
-            _currentState = value;
-            _currentState?.OnStateEnter();
-            OnStateChange?.Invoke(_currentState);
+            Animator.SetBool("Immobile", value);
+            _immobile = value;
         }
     }
+
 
     #region Components
 
@@ -55,11 +50,11 @@ public abstract class CharacterMovement : MonoBehaviour
     protected CircleCollider2D Collider { get; private set; }
     public Character Character { get; private set; }
 
+    public Animator Animator { get; private set; }
+
     #endregion Components
 
     #region Events
-
-    public event Action<State> OnStateChange;
 
     public event Action<Room> OnRoomEnter;
 
@@ -72,20 +67,21 @@ public abstract class CharacterMovement : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<CircleCollider2D>();
         Character = GetComponent<Character>();
+        Animator = GetComponent<Animator>();
     }
 
     protected virtual void Update()
     {
-        CurrentState?.OnUpdate();
+        // TODO: Check if Character is dodging
+
     }
 
     protected virtual void FixedUpdate()
     {
-        CurrentState.OnFixedUpdate();
-        // TODO: Check if Character is dodging
+        Animator.SetFloat("MovementInX", Movement.x);
+        Animator.SetFloat("MovementInY", Movement.y);
 
         Rigidbody.MovePosition(Rigidbody.position + Movement * (BaseMovementSpeed * MovementSpeedModifier) * Time.fixedDeltaTime);
-
     }
 
     /// <summary>

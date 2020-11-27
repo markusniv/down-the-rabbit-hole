@@ -4,6 +4,8 @@ using UnityEngine;
 /// <summary>
 /// Abstract character. This defines common character features.
 /// </summary>
+[RequireComponent(typeof(Inventory))]
+[RequireComponent(typeof(Rigidbody2D))]
 public abstract class Character : MonoBehaviour
 {
     public int MaxHealth = 1000;

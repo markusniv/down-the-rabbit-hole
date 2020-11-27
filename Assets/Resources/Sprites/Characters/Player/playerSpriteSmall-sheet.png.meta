@@ -7,25 +7,25 @@ TextureImporter:
     second: playerSpriteDown
   - first:
       213: 2161606344497605075
-    second: playerSpriteSmall-sheet_1
+    second: playerSpriteDownLeft
   - first:
       213: -8037178621665802065
     second: playerSpriteLeft
   - first:
       213: -1639707931394307755
-    second: playerSpriteSmall-sheet_3
+    second: playerSpriteUpLeft
   - first:
       213: -3359815474152832882
     second: playerSpriteUp
   - first:
       213: 2340657659898338680
-    second: playerSpriteSmall-sheet_5
+    second: playerSpriteUpRight
   - first:
       213: 8367000663188263031
     second: playerSpriteRight
   - first:
       213: 8547880990395431653
-    second: playerSpriteSmall-sheet_7
+    second: playerSpriteDownRight
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -116,12 +116,12 @@ TextureImporter:
       name: playerSpriteDown
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 48
+        x: 8
+        y: 8
+        width: 16
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,15 +134,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerSpriteSmall-sheet_1
+      name: playerSpriteDownLeft
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 48
+        x: 41
+        y: 8
+        width: 16
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -158,12 +158,12 @@ TextureImporter:
       name: playerSpriteLeft
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 48
+        x: 72
+        y: 8
+        width: 16
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,15 +176,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerSpriteSmall-sheet_3
+      name: playerSpriteUpLeft
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 48
+        x: 105
+        y: 8
+        width: 14
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,12 +200,12 @@ TextureImporter:
       name: playerSpriteUp
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 48
+        x: 136
+        y: 8
+        width: 16
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,15 +218,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerSpriteSmall-sheet_5
+      name: playerSpriteUpRight
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 48
+        x: 169
+        y: 8
+        width: 14
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -242,12 +242,12 @@ TextureImporter:
       name: playerSpriteRight
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 48
+        x: 200
+        y: 8
+        width: 16
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -260,15 +260,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: playerSpriteSmall-sheet_7
+      name: playerSpriteDownRight
       rect:
         serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 48
+        x: 231
+        y: 8
+        width: 16
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
