@@ -200,7 +200,6 @@ namespace Weapons
             }
 
         }
-        */
 
         /// <summary>
         /// Abstract class for the weapon's attack, overridden in the different weapon type classes
