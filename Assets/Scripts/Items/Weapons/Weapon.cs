@@ -170,8 +170,7 @@ namespace Weapons
                 tr.enabled = true;
             }
         }
-        /*
-        public override void OnMouseEnter()
+        protected override void OnMouseEnter()
         {
             if (Inventory != null)
             {
@@ -186,7 +185,7 @@ namespace Weapons
             }
         }
 
-        public override void OnMouseExit()
+        protected override void OnMouseExit()
         {
             if (Inventory != null)
             {
