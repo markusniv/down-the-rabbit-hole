@@ -80,12 +80,12 @@ public abstract class Item : MonoBehaviour
         // TODO: Do the tooltip code
     }
 
-    protected virtual void OnMouseEnter()
+    public virtual void OnMouseEnter()
     {
         ToggleTooltip(true);
     }
 
-    protected virtual void OnMouseExit()
+    public virtual void OnMouseExit()
     {
         ToggleTooltip(false);
     }
