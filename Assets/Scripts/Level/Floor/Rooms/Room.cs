@@ -125,6 +125,11 @@ public abstract class Room : MonoBehaviour
         transform.position = new Vector3(gridLocation.X * 18, gridLocation.Y * 10);
     }
 
+    /// <summary>
+    /// Gets center of the room in world coordinates
+    /// </summary>
+    public Vector2 Center => Collider.bounds.center;
+
     #region Components
 
     /// <summary>
@@ -141,6 +146,7 @@ public abstract class Room : MonoBehaviour
     /// </summary>
     protected virtual void Awake()
     {
+        Collider = GetComponent<BoxCollider2D>();
         Tilemap = GetComponent<Tilemap>();
     }
 
