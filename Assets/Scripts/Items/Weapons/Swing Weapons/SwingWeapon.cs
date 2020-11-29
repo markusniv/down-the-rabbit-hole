@@ -14,23 +14,22 @@ namespace Weapons
 
         public override void Attack()
         {
-            CharacterAnimation attacker = character.GetComponent<CharacterAnimation>();
             Vector2 attackerPosition = character.transform.position;
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             // Attacking up requires special calculations so check that first
-            bool attackUp = attacker.up;
+            bool attackUp = characterAnimation.IsPlaying("MoveUp");
 
             sr.enabled = true;
 
-            if (attacker.down)
+            /*if (attacker.down)
             {
                 InitiateAttack(attackerPosition, 0, -1f, 90, 270, attackUp);
             }
             if (attacker.up)
             {
 
-            }
+            }*/
         }
 
         private void InitiateAttack(Vector2 attackerPosition, float xModifier, float yModifier, float startAngle, float endAngle, bool attackUp)

@@ -29,6 +29,7 @@ namespace Weapons
         /// The character holding the weapon and their hand which is the parent object of all weapons
         /// </summary>
         public Character character;
+        public Animation characterAnimation;
         public CharacterCombat CharacterCombat;
         public Transform hand;
 
@@ -62,6 +63,8 @@ namespace Weapons
             sr = GetComponent<SpriteRenderer>();
             tr = GetComponent<TrailRenderer>();
             col = GetComponent<Collider2D>();
+
+            characterAnimation = character.GetComponent<Animation>();
 
             if (tr != null)
             {
@@ -110,7 +113,7 @@ namespace Weapons
         {
             if (attack)
             {
-                if (character.GetComponent<CharacterAnimation>().up)
+                if (characterAnimation.IsPlaying("MoveUp"))
                 {
                     sr.sortingOrder = 2;
                     tr.sortingOrder = 1;

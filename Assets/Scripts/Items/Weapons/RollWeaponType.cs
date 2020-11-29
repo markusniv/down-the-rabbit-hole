@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Weapons;
 
 /// <summary>
 /// This class takes a weapon prefab and rolls a random type for it, giving it a new name and stats

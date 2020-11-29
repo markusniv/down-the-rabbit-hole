@@ -26,13 +26,12 @@ namespace Weapons
         /// </summary>
         public override void Attack()
         {
-            CharacterAnimation attacker = character.GetComponent<CharacterAnimation>();
             Vector2 player = character.transform.position;
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             sr.enabled = true;
 
-            if (attacker.up)
+            if (characterAnimation.IsPlaying("MoveUp"))
             {
                 sr.sortingOrder = 2;
             }
@@ -41,7 +40,7 @@ namespace Weapons
                 sr.sortingOrder = 4;
             }
 
-            if (attacker.down)
+            if (characterAnimation.IsPlaying("MoveDown"))
             {
 
                 // Executed on the first frame of the attack
@@ -79,9 +78,9 @@ namespace Weapons
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                    CharacterCombat.SetState(new AttackOnCooldown(character));
+                   // CharacterCombat.SetState(new AttackOnCooldown(character));
                 }
-            }
+            }/*
             if (attacker.up)
             {
                 // Executed on the first frame of the attack
@@ -201,7 +200,7 @@ namespace Weapons
                     attackStarted = false;
                     CharacterCombat.SetState(new AttackOnCooldown(character));
                 }
-            }
+            }*/
 
 
         }
