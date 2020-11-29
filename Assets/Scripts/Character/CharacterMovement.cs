@@ -78,6 +78,7 @@ public abstract class CharacterMovement : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (Immobile) return;
         Animator.SetFloat("MovementInX", Movement.x);
         Animator.SetFloat("MovementInY", Movement.y);
 
