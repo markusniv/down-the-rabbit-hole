@@ -5,7 +5,7 @@ using UnityEngine;
 /// Abstract base class for character movement
 /// </summary>
 [RequireComponent(typeof(Animator))]
-public abstract class CharacterMovement : MonoBehaviour
+public abstract class CharacterMovement : MonoBehaviour, IStateMachine
 {
     /// <summary>
     /// Characters Base movement. This is always the same.
@@ -43,6 +43,34 @@ public abstract class CharacterMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Characters previous state.
+    /// </summary>
+    public State PreviousState { get; private set; }
+
+    /// <summary>
+    /// Private backing field for <see cref="CurrentState"/>. DO NOT SET DIRECTLY.
+    /// </summary>
+    private State _currentState;
+
+    /// <summary>
+    /// Characters current state.
+    /// </summary>
+    public State CurrentState
+    {
+        get
+        {
+            return _currentState;
+        }
+        set
+        {
+            _currentState?.OnStateExit();
+            PreviousState = _currentState;
+            _currentState = value;
+            OnStateChange?.Invoke();
+            _currentState?.OnStateEnter();
+        }
+    }
 
     #region Components
 
@@ -55,6 +83,11 @@ public abstract class CharacterMovement : MonoBehaviour
     #endregion Components
 
     #region Events
+
+    /// <summary>
+    /// Triggered when this character changes states.
+    /// </summary>
+    public event Action OnStateChange;
 
     public event Action<Room> OnRoomEnter;
 
@@ -72,12 +105,12 @@ public abstract class CharacterMovement : MonoBehaviour
 
     protected virtual void Update()
     {
-        // TODO: Check if Character is dodging
-
+        CurrentState?.OnUpdate();
     }
 
     protected virtual void FixedUpdate()
     {
+        CurrentState?.OnFixedUpdate();
         if (Immobile) return;
         Animator.SetFloat("MovementInX", Movement.x);
         Animator.SetFloat("MovementInY", Movement.y);

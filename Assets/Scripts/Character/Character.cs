@@ -31,6 +31,8 @@ public abstract class Character : MonoBehaviour
         }
     }
 
+    
+
     #region Events
     /// <summary>
     /// Is Triggered when <see cref="Die"/> is called. This event can be used to track character death.
