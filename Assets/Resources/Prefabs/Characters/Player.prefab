@@ -14,6 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
   Hand: {fileID: 0}
+  Animator: {fileID: 0}
+--- !u!114 &4196869891627266716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012012271550788757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32251ef0d23ee8447bf05fe86bcd1d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Down: {fileID: 5718378920675853391, guid: 8b90553701464fb4293dad57f6626a4d, type: 3}
+  Up: {fileID: -3359815474152832882, guid: 8b90553701464fb4293dad57f6626a4d, type: 3}
+  Right: {fileID: 8367000663188263031, guid: 8b90553701464fb4293dad57f6626a4d, type: 3}
+  Left: {fileID: -8037178621665802065, guid: 8b90553701464fb4293dad57f6626a4d, type: 3}
+  down: 0
+  up: 0
+  right: 0
+  left: 0
+  CharacterMovement: {fileID: 0}
+  CharacterCombat: {fileID: 0}
+  Character: {fileID: 0}
+  Hand: {fileID: 0}
+  angle: 0
 --- !u!114 &4552605906570441440
 MonoBehaviour:
   m_ObjectHideFlags: 0
