@@ -24,14 +24,26 @@ namespace Weapons
         /// Once the attack reaches the wanted length, the weapon starts coming back towards the character,
         /// until it is back at the starting position, at which point the attack is finished.
         /// </summary>
+        /// 
+        void Start()
+        {
+            base.Start();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            base.Update();
+        }
         public override void Attack()
         {
+            Animate attacker = character.GetComponent<Animate>();
             Vector2 player = character.transform.position;
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             sr.enabled = true;
 
-            if (characterAnimation.IsPlaying("MoveUp"))
+            if (attacker.up)
             {
                 sr.sortingOrder = 2;
             }
@@ -40,7 +52,7 @@ namespace Weapons
                 sr.sortingOrder = 4;
             }
 
-            if (characterAnimation.IsPlaying("MoveDown"))
+            if (attacker.down)
             {
 
                 // Executed on the first frame of the attack
@@ -78,9 +90,9 @@ namespace Weapons
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                   // CharacterCombat.SetState(new AttackOnCooldown(character));
+                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
                 }
-            }/*
+            }
             if (attacker.up)
             {
                 // Executed on the first frame of the attack
@@ -118,7 +130,7 @@ namespace Weapons
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                    CharacterCombat.SetState(new AttackOnCooldown(character));
+                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
                 }
             }
             if (attacker.right)
@@ -158,7 +170,7 @@ namespace Weapons
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                    CharacterCombat.SetState(new AttackOnCooldown(character));
+                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
                 }
             }
             if (attacker.left)
@@ -198,12 +210,13 @@ namespace Weapons
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                    CharacterCombat.SetState(new AttackOnCooldown(character));
+                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
                 }
-            }*/
+            }
 
 
         }
     }
+    
 }
 

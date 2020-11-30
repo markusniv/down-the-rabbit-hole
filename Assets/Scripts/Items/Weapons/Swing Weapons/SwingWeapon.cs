@@ -18,7 +18,6 @@ namespace Weapons
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             // Attacking up requires special calculations so check that first
-            bool attackUp = characterAnimation.IsPlaying("MoveUp");
 
             sr.enabled = true;
 

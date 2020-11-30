@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 namespace Weapons
 {
-    public abstract class Weapon : Item
+    public abstract class Weapon : Item, ICanHotbar
     {
         /// <summary>
         /// Base tooltip for all weapons 
@@ -29,9 +29,11 @@ namespace Weapons
         /// The character holding the weapon and their hand which is the Character object of all weapons
         /// </summary>
         public Character character;
-        public Animation characterAnimation;
+        public Animate characterAnimation;
         public CharacterCombat CharacterCombat;
+        public CharacterMovement characterMovement;
         public Transform hand;
+        public float angle;
 
         /// <summary>
         /// The pseudorandom weapon type that determines stats of the weapon
@@ -40,7 +42,7 @@ namespace Weapons
 
         public string weaponName;
 
-        private SpriteRenderer sr;
+        public SpriteRenderer sr;
         private TrailRenderer tr;
         private Collider2D col;
 
@@ -92,7 +94,9 @@ namespace Weapons
                 // If the weapon spawns in a character's inventory, change the sprite and disable sprite and collider
                 if (transform.parent != null)
                 {
-                    characterAnimation = transform.parent.GetComponent<Animation>();
+                    character = transform.parent.GetComponent<Character>();
+                    characterAnimation = transform.parent.GetComponent<Animate>();
+                    characterMovement = transform.parent.GetComponent<CharacterMovement>();
                     sr.sprite = weaponSpriteHeld;
                     Hide();
                 }
@@ -114,17 +118,7 @@ namespace Weapons
         {
             if (attack)
             {
-                if (characterAnimation.IsPlaying("MoveUp"))
-                {
-                    sr.sortingOrder = 2;
-                    tr.sortingOrder = 1;
 
-                }
-                else
-                {
-                    sr.sortingOrder = 4;
-                    tr.sortingOrder = 3;
-                }
             }
         }
 
@@ -137,7 +131,9 @@ namespace Weapons
             base.OnPickup(pickedUpBy);
             transform.SetParent(pickedUpBy.gameObject.transform.GetChild(0));
             transform.localPosition = new Vector2(0, 5);
-            characterAnimation = pickedUpBy.GetComponent<Animation>();
+            character = pickedUpBy;
+            characterAnimation = pickedUpBy.gameObject.GetComponent<Animate>();
+            characterMovement = pickedUpBy.gameObject.GetComponent<CharacterMovement>();
             sr.sprite = weaponSpriteHeld;
             transform.localRotation = Quaternion.identity;
             Hide();
