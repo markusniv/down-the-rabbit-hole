@@ -249,19 +249,19 @@ namespace Weapons
             character.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
-        /*public void PrimaryUse()
+        public void PrimaryUse()
         {
-            if (Inventory.Character.Combat.CurrentState is PlayerControlled)
+            if (Inventory.Character.Combat.CurrentState is Idle)
             {
-                Inventory.Character.Combat.SetState(new Attacking(Inventory.Character));
+                Inventory.Character.Combat.CurrentState = new Attacking(Inventory.Character);
             }
         }
 
         public void SecondaryUse()
         {
             if (!(Inventory.Character.Combat.CurrentState is Idle)) return;
-            Inventory.Character.Combat.SetState(new Blocking(Inventory.Character));
-        }*/
+            Inventory.Character.Combat.CurrentState = new Blocking(Inventory.Character);
+        }
 
     }
 }
