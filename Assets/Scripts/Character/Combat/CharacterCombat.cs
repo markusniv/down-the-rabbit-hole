@@ -66,7 +66,9 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     {
         Character = GetComponent<Character>();
         Animator = GetComponent<Animator>();
+
         Hand = Character.gameObject.transform.Find("Hand");
+        CurrentState = new Idle(Character);
     }
 
     protected virtual void Start()

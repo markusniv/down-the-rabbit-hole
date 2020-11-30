@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 /// <summary>
 /// This script controls camera movement. By Default it will follow player as they move through the doors
@@ -24,6 +25,8 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        GetComponent<PostProcessVolume>().weight = 1;
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>().OnRoomEnter += OnPlayerRoomEnter;
     }
     /// <summary>

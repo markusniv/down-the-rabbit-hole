@@ -40,9 +40,11 @@ public class Floor : MonoBehaviour
     {
         DestroyRooms();
         var spawnRoom = CreateRoom<SpawnRoom>(new Room.GridLocation(0,0), true);
+        GameController.Instance.Player.transform.position = spawnRoom.Center;
         CreateSurroundingRooms(spawnRoom);
         CreateRabbitHoleRoom();
         SetDoors();
+        Camera.main.GetComponent<Animator>().SetTrigger("StartVignetteOpen");
     }
 
 
@@ -53,7 +55,7 @@ public class Floor : MonoBehaviour
     {
         foreach(Transform room in transform)
         {
-            Destroy(room);
+            Destroy(room.gameObject);
         }
         RoomGrid = new Dictionary<Room.GridLocation, Room>();
     }
@@ -66,7 +68,7 @@ public class Floor : MonoBehaviour
     {
         if (RoomGrid.TryGetValue(location, out Room room))
         {
-            Destroy(room);
+            Destroy(room.gameObject);
             RoomGrid.Remove(location);
             return true;
         }
@@ -99,10 +101,10 @@ public class Floor : MonoBehaviour
     public Room CreateRabbitHoleRoom()
     {
         var suitableRooms = Enumerable.Empty<KeyValuePair<GridLocation, Room>>();
-        int roomC = 1;
+        int roomC = 0;
         do
         {
-            suitableRooms = RoomGrid.Where(x => x.Value.DoorCount() == roomC);
+            suitableRooms = RoomGrid.Where(x => x.Value.DoorCount() == roomC).ToList();
             roomC++;
             if (roomC >= 5) throw new Exception("Didn't find suitable room for rabbit hole");
         } while (suitableRooms.Count() < 1);
