@@ -25,16 +25,7 @@ namespace Weapons
         /// until it is back at the starting position, at which point the attack is finished.
         /// </summary>
         /// 
-        void Start()
-        {
-            base.Start();
-        }
 
-        // Update is called once per frame
-        void Update()
-        {
-            base.Update();
-        }
         public override void Attack()
         {
             Animate attacker = character.GetComponent<Animate>();
