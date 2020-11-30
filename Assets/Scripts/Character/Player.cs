@@ -18,6 +18,16 @@ public class Player : Character
     protected override void Update()
     {
         base.Update();
-        // TODO: Hotbar item usage
+        if (Inventory.ActiveItem is ICanHotbar hotbarItem)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                hotbarItem.PrimaryUse();
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                hotbarItem.SecondaryUse();
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Weapons;
 
 
 /// <summary>
@@ -31,7 +32,7 @@ public class Inventory : MonoBehaviour
         set
         {
             if (_activeItem != null) _activeItem.gameObject.SetActive(false);
-            // TODO: Set CurrentWeapon
+            Character.Combat.CurrentWeapon = _activeItem as Weapon;
             _activeItem = value;
             _activeItem.gameObject.SetActive(true);
             OnActiveItemChange?.Invoke(); // TODO: Set cursor on invoke
@@ -67,8 +68,12 @@ public class Inventory : MonoBehaviour
     public void AddItem(Item item)
     {
         item.Inventory = this;
-        // TODO: added weapon specific code to Weapon class OnPickup method
-        // TODO: Set Hand as Parent
+        if (item is Weapon weapon)
+        {
+            weapon.character = Character;
+            weapon.CharacterCombat = Character.Combat;
+            weapon.hand = Character.Combat.Hand;
+        }
         item.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         item.gameObject.SetActive(false);
         item.OnPickup(Character);

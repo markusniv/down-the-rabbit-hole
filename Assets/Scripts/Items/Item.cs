@@ -11,7 +11,8 @@ public abstract class Item : MonoBehaviour
     /// <summary>
     /// Icon used in UI (Inventory and hotbar)
     /// </summary>
-    public Sprite Icon;
+    [SerializeField] private Sprite _icon = null;
+    public Sprite Icon => _icon;
 
     /// <summary>
     /// This is reference to the Character who dropped this item. This is used to prevent item pickup immediately after dropping it.
@@ -24,7 +25,7 @@ public abstract class Item : MonoBehaviour
     public int Value;
 
     #region Components
-    public SpriteRenderer SpriteRenderer { get; private set; }
+    public SpriteRenderer SpriteRenderer { get; set; }
     #endregion
 
     /// <summary>
@@ -55,6 +56,18 @@ public abstract class Item : MonoBehaviour
     /// </summary>
     /// <param name="pickedUpBy">Who picked this item</param>
     public virtual void OnPickup(Character pickedUpBy) { }
+
+    /// <summary>
+    /// Pick up the item when entering its collider if the item wasn't recently dropped.
+    /// </summary>
+    /// <param name="col">The character who enters the item's collider</param>
+    public virtual void OnTriggerEnter2D(Collider2D col)
+    {
+        var character = col.gameObject.GetComponent<Character>();
+        if (Inventory != null || character == null || RecentlyDroppedBy != null) return;
+        OnPickup(character);
+    }
+
     public virtual void OnTriggerExit2D(Collider2D other)
     {
 
@@ -101,7 +114,10 @@ public abstract class Item : MonoBehaviour
             Inventory.DropItem(this);
         }
     }
-
+    public virtual void Awake()
+    {
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+    }
     protected virtual void Start() { }
     protected virtual void Update() { }
 }

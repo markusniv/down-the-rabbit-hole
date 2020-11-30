@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Weapons;
 
 /// <summary>
 /// Abstract base class for character combat
@@ -10,7 +11,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// Weapon currently held. Will be null if character doesn't hold weapon.
     /// </summary>
     // TODO: Add Weapon Type
-    public object CurrentWeapon { get; set; }
+    public Weapon CurrentWeapon { get; set; }
 
     /// <summary>
     /// Current attack cooldown in seconds.
@@ -61,14 +62,28 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// Triggered when character changes states.
     /// </summary>
     public event Action OnStateChange;
-    #endregion 
+    #endregion
+
+    public event Action<Weapon> OnAttackEnd;
+    public event Action<Weapon> OnAttackStart;
+
+    public event Action<Weapon> OnCooldownStart;
+    public event Action<Weapon> OnCooldownEnd;
+
+    #region InvokingEvents
+    public void InvokeAttackStart(Weapon weapon) => OnAttackStart?.Invoke(weapon);
+    public void InvokeAttackEnd(Weapon weapon) => OnAttackEnd?.Invoke(weapon);
+
+    public void InvokeCooldownStart(Weapon weapon) => OnCooldownStart?.Invoke(weapon);
+    public void InvokeCooldownEnd(Weapon weapon) => OnCooldownEnd?.Invoke(weapon);
+    #endregion
+
     protected virtual void Awake()
     {
         Character = GetComponent<Character>();
         Animator = GetComponent<Animator>();
-
-        Hand = Character.gameObject.transform.Find("Hand");
         CurrentState = new Idle(Character);
+        Hand = Character.gameObject.transform.Find("Hand");
     }
 
     protected virtual void Start()
