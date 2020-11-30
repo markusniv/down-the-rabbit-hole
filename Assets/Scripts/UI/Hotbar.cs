@@ -73,7 +73,7 @@ public class Hotbar : MonoBehaviour
     /// </summary>
     void CheckActiveItemChange()
     {
-        if (!Player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Idle") || ItemsInHotbar.Count(x => x != null) < 1) return;
+        if (!(Player.Combat.CurrentState is Idle) || ItemsInHotbar.Count(x => x != null) < 1) return;
 
         for (int i = 0; i < ItemsInHotbar.Count(x => x != null); i++)
         {
