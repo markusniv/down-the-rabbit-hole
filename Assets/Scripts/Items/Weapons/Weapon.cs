@@ -54,7 +54,7 @@ namespace Weapons
                       weaponSpriteHeld;
 
         // Start is called before the first frame update
-        public override void Start()
+        protected override void Start()
         {
             base.Start();
 
@@ -110,7 +110,7 @@ namespace Weapons
         /// <summary>
         /// Change SpriteRenderer and TrailRenderer sorting orders and/or flip sprite according to the hit direction
         /// </summary>
-        public override void Update()
+        protected override void Update()
         {
             if (attack)
             {
@@ -177,7 +177,7 @@ namespace Weapons
                 tr.enabled = true;
             }
         }
-        protected override void OnMouseEnter()
+        public override void OnMouseEnter()
         {
             if (Inventory != null)
             {
@@ -192,7 +192,7 @@ namespace Weapons
             }
         }
 
-        protected override void OnMouseExit()
+        public override void OnMouseExit()
         {
             if (Inventory != null)
             {
@@ -213,7 +213,7 @@ namespace Weapons
         /// </summary>
         public abstract void Attack();
 
-        /*public override void OnTriggerEnter2D(Collider2D collision)
+        public override void OnTriggerEnter2D(Collider2D collision)
         {
             base.OnTriggerEnter2D(collision);
             if (collision.gameObject.TryGetComponent(out Character characterHit) && Inventory != null)
@@ -227,7 +227,7 @@ namespace Weapons
                     OnHit(characterHit);
                 }
             }
-        }*/
+        }
 
         public override void OnTriggerExit2D(Collider2D collision)
         {
@@ -238,20 +238,20 @@ namespace Weapons
             }
         }
 
-        /*public virtual void OnHit(Character character)
+        public virtual void OnHit(Character character)
         {
-            if (character.Combat.CurrentState is Blocking block)
+            /*if (character.Combat.CurrentState is Blocking block)
             {
                 block.OnHit();
                 return;
-            }
+            }*/
             character.CurrentHealth -= (int)damage;
             character.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
-        public void PrimaryUse()
+        /*public void PrimaryUse()
         {
-            if (Inventory.Character.Combat.CurrentState is Idle)
+            if (Inventory.Character.Combat.CurrentState is PlayerControlled)
             {
                 Inventory.Character.Combat.SetState(new Attacking(Inventory.Character));
             }
