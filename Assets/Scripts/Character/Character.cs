@@ -30,8 +30,11 @@ public abstract class Character : MonoBehaviour
             if (_currentHealth == 0) Die();
         }
     }
+    /// <summary>
+    /// To be able to modifie damage, when damage increasing potion has been drank. Values are clamped automatically.
+    /// </summary>
+    public float DamageModifier;
 
-    
 
     #region Events
     /// <summary>
