@@ -55,6 +55,18 @@ public abstract class Item : MonoBehaviour
     /// </summary>
     /// <param name="pickedUpBy">Who picked this item</param>
     public virtual void OnPickup(Character pickedUpBy) { }
+
+    /// <summary>
+    /// Pick up the item when entering its collider if the item wasn't recently dropped.
+    /// </summary>
+    /// <param name="col">The character who enters the item's collider</param>
+    public virtual void OnTriggerEnter2D(Collider2D col)
+    {
+        var character = col.gameObject.GetComponent<Character>();
+        if (Inventory != null || character == null || RecentlyDroppedBy != null) return;
+        OnPickup(character);
+    }
+
     public virtual void OnTriggerExit2D(Collider2D other)
     {
 

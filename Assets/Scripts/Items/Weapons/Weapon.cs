@@ -26,7 +26,7 @@ namespace Weapons
                      attackCooldown;
 
         /// <summary>
-        /// The character holding the weapon and their hand which is the parent object of all weapons
+        /// The character holding the weapon and their hand which is the Character object of all weapons
         /// </summary>
         public Character character;
         public Animation characterAnimation;
@@ -64,14 +64,13 @@ namespace Weapons
             tr = GetComponent<TrailRenderer>();
             col = GetComponent<Collider2D>();
 
-            characterAnimation = character.GetComponent<Animation>();
-
-            if (tr != null)
+            /*if (tr != null)
             {
                 tr.enabled = false;
-            }
+            }*/
 
             attack = false;
+            
 
             // Check if the weapon doesn't have a predetermined type already set
 
@@ -93,6 +92,7 @@ namespace Weapons
                 // If the weapon spawns in a character's inventory, change the sprite and disable sprite and collider
                 if (transform.parent != null)
                 {
+                    characterAnimation = transform.parent.GetComponent<Animation>();
                     sr.sprite = weaponSpriteHeld;
                     Hide();
                 }
@@ -100,6 +100,7 @@ namespace Weapons
                 // Else the weapon is on the ground, so show basic sprite
                 else
                 {
+                    characterAnimation = null;
                     sr.sprite = weaponSprite;
                     sr.enabled = true;
                 }
@@ -134,6 +135,9 @@ namespace Weapons
         public override void OnPickup(Character pickedUpBy)
         {
             base.OnPickup(pickedUpBy);
+            transform.SetParent(pickedUpBy.gameObject.transform.GetChild(0));
+            transform.localPosition = new Vector2(0, 5);
+            characterAnimation = pickedUpBy.GetComponent<Animation>();
             sr.sprite = weaponSpriteHeld;
             transform.localRotation = Quaternion.identity;
             Hide();
@@ -208,6 +212,56 @@ namespace Weapons
         /// Abstract class for the weapon's attack, overridden in the different weapon type classes
         /// </summary>
         public abstract void Attack();
+
+        /*public override void OnTriggerEnter2D(Collider2D collision)
+        {
+            base.OnTriggerEnter2D(collision);
+            if (collision.gameObject.TryGetComponent(out Character characterHit) && Inventory != null)
+            {
+                if (Inventory.Character is Player && characterHit is Enemy)
+                {
+                    OnHit(characterHit);
+                }
+                else if (Inventory.Character is Enemy && characterHit is Player)
+                {
+                    OnHit(characterHit);
+                }
+            }
+        }*/
+
+        public override void OnTriggerExit2D(Collider2D collision)
+        {
+            base.OnTriggerExit2D(collision);
+            if (collision.gameObject.TryGetComponent(out Character characterHit) && Inventory != null)
+            {
+                characterHit.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+
+        /*public virtual void OnHit(Character character)
+        {
+            if (character.Combat.CurrentState is Blocking block)
+            {
+                block.OnHit();
+                return;
+            }
+            character.CurrentHealth -= (int)damage;
+            character.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+
+        public void PrimaryUse()
+        {
+            if (Inventory.Character.Combat.CurrentState is Idle)
+            {
+                Inventory.Character.Combat.SetState(new Attacking(Inventory.Character));
+            }
+        }
+
+        public void SecondaryUse()
+        {
+            if (!(Inventory.Character.Combat.CurrentState is Idle)) return;
+            Inventory.Character.Combat.SetState(new Blocking(Inventory.Character));
+        }*/
 
     }
 }

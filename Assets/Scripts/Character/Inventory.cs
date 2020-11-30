@@ -67,8 +67,6 @@ public class Inventory : MonoBehaviour
     public void AddItem(Item item)
     {
         item.Inventory = this;
-        // TODO: added weapon specific code to Weapon class OnPickup method
-        // TODO: Set Hand as Parent
         item.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         item.gameObject.SetActive(false);
         item.OnPickup(Character);
