@@ -18,6 +18,11 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
     public float MovementSpeedModifier = 1f;
 
     /// <summary>
+    /// Characters actual movement speed.
+    /// </summary>
+    public float MovementSpeed => BaseMovementSpeed * MovementSpeedModifier;
+
+    /// <summary>
     /// Movement vector. Indicates direction where character is moving.
     /// </summary>
     public Vector2 Movement;
