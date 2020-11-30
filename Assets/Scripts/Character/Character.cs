@@ -31,6 +31,8 @@ public abstract class Character : MonoBehaviour
         }
     }
 
+    
+
     #region Events
     /// <summary>
     /// Is Triggered when <see cref="Die"/> is called. This event can be used to track character death.
@@ -42,6 +44,8 @@ public abstract class Character : MonoBehaviour
     public Inventory Inventory { get; private set; }
     public CharacterCombat Combat { get; private set; }
     public CharacterMovement Movement { get; private set; }
+
+    public Animator Animator { get; private set; }
     #endregion
 
 
@@ -60,6 +64,7 @@ public abstract class Character : MonoBehaviour
         Inventory = GetComponent<Inventory>();
         Combat = GetComponent<CharacterCombat>();
         Movement = GetComponent<CharacterMovement>();
+        Animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
