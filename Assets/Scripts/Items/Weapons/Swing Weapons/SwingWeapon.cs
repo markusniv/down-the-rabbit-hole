@@ -55,7 +55,7 @@ namespace Weapons
                                                0,
                                                180,
                                                0,
-                                               359,
+                                               355,
                                                false);
             #endregion
         }
@@ -120,7 +120,7 @@ namespace Weapons
                         currentEulerAngles += new Vector3(0, 0, z) * Time.deltaTime * rotationSpeed;
                         hand.eulerAngles = currentEulerAngles;
                     }
-                    else if (transform.eulerAngles.z < endAngle)
+                    else if (transform.eulerAngles.z <= endAngle)
                     {
                         currentEulerAngles += new Vector3(0, 0, z) * Time.deltaTime * rotationSpeed;
                         hand.eulerAngles = currentEulerAngles;
