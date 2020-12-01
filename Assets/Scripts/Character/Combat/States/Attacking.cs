@@ -21,10 +21,8 @@ public class Attacking : State
         Character.Combat.InvokeAttackStart(Character.Combat.CurrentWeapon);
         PreviousMovementState = Character.Movement.CurrentState;
         Character.Movement.CurrentState = new Immobile(Character);
-        if (Character.Combat.CurrentWeapon != null)
-        {
-            Character.Combat.CurrentWeapon.Show();
-        }
+
+        Character.Combat.CurrentWeapon?.Show();
     }
 
     public override void OnStateExit()
@@ -37,11 +35,7 @@ public class Attacking : State
 
     public override void OnUpdate()
     {
-        //base.OnUpdate();
-        if (Character.Combat.CurrentWeapon != null)
-        {
-            Character.Combat.CurrentWeapon.Attack();
-        }
-        // TODO: Character.Combat.CurrentWeapon?.Attack();
+        Character.Combat.CurrentWeapon?.Attack();
+
     }
 }

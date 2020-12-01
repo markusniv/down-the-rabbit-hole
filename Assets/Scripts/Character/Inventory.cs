@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
         set
         {
             if (_activeItem != null) _activeItem.gameObject.SetActive(false);
-            Character.Combat.CurrentWeapon = _activeItem as Weapon;
+            Character.Combat.CurrentWeapon = value as Weapon;
             _activeItem = value;
             _activeItem.gameObject.SetActive(true);
             OnActiveItemChange?.Invoke(); // TODO: Set cursor on invoke

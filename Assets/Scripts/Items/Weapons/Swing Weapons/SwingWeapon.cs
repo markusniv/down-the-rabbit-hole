@@ -26,7 +26,7 @@ namespace Weapons
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             sr.enabled = true;
-
+            
             #region Initiate attacks
             if (attacker.down) InitiateAttack(0,
                                               -1,
@@ -66,11 +66,11 @@ namespace Weapons
         /// <param name="middleAngle">The middle angle of the attack (only used by the up attack, else set to 0)</param>
         /// <param name="endAngle">The end angle of the attack</param>
         /// <param name="attackUp">Boolean used to check if attacking up</param>
-        private void InitiateAttack(float xModifier,
-                                    float yModifier,
+        private void InitiateAttack(float xModifier, 
+                                    float yModifier, 
                                     float startAngle,
                                     float middleAngle,
-                                    float endAngle,
+                                    float endAngle, 
                                     bool attackUp)
         {
             Vector2 attackerPosition = character.transform.position;
