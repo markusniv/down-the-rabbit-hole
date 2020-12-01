@@ -50,7 +50,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
             _currentState?.OnStateExit();
             PreviousState = _currentState;
             _currentState = value;
-            OnStateChange?.Invoke();
+            OnStateChange?.Invoke(_currentState);
             _currentState?.OnStateEnter();
         }
     }
@@ -71,7 +71,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// <summary>
     /// Triggered when character changes states.
     /// </summary>
-    public event Action OnStateChange;
+    public event Action<State> OnStateChange;
     /// <summary>
     /// Triggered when an attack ends
     /// </summary>
