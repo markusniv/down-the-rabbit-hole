@@ -59,7 +59,6 @@ namespace Weapons
         /// with the weapon. All directions except up use the same code, as up needs to check when the 
         /// rotation resets back to zero and then start checking if it has reached 90 degrees yet
         /// </summary>
-        /// <param name="attackerPosition">Position of the attacking character</param>
         /// <param name="xModifier">Move the hand this much in X direction</param>
         /// <param name="yModifier">Move the hand this much in Y direction</param>
         /// <param name="startAngle">The starting angle of the attack</param>
