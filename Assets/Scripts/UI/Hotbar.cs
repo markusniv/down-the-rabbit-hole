@@ -65,6 +65,11 @@ public class Hotbar : MonoBehaviour
             ItemsInHotbar[i].Item = items[i];
             ItemsInHotbar[i].Icon.sprite = items[i].Icon == null ? items[i].SpriteRenderer.sprite : items[i].Icon;
             ItemsInHotbar[i].Icon.color = new Color(1, 1, 1, 0.2f);
+            if (Player.Inventory.ActiveItem == (Item)items[i])
+            {
+                SetActiveItem(ItemsInHotbar[i]);
+            }
+            
         }
     }
 

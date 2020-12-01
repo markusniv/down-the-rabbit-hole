@@ -71,7 +71,7 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
             _currentState?.OnStateExit();
             PreviousState = _currentState;
             _currentState = value;
-            OnStateChange?.Invoke();
+            OnStateChange?.Invoke(_currentState);
             _currentState?.OnStateEnter();
         }
     }
@@ -91,7 +91,7 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
     /// <summary>
     /// Triggered when this character changes states.
     /// </summary>
-    public event Action OnStateChange;
+    public event Action<State> OnStateChange;
 
     public event Action<Room> OnRoomEnter;
 

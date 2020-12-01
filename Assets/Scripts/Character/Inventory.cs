@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
         set
         {
             if (_activeItem != null) _activeItem.gameObject.SetActive(false);
-            Character.Combat.CurrentWeapon = _activeItem as Weapon;
+            Character.Combat.CurrentWeapon = value as Weapon;
             _activeItem = value;
             _activeItem.gameObject.SetActive(true);
             OnActiveItemChange?.Invoke(); // TODO: Set cursor on invoke
@@ -106,7 +106,9 @@ public class Inventory : MonoBehaviour
         OnChange?.Invoke();
     }
 
-
+    /// <summary>
+    /// Get the character who owns this inventory
+    /// </summary>
     private void Awake()
     {
         Character = GetComponent<Character>();
@@ -118,7 +120,10 @@ public class Inventory : MonoBehaviour
         
     }
 
-
+    /// <summary>
+    /// Add item to inventory when colliding with one
+    /// </summary>
+    /// <param name="other">The item we're colliding with</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If this collided with item we can pick up

@@ -10,13 +10,25 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// <summary>
     /// Weapon currently held. Will be null if character doesn't hold weapon.
     /// </summary>
-    // TODO: Add Weapon Type
     public Weapon CurrentWeapon { get; set; }
 
+
+    private float? _attackCooldown;
     /// <summary>
-    /// Current attack cooldown in seconds.
+    /// Current attack cooldown in seconds. Invokes cooldown start when setting this value.
     /// </summary>
-    public float AttackCooldown { get; set; }
+    public float? AttackCooldown
+    {
+        get
+        {
+            return _attackCooldown;
+        }
+        set
+        {
+            OnCooldownStart?.Invoke();
+            _attackCooldown = value;
+        }
+    }
 
     /// <summary>
     /// Previous state
@@ -38,7 +50,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
             _currentState?.OnStateExit();
             PreviousState = _currentState;
             _currentState = value;
-            OnStateChange?.Invoke();
+            OnStateChange?.Invoke(_currentState);
             _currentState?.OnStateEnter();
         }
     }
@@ -53,35 +65,58 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// Reference to the hand that should be inside the character
     /// </summary>
     public Transform Hand;
-
-    public Animator Animator;
     #endregion
 
     #region Events
     /// <summary>
     /// Triggered when character changes states.
     /// </summary>
-    public event Action OnStateChange;
-    #endregion
-
+    public event Action<State> OnStateChange;
+    /// <summary>
+    /// Triggered when an attack ends
+    /// </summary>
     public event Action<Weapon> OnAttackEnd;
+    /// <summary>
+    /// Triggered when an attack starts
+    /// </summary>
     public event Action<Weapon> OnAttackStart;
-
-    public event Action<Weapon> OnCooldownStart;
-    public event Action<Weapon> OnCooldownEnd;
+    /// <summary>
+    /// Triggered at the end of an attack to initiate cooldown
+    /// </summary>
+    public event Action OnCooldownStart;
+    /// <summary>
+    /// Triggered when a cooldown is finished
+    /// </summary>
+    public event Action OnCooldownEnd;
+    #endregion
 
     #region InvokingEvents
+    /// <summary>
+    /// Invoke an attack with the current equipped weapon
+    /// </summary>
+    /// <param name="weapon">Current weapon</param>
     public void InvokeAttackStart(Weapon weapon) => OnAttackStart?.Invoke(weapon);
+    /// <summary>
+    /// Invoke the end of an attack with the current equipped weapon
+    /// </summary>
+    /// <param name="weapon">Current weapon</param>
     public void InvokeAttackEnd(Weapon weapon) => OnAttackEnd?.Invoke(weapon);
-
-    public void InvokeCooldownStart(Weapon weapon) => OnCooldownStart?.Invoke(weapon);
-    public void InvokeCooldownEnd(Weapon weapon) => OnCooldownEnd?.Invoke(weapon);
+    /// <summary>
+    /// Invoke cooldown start at the end of an attack for the current weapon
+    /// </summary>
+    public void InvokeCooldownStart() => OnCooldownStart?.Invoke();
+    /// <summary>
+    /// Invoke the end of cooldown for the current weapon when cooldown timer finishes
+    /// </summary>
+    public void InvokeCooldownEnd() => OnCooldownEnd?.Invoke();
     #endregion
 
+    /// <summary>
+    /// Get the character component of this character, set its state to Idle and get its hand gameObject
+    /// </summary>
     protected virtual void Awake()
     {
         Character = GetComponent<Character>();
-        Animator = GetComponent<Animator>();
         CurrentState = new Idle(Character);
         Hand = Character.gameObject.transform.Find("Hand");
     }
@@ -89,16 +124,32 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     protected virtual void Start()
     {
     }
-
+    /// <summary>
+    /// Handle counting cooldown down if cooldown is active
+    /// </summary>
     protected virtual void FixedUpdate()
     {
         CurrentState?.OnFixedUpdate();
-        if(AttackCooldown > 0)
-        {
-            AttackCooldown -= Time.fixedDeltaTime;
-        }
+        ReduceCooldown();
     }
 
+    /// <summary>
+    /// Reduces cooldown until its 0.
+    /// </summary>
+    protected virtual void ReduceCooldown()
+    {
+        if (AttackCooldown > 0f)
+        {
+            _attackCooldown -= Time.fixedDeltaTime;
+        }else if(AttackCooldown <= 0f && AttackCooldown != null)
+        {
+            OnCooldownEnd?.Invoke();
+            _attackCooldown = null;
+        }
+    }
+    /// <summary>
+    /// Check for state changes
+    /// </summary>
     protected virtual void Update()
     {
         CurrentState?.OnUpdate();

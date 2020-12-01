@@ -68,6 +68,10 @@ public abstract class Item : MonoBehaviour
         OnPickup(character);
     }
 
+    /// <summary>
+    /// When leaving the item collider after dropping an item, change RecentlyDroppedBy to null
+    /// </summary>
+    /// <param name="other">The character who leaves the item's collider</param>
     public virtual void OnTriggerExit2D(Collider2D other)
     {
 
@@ -92,12 +96,16 @@ public abstract class Item : MonoBehaviour
     {
         // TODO: Do the tooltip code
     }
-
+    /// <summary>
+    /// Show tooltip when hovering mouse over item
+    /// </summary>
     public virtual void OnMouseEnter()
     {
         ToggleTooltip(true);
     }
-
+    /// <summary>
+    /// Hide tooltip when not hovering mouse over item
+    /// </summary>
     public virtual void OnMouseExit()
     {
         ToggleTooltip(false);

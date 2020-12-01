@@ -8,5 +8,5 @@ public interface IStateMachine
     State PreviousState { get; }
     State CurrentState { get; set; }
 
-    event Action OnStateChange;
+    event Action<State> OnStateChange;
 }
