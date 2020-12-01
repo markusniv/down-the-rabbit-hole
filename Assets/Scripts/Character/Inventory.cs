@@ -106,7 +106,9 @@ public class Inventory : MonoBehaviour
         OnChange?.Invoke();
     }
 
-
+    /// <summary>
+    /// Get the character who owns this inventory
+    /// </summary>
     private void Awake()
     {
         Character = GetComponent<Character>();
@@ -118,7 +120,10 @@ public class Inventory : MonoBehaviour
         
     }
 
-
+    /// <summary>
+    /// Add item to inventory when colliding with one
+    /// </summary>
+    /// <param name="other">The item we're colliding with</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If this collided with item we can pick up

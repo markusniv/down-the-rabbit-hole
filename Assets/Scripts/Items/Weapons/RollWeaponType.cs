@@ -43,10 +43,13 @@ public class RollWeaponType : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Actually roll the random weapon types, do it as an Awake to do it before any of the other weapon scripts
+    /// as not to cause any glitches
     /// </summary>
     private void Awake()
     {
+        // If the weapon type is already given (to allow the creation of premade special weapons), do not roll a 
+        // weapon type.
         if (!gameObject.name.Contains("Of"))
         {
             // Pick randomly from all the listed types in the enum
