@@ -66,10 +66,10 @@ namespace Weapons
             tr = GetComponent<TrailRenderer>();
             col = GetComponent<Collider2D>();
 
-            /*if (tr != null)
+            if (tr != null)
             {
                 tr.enabled = false;
-            }*/
+            }
 
             attack = false;
             
@@ -173,6 +173,10 @@ namespace Weapons
                 tr.enabled = true;
             }
         }
+        /// <summary>
+        /// If the weapon is in inventory and it is not attacking, or if
+        /// the item is on ground, do base.OnMouseEnter, e.g. show item details
+        /// </summary>
         public override void OnMouseEnter()
         {
             if (Inventory != null)
@@ -187,7 +191,10 @@ namespace Weapons
                 base.OnMouseEnter();
             }
         }
-
+        /// <summary>
+        /// If the weapon is in inventory and it is not attacking, or if
+        /// the item is on ground, do base.OnMouseExit, e.g. stop showing item details
+        /// </summary>
         public override void OnMouseExit()
         {
             if (Inventory != null)
@@ -209,6 +216,12 @@ namespace Weapons
         /// </summary>
         public abstract void Attack();
 
+        /// <summary>
+        /// Handle picking up the item and actually hitting characters with weapon if the weapon is in 
+        /// someone's inventory. Disallow enemies from hitting each other, only allow player to hit enemies
+        /// and enemy hit player
+        /// </summary>
+        /// <param name="collision"></param>
         public override void OnTriggerEnter2D(Collider2D collision)
         {
             base.OnTriggerEnter2D(collision);
@@ -225,6 +238,10 @@ namespace Weapons
             }
         }
 
+        /// <summary>
+        /// Turn characters back to their original color when weapon exits collision after hit
+        /// </summary>
+        /// <param name="collision"></param>
         public override void OnTriggerExit2D(Collider2D collision)
         {
             base.OnTriggerExit2D(collision);
@@ -233,18 +250,26 @@ namespace Weapons
                 characterHit.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
-
+        
+        /// <summary>
+        /// Handle the weapon hits, reducing character healths and turning them red when hit, except
+        /// with a successful block
+        /// </summary>
+        /// <param name="character"></param>
         public virtual void OnHit(Character character)
         {
-            /*if (character.Combat.CurrentState is Blocking block)
+            if (character.Combat.CurrentState is Blocking block)
             {
                 block.OnHit();
                 return;
-            }*/
+            }
             character.CurrentHealth -= (int)damage;
             character.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
+        /// <summary>
+        /// Primary item use, e.g. left mouse button, start an attack
+        /// </summary>
         public void PrimaryUse()
         {
             if (Inventory.Character.Combat.CurrentState is Idle)
@@ -252,7 +277,9 @@ namespace Weapons
                 Inventory.Character.Combat.CurrentState = new Attacking(Inventory.Character);
             }
         }
-
+        /// <summary>
+        /// Secondary item use, e.g. right mouse button, start a block
+        /// </summary>
         public void SecondaryUse()
         {
             if (!(Inventory.Character.Combat.CurrentState is Idle)) return;
