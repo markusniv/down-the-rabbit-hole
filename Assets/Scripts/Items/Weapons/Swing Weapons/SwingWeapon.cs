@@ -23,39 +23,34 @@ namespace Weapons
         public override void Attack()
         {
             Animate attacker = character.GetComponent<Animate>();
-            Vector2 attackerPosition = character.transform.position;
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             sr.enabled = true;
-            
+
             #region Initiate attacks
-            if (attacker.down) InitiateAttack(attackerPosition,
-                                              0,
+            if (attacker.down) InitiateAttack(0,
                                               -1,
                                               90,
                                               0,
                                               270,
                                               false);
-            if (attacker.up) InitiateAttack(attackerPosition,
-                                            0,
+            if (attacker.up) InitiateAttack(0,
                                             0.5f,
                                             270,
                                             260,
                                             90,
                                             true);
-            if (attacker.left) InitiateAttack(attackerPosition,
-                                               -1,
+            if (attacker.left) InitiateAttack(-1,
                                                0,
                                                0,
                                                0,
                                                180,
                                                false);
-            if (attacker.right) InitiateAttack(attackerPosition,
-                                               1,
+            if (attacker.right) InitiateAttack(1,
                                                0,
                                                180,
                                                0,
-                                               359,
+                                               355,
                                                false);
             #endregion
         }
@@ -71,14 +66,14 @@ namespace Weapons
         /// <param name="middleAngle">The middle angle of the attack (only used by the up attack, else set to 0)</param>
         /// <param name="endAngle">The end angle of the attack</param>
         /// <param name="attackUp">Boolean used to check if attacking up</param>
-        private void InitiateAttack(Vector2 attackerPosition, 
-                                    float xModifier, 
-                                    float yModifier, 
+        private void InitiateAttack(float xModifier,
+                                    float yModifier,
                                     float startAngle,
                                     float middleAngle,
-                                    float endAngle, 
+                                    float endAngle,
                                     bool attackUp)
         {
+            Vector2 attackerPosition = character.transform.position;
             // Set the starting position for the hand
             hand.position = new Vector2(attackerPosition.x + xModifier, attackerPosition.y + yModifier);
 
@@ -120,7 +115,7 @@ namespace Weapons
                         currentEulerAngles += new Vector3(0, 0, z) * Time.deltaTime * rotationSpeed;
                         hand.eulerAngles = currentEulerAngles;
                     }
-                    else if (transform.eulerAngles.z < endAngle)
+                    else if (transform.eulerAngles.z <= endAngle)
                     {
                         currentEulerAngles += new Vector3(0, 0, z) * Time.deltaTime * rotationSpeed;
                         hand.eulerAngles = currentEulerAngles;
