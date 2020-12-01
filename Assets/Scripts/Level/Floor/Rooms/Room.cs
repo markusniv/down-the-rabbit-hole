@@ -133,7 +133,7 @@ public abstract class Room : MonoBehaviour
     /// <summary>
     /// Get rooms inner bounds.
     /// </summary>
-    public Bounds InnerBounds => GetComponent<BoxCollider2D>().bounds;
+    public Bounds InnerBounds => Collider.bounds;
 
     #region Components
 
