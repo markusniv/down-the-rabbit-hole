@@ -268,7 +268,7 @@ public abstract class Weapon : Item, ICanHotbar
     /// </summary>
     public void PrimaryUse()
     {
-        if (Inventory.Character.Combat.CurrentState is Idle)
+        if (Inventory.Character.Combat.CurrentState is Idle && Inventory.Character.Combat.AttackCooldown <= 0f)
         {
             Inventory.Character.Combat.CurrentState = new Attacking(Inventory.Character);
         }

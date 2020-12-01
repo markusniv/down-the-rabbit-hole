@@ -81,7 +81,8 @@ namespace Weapons
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
+                    CharacterCombat.CurrentState = new Idle(character);
+                    CharacterCombat.AttackCooldown = attackCooldownDefault;
                 }
             }
             if (attacker.up)
@@ -121,7 +122,8 @@ namespace Weapons
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
+                    CharacterCombat.CurrentState = new Idle(character);
+                    CharacterCombat.AttackCooldown = attackCooldownDefault;
                 }
             }
             if (attacker.right)
@@ -161,7 +163,8 @@ namespace Weapons
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
+                    CharacterCombat.CurrentState = new Idle(character);
+                    CharacterCombat.AttackCooldown = attackCooldownDefault;
                 }
             }
             if (attacker.left)
@@ -201,7 +204,8 @@ namespace Weapons
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
+                    CharacterCombat.CurrentState = new Idle(character);
+                    CharacterCombat.AttackCooldown = attackCooldownDefault;
                 }
             }
 

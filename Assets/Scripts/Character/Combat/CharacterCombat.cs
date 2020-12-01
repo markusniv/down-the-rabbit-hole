@@ -10,13 +10,25 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// <summary>
     /// Weapon currently held. Will be null if character doesn't hold weapon.
     /// </summary>
-    // TODO: Add Weapon Type
     public Weapon CurrentWeapon { get; set; }
 
+
+    private float _attackCooldown;
     /// <summary>
-    /// Current attack cooldown in seconds.
+    /// Current attack cooldown in seconds. Invokes cooldown start when setting this value.
     /// </summary>
-    public float AttackCooldown { get; set; }
+    public float AttackCooldown
+    {
+        get
+        {
+            return _attackCooldown;
+        }
+        set
+        {
+            OnCooldownStart?.Invoke();
+            _attackCooldown = value;
+        }
+    }
 
     /// <summary>
     /// Previous state
@@ -71,11 +83,11 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// <summary>
     /// Triggered at the end of an attack to initiate cooldown
     /// </summary>
-    public event Action<Weapon> OnCooldownStart;
+    public event Action OnCooldownStart;
     /// <summary>
     /// Triggered when a cooldown is finished
     /// </summary>
-    public event Action<Weapon> OnCooldownEnd;
+    public event Action OnCooldownEnd;
     #endregion
 
     #region InvokingEvents
@@ -92,13 +104,11 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// <summary>
     /// Invoke cooldown start at the end of an attack for the current weapon
     /// </summary>
-    /// <param name="weapon">Current weapon</param>
-    public void InvokeCooldownStart(Weapon weapon) => OnCooldownStart?.Invoke(weapon);
+    public void InvokeCooldownStart() => OnCooldownStart?.Invoke();
     /// <summary>
     /// Invoke the end of cooldown for the current weapon when cooldown timer finishes
     /// </summary>
-    /// <param name="weapon"></param>
-    public void InvokeCooldownEnd(Weapon weapon) => OnCooldownEnd?.Invoke(weapon);
+    public void InvokeCooldownEnd() => OnCooldownEnd?.Invoke();
     #endregion
 
     /// <summary>
@@ -120,7 +130,15 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     protected virtual void FixedUpdate()
     {
         CurrentState?.OnFixedUpdate();
-        if(AttackCooldown > 0)
+        ReduceCooldown();
+    }
+
+    /// <summary>
+    /// Reduces cooldown until its 0.
+    /// </summary>
+    protected virtual void ReduceCooldown()
+    {
+        if (AttackCooldown > 0)
         {
             AttackCooldown -= Time.fixedDeltaTime;
         }
