@@ -19,7 +19,7 @@ public class TeleportPotion : Consumable
         /// <summary>
         /// Sets the current value of key to the current room to switch.
         /// </summary>
-        Inventory.transform.position = controller.CurrentFloor.RoomGrid[key].GetCenter();
+        Inventory.transform.position = controller.CurrentFloor.RoomGrid[key].Center;
 
         base.Consume();
     }
