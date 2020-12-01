@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Abstract base class for character movement
 /// </summary>
-[RequireComponent(typeof(Animator))]
+/// 
 public abstract class CharacterMovement : MonoBehaviour, IStateMachine
 {
     /// <summary>
@@ -43,7 +43,6 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
         }
         set
         {
-            Animator.SetBool("Immobile", value);
             _immobile = value;
         }
     }
@@ -105,7 +104,6 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<CircleCollider2D>();
         Character = GetComponent<Character>();
-        Animator = GetComponent<Animator>();
     }
 
     protected virtual void Update()
@@ -117,8 +115,6 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
     {
         CurrentState?.OnFixedUpdate();
         if (Immobile) return;
-        Animator.SetFloat("MovementInX", Movement.x);
-        Animator.SetFloat("MovementInY", Movement.y);
 
         Rigidbody.MovePosition(Rigidbody.position + Movement * (BaseMovementSpeed * MovementSpeedModifier) * Time.fixedDeltaTime);
     }

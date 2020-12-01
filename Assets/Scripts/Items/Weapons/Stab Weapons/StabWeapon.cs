@@ -1,0 +1,213 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Weapons
+{
+    /// <summary>
+    /// This class includes all stab type weapons. They thrust straight infront of the character in a straight line
+    /// </summary>
+    public class StabWeapon : Weapon
+    {
+        /// <summary>
+        /// Variables for the length of the stab aswell as a check to see if we've reached the edge of the stab
+        /// </summary>
+        private float stabLength = 1f;
+        private bool reachedEdge = false;
+
+        /// <summary>
+        /// This function performs the stab attack. On the first frame it checks for attackStarted to see if 
+        /// the first frame of the attack has gone off. On the first frame, the character's hand position
+        /// is set to the correct position and rotation depending on the direction of the attack. We then
+        /// start thrusting towards that direction at the stab speed of the equipped weapon.
+        /// 
+        /// Once the attack reaches the wanted length, the weapon starts coming back towards the character,
+        /// until it is back at the starting position, at which point the attack is finished.
+        /// </summary>
+        /// 
+
+        public override void Attack()
+        {
+            Animate attacker = character.GetComponent<Animate>();
+            Vector2 player = character.transform.position;
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+            sr.enabled = true;
+
+            if (attacker.up)
+            {
+                sr.sortingOrder = 2;
+            }
+            else
+            {
+                sr.sortingOrder = 4;
+            }
+
+            if (attacker.down)
+            {
+
+                // Executed on the first frame of the attack
+
+                if (!attackStarted)
+                {
+                    // Set weapon rotation to the corresponding attack angle
+                    hand.position = new Vector2(player.x, player.y);
+                    hand.eulerAngles = new Vector3(0f, 0f, 180);
+
+                    // Don't allow this to be run more than once so set attackStarted to true;
+                    reachedEdge = false;
+                    attackStarted = true;
+                }
+
+                // Once the attack has been started, check if we have reached the length of the attack
+                // If not, keep thrusting weapon forward
+
+                if (hand.localPosition.y > -stabLength && !reachedEdge)
+                {
+                    hand.localPosition = new Vector3(hand.localPosition.x, hand.localPosition.y - stabSpeed, hand.localPosition.z);
+                }
+                if (hand.localPosition.y <= -stabLength)
+                {
+                    reachedEdge = true;
+                }
+                if (reachedEdge && hand.transform.position.y <= player.y)
+                {
+                    hand.localPosition = new Vector3(hand.localPosition.x, hand.localPosition.y + stabSpeed, hand.localPosition.z);
+                }
+                else if (reachedEdge && hand.transform.position.y >= player.y)
+                {
+                    // Start cooldown for attack
+                    attackCooldown = attackCooldownDefault;
+                    // Once we've reached the end of the attack, stop attacking
+                    attack = false;
+                    attackStarted = false;
+                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
+                }
+            }
+            if (attacker.up)
+            {
+                // Executed on the first frame of the attack
+
+                if (!attackStarted)
+                {
+                    // Set weapon rotation to the corresponding attack angle
+                    hand.position = new Vector2(player.x, player.y - 0.5f);
+                    hand.eulerAngles = new Vector3(0f, 0f, 0f);
+                    reachedEdge = false;
+                    // Don't allow this to be run more than once so set attackStarted to true;
+
+                    attackStarted = true;
+                }
+
+                // Once the attack has been started, check if we have reached the length of the attack
+                // If not, keep thrusting weapon forward
+
+                if (hand.localPosition.y < stabLength - 0.5f && !reachedEdge)
+                {
+                    hand.localPosition = new Vector3(hand.localPosition.x, hand.localPosition.y + stabSpeed, hand.localPosition.z);
+                }
+                if (hand.localPosition.y >= stabLength - 0.5f)
+                {
+                    reachedEdge = true;
+                }
+                if (reachedEdge && hand.transform.position.y >= player.y)
+                {
+                    hand.localPosition = new Vector3(hand.localPosition.x, hand.localPosition.y - stabSpeed, hand.localPosition.z);
+                }
+                else if (reachedEdge && hand.transform.position.y <= player.y)
+                {
+                    // Start cooldown for attack
+                    attackCooldown = attackCooldownDefault;
+                    // Once we've reached the end of the attack, stop attacking
+                    attack = false;
+                    attackStarted = false;
+                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
+                }
+            }
+            if (attacker.right)
+            {
+                // Executed on the first frame of the attack
+
+                if (!attackStarted)
+                {
+                    // Set weapon rotation to the corresponding attack angle
+                    hand.position = new Vector2(player.x, player.y - 0.2f);
+                    hand.eulerAngles = new Vector3(0f, 0f, -90f);
+
+                    // Don't allow this to be run more than once so set attackStarted to true;
+                    reachedEdge = false;
+                    attackStarted = true;
+                }
+
+                // Once the attack has been started, check if we have reached the length of the attack
+                // If not, keep thrusting weapon forward
+
+                if (hand.localPosition.x < stabLength && !reachedEdge)
+                {
+                    hand.localPosition = new Vector3(hand.localPosition.x + stabSpeed, hand.localPosition.y, hand.localPosition.z);
+                }
+                if (hand.localPosition.x >= stabLength)
+                {
+                    reachedEdge = true;
+                }
+                if (reachedEdge && hand.transform.position.x >= player.x)
+                {
+                    hand.localPosition = new Vector3(hand.localPosition.x - stabSpeed, hand.localPosition.y, hand.localPosition.z);
+                }
+                else if (reachedEdge && hand.transform.position.x <= player.x)
+                {
+                    // Start cooldown for attack
+                    attackCooldown = attackCooldownDefault;
+                    // Once we've reached the end of the attack, stop attacking
+                    attack = false;
+                    attackStarted = false;
+                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
+                }
+            }
+            if (attacker.left)
+            {
+                // Executed on the first frame of the attack
+
+                if (!attackStarted)
+                {
+                    // Set weapon rotation to the corresponding attack angle
+                    hand.position = new Vector2(player.x, player.y - 0.2f);
+                    hand.eulerAngles = new Vector3(0f, 0f, 90f);
+
+                    // Don't allow this to be run more than once so set attackStarted to true;
+                    reachedEdge = false;
+                    attackStarted = true;
+                }
+
+                // Once the attack has been started, check if we have reached the length of the attack
+                // If not, keep thrusting weapon forward
+
+                if (hand.localPosition.x > -stabLength && !reachedEdge)
+                {
+                    hand.localPosition = new Vector3(hand.localPosition.x - stabSpeed, hand.localPosition.y, hand.localPosition.z);
+                }
+                if (hand.localPosition.x <= -stabLength)
+                {
+                    reachedEdge = true;
+                }
+                if (reachedEdge && hand.transform.position.x <= player.x)
+                {
+                    hand.localPosition = new Vector3(hand.localPosition.x + stabSpeed, hand.localPosition.y, hand.localPosition.z);
+                }
+                else if (reachedEdge && hand.transform.position.x >= player.x)
+                {
+                    // Start cooldown for attack
+                    attackCooldown = attackCooldownDefault;
+                    // Once we've reached the end of the attack, stop attacking
+                    attack = false;
+                    attackStarted = false;
+                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
+                }
+            }
+
+
+        }
+    }
+    
+}
+

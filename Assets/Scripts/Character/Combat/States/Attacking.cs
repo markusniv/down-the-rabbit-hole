@@ -7,29 +7,41 @@ using UnityEngine;
 /// </summary>
 public class Attacking : State
 {
+
     public Attacking(Character character) : base(character)
     {
     }
 
+    private State PreviousMovementState;
+
     public override void OnStateEnter()
     {
-        base.OnStateEnter();
+        //base.OnStateEnter();
         // TODO: Play weapons attack sound.
+        Character.Combat.InvokeAttackStart(Character.Combat.CurrentWeapon);
+        PreviousMovementState = Character.Movement.CurrentState;
         Character.Movement.CurrentState = new Immobile(Character);
-
-        // TODO: Character.Combat.CurrentWeapon?.Show()
+        if (Character.Combat.CurrentWeapon != null)
+        {
+            Character.Combat.CurrentWeapon.Show();
+        }
     }
 
     public override void OnStateExit()
     {
-        base.OnStateExit();
+        //base.OnStateExit();
+        Character.Combat.InvokeAttackEnd(Character.Combat.CurrentWeapon);
         Character.Movement.CurrentState = Character.Movement.PreviousState;
-        // TODO: Character.Combat.CurrentWeapon?.Hide()
+        Character.Combat.CurrentWeapon.Hide();
     }
 
     public override void OnUpdate()
     {
-        base.OnUpdate();
+        //base.OnUpdate();
+        if (Character.Combat.CurrentWeapon != null)
+        {
+            Character.Combat.CurrentWeapon.Attack();
+        }
         // TODO: Character.Combat.CurrentWeapon?.Attack();
     }
 }
