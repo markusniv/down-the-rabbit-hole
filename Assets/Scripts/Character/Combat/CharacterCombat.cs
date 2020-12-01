@@ -140,7 +140,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     {
         if (AttackCooldown > 0)
         {
-            AttackCooldown -= Time.fixedDeltaTime;
+            _attackCooldown -= Time.fixedDeltaTime;
         }
     }
     /// <summary>
