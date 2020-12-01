@@ -29,7 +29,7 @@ namespace Weapons
         public override void Attack()
         {
             Animate attacker = character.GetComponent<Animate>();
-            Vector2 player = character.transform.position;
+            Vector2 attackerPosition = character.transform.position;
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             sr.enabled = true;
@@ -51,7 +51,7 @@ namespace Weapons
                 if (!attackStarted)
                 {
                     // Set weapon rotation to the corresponding attack angle
-                    hand.position = new Vector2(player.x, player.y);
+                    hand.position = new Vector2(attackerPosition.x, attackerPosition.y);
                     hand.eulerAngles = new Vector3(0f, 0f, 180);
 
                     // Don't allow this to be run more than once so set attackStarted to true;
@@ -70,11 +70,11 @@ namespace Weapons
                 {
                     reachedEdge = true;
                 }
-                if (reachedEdge && hand.transform.position.y <= player.y)
+                if (reachedEdge && hand.transform.position.y <= attackerPosition.y)
                 {
                     hand.localPosition = new Vector3(hand.localPosition.x, hand.localPosition.y + stabSpeed, hand.localPosition.z);
                 }
-                else if (reachedEdge && hand.transform.position.y >= player.y)
+                else if (reachedEdge && hand.transform.position.y >= attackerPosition.y)
                 {
                     // Start cooldown for attack
                     attackCooldown = attackCooldownDefault;
@@ -91,7 +91,7 @@ namespace Weapons
                 if (!attackStarted)
                 {
                     // Set weapon rotation to the corresponding attack angle
-                    hand.position = new Vector2(player.x, player.y - 0.5f);
+                    hand.position = new Vector2(attackerPosition.x, attackerPosition.y - 0.5f);
                     hand.eulerAngles = new Vector3(0f, 0f, 0f);
                     reachedEdge = false;
                     // Don't allow this to be run more than once so set attackStarted to true;
@@ -110,11 +110,11 @@ namespace Weapons
                 {
                     reachedEdge = true;
                 }
-                if (reachedEdge && hand.transform.position.y >= player.y)
+                if (reachedEdge && hand.transform.position.y >= attackerPosition.y)
                 {
                     hand.localPosition = new Vector3(hand.localPosition.x, hand.localPosition.y - stabSpeed, hand.localPosition.z);
                 }
-                else if (reachedEdge && hand.transform.position.y <= player.y)
+                else if (reachedEdge && hand.transform.position.y <= attackerPosition.y)
                 {
                     // Start cooldown for attack
                     attackCooldown = attackCooldownDefault;
@@ -131,7 +131,7 @@ namespace Weapons
                 if (!attackStarted)
                 {
                     // Set weapon rotation to the corresponding attack angle
-                    hand.position = new Vector2(player.x, player.y - 0.2f);
+                    hand.position = new Vector2(attackerPosition.x, attackerPosition.y - 0.2f);
                     hand.eulerAngles = new Vector3(0f, 0f, -90f);
 
                     // Don't allow this to be run more than once so set attackStarted to true;
@@ -150,11 +150,11 @@ namespace Weapons
                 {
                     reachedEdge = true;
                 }
-                if (reachedEdge && hand.transform.position.x >= player.x)
+                if (reachedEdge && hand.transform.position.x >= attackerPosition.x)
                 {
                     hand.localPosition = new Vector3(hand.localPosition.x - stabSpeed, hand.localPosition.y, hand.localPosition.z);
                 }
-                else if (reachedEdge && hand.transform.position.x <= player.x)
+                else if (reachedEdge && hand.transform.position.x <= attackerPosition.x)
                 {
                     // Start cooldown for attack
                     attackCooldown = attackCooldownDefault;
@@ -171,7 +171,7 @@ namespace Weapons
                 if (!attackStarted)
                 {
                     // Set weapon rotation to the corresponding attack angle
-                    hand.position = new Vector2(player.x, player.y - 0.2f);
+                    hand.position = new Vector2(attackerPosition.x, attackerPosition.y - 0.2f);
                     hand.eulerAngles = new Vector3(0f, 0f, 90f);
 
                     // Don't allow this to be run more than once so set attackStarted to true;
@@ -190,18 +190,19 @@ namespace Weapons
                 {
                     reachedEdge = true;
                 }
-                if (reachedEdge && hand.transform.position.x <= player.x)
+                if (reachedEdge && hand.transform.position.x <= attackerPosition.x)
                 {
                     hand.localPosition = new Vector3(hand.localPosition.x + stabSpeed, hand.localPosition.y, hand.localPosition.z);
                 }
-                else if (reachedEdge && hand.transform.position.x >= player.x)
+                else if (reachedEdge && hand.transform.position.x >= attackerPosition.x)
                 {
                     // Start cooldown for attack
                     attackCooldown = attackCooldownDefault;
                     // Once we've reached the end of the attack, stop attacking
                     attack = false;
                     attackStarted = false;
-                    CharacterCombat.CurrentState = new AttackOnCooldown(character);
+                    CharacterCombat.CurrentState = new Idle(character);
+                    CharacterCombat.AttackCooldown = attackCooldownDefault;
                 }
             }
 
