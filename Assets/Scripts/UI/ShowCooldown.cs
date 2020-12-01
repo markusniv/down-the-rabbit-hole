@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using Weapons;
 
 public class ShowCooldown : MonoBehaviour
 {
@@ -12,13 +12,20 @@ public class ShowCooldown : MonoBehaviour
     void Awake()
     {
         CooldownText = GetComponent<Text>();
+
+    }
+
+    void Start()
+    {
+        GameController.Instance.Player.Combat.OnCooldownStart += Show;
+        GameController.Instance.Player.Combat.OnCooldownEnd += Hide;
     }
 
     /// <summary>
     /// Enables <see cref="CooldownText"/> Component.
     /// </summary>
     /// <param name="weapon">Weapon that is currently on cooldown</param>
-    void Show(Weapon weapon)
+    void Show()
     {
         CooldownText.enabled = true;
     }
@@ -27,14 +34,14 @@ public class ShowCooldown : MonoBehaviour
     /// Disables <see cref="CooldownText"/> Component.
     /// </summary>
     /// <param name="weapon">Weapon that is currently on cooldown</param>
-    void Hide(Weapon weapon)
+    void Hide()
     {
         CooldownText.enabled = false;
     }
 
     void FixedUpdate()
     {
-        if (GameController.Instance.Player.Combat.AttackCooldown <= 0) return;
+        if (GameController.Instance.Player.Combat.AttackCooldown == null) return;
         UpdateCooldownText();
     }
 
@@ -43,6 +50,6 @@ public class ShowCooldown : MonoBehaviour
     /// </summary>
     void UpdateCooldownText()
     {
-        CooldownText.text = string.Format("Cooldown: {0}", Mathf.Round(GameController.Instance.Player.Combat.AttackCooldown));
+        CooldownText.text = string.Format("Cooldown: {0}", Math.Round(GameController.Instance.Player.Combat.AttackCooldown ?? 0f, 2));
     }
 }

@@ -5365,6 +5365,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cooldown
       objectReference: {fileID: 0}
+    - target: {fileID: 6185065775203566372, guid: c3c6feb88820b364a8cd7f6bf0dfe218, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6511955235014367401, guid: c3c6feb88820b364a8cd7f6bf0dfe218, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5451,3 +5455,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3c6feb88820b364a8cd7f6bf0dfe218, type: 3}
+--- !u!1 &6185065775203566370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3133933159985621348, guid: c3c6feb88820b364a8cd7f6bf0dfe218, type: 3}
+  m_PrefabInstance: {fileID: 6185065775203566369}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6185065775203566375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6185065775203566370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693afe29ef8f4dd4f98889afddc11b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

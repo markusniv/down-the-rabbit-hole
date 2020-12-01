@@ -13,11 +13,11 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     public Weapon CurrentWeapon { get; set; }
 
 
-    private float _attackCooldown;
+    private float? _attackCooldown;
     /// <summary>
     /// Current attack cooldown in seconds. Invokes cooldown start when setting this value.
     /// </summary>
-    public float AttackCooldown
+    public float? AttackCooldown
     {
         get
         {
@@ -138,9 +138,13 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// </summary>
     protected virtual void ReduceCooldown()
     {
-        if (AttackCooldown > 0)
+        if (AttackCooldown > 0f)
         {
             _attackCooldown -= Time.fixedDeltaTime;
+        }else if(AttackCooldown <= 0f && AttackCooldown != null)
+        {
+            OnCooldownEnd?.Invoke();
+            _attackCooldown = null;
         }
     }
     /// <summary>
