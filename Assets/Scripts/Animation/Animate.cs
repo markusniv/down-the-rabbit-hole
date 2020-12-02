@@ -28,12 +28,15 @@ public class Animate : MonoBehaviour
         CharacterCombat = GetComponent<CharacterCombat>();
 
     }
+
+    protected virtual Vector2 LookDirection => Character.Movement.Movement.To4WayDirection();
+
     // Update is called once per frame
     public virtual void Update()
     {
         if (CharacterMovement.CurrentState is Immobile) return;
 
-        Character.Movement.LookDirection = Character.Movement.Movement.To4WayDirection();
+        Character.Movement.LookDirection = LookDirection;
 
         if (Character.Movement.LookDirection == Vector2.down)
         {

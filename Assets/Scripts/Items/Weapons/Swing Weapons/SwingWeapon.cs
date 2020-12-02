@@ -22,7 +22,7 @@ namespace Weapons
         /// </summary>
         public override void Attack()
         {
-            Animate attacker = character.GetComponent<Animate>();
+            Animate attacker = characterAnimation;
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             sr.enabled = true;

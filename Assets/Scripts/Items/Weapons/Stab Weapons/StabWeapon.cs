@@ -28,7 +28,7 @@ namespace Weapons
 
         public override void Attack()
         {
-            Animate attacker = character.GetComponent<Animate>();
+            Animate attacker = characterAnimation;
             Vector2 attackerPosition = character.transform.position;
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 

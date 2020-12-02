@@ -89,24 +89,6 @@ public abstract class Weapon : Item, ICanHotbar
                 damage = weaponType.damage;
                 attackCooldownDefault = weaponType.attackCooldown;
             }
-
-            // If the weapon spawns in a character's inventory, change the sprite and disable sprite and collider
-            if (transform.parent != null)
-            {
-                character = transform.parent.GetComponent<Character>();
-                characterAnimation = transform.parent.GetComponent<Animate>();
-                characterMovement = transform.parent.GetComponent<CharacterMovement>();
-                SpriteRenderer.sprite = weaponSpriteHeld;
-                Hide();
-            }
-
-            // Else the weapon is on the ground, so show basic sprite
-            else
-            {
-                characterAnimation = null;
-                SpriteRenderer.sprite = weaponSprite;
-                SpriteRenderer.enabled = true;
-            }
         }
     }
 
@@ -130,7 +112,6 @@ public abstract class Weapon : Item, ICanHotbar
         base.OnPickup(pickedUpBy);
         MouseOver = false;
         transform.localPosition = new Vector2(0, 5);
-        character = pickedUpBy;
         characterAnimation = pickedUpBy.gameObject.GetComponent<Animate>();
         characterMovement = pickedUpBy.gameObject.GetComponent<CharacterMovement>();
         SpriteRenderer.sprite = weaponSpriteHeld;

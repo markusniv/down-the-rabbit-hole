@@ -21,4 +21,7 @@ public static class VectorExtensions
             return new Vector2(0, Mathf.Round(vector.y));
         }
     }
+
+    public static Vector2 GetDirectionTo(this Vector2 from, Vector2 to) => (to - from).normalized;
+    public static Vector3 GetDirectionTo(this Vector3 from, Vector3 to) => (to - from).normalized;
 }
