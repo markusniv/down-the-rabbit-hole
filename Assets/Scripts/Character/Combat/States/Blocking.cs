@@ -19,12 +19,15 @@ public class Blocking : State
     {
         base.OnStateEnter();
         Character.Movement.CurrentState = new Immobile(Character);
+        Character.Combat.CurrentWeapon?.Show(true);
+        Character.Combat.CurrentWeapon?.Block();
     }
 
     public override void OnStateExit()
     {
         base.OnStateExit();
         Character.Movement.CurrentState = Character.Movement.PreviousState;
+        Character.Combat.CurrentWeapon?.Hide();
     }
 
     /// <summary>

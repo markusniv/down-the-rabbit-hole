@@ -160,9 +160,9 @@ public abstract class Weapon : Item, ICanHotbar
     /// <summary>
     /// This shows the weapon collider, sprite and trailrenderer
     /// </summary>
-    public virtual void Show()
+    public virtual void Show(bool withoutCollider = false)
     {
-        col.enabled = true;
+        col.enabled = !withoutCollider;
         sr.enabled = true;
         if (tr != null)
         {
@@ -208,9 +208,20 @@ public abstract class Weapon : Item, ICanHotbar
     }
 
     /// <summary>
-    /// Abstract class for the weapon's attack, overridden in the different weapon type classes
+    /// Abstract method for the weapon's attack, overridden in the different weapon type classes
     /// </summary>
     public abstract void Attack();
+
+    /// <summary>
+    /// This method moves weapon to block position.
+    /// </summary>
+    public virtual void Block()
+    {
+        var angle = Vector2.SignedAngle(Vector2.up, Inventory.Character.Movement.LookDirection) + 90;
+        hand.localEulerAngles = new Vector3(0, 0, angle);
+        hand.localPosition = Inventory.Character.Movement.LookDirection - (Vector2)hand.transform.up;
+
+    }
 
     /// <summary>
     /// Handle picking up the item and actually hitting characters with weapon if the weapon is in 
