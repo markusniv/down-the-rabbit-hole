@@ -42,7 +42,7 @@ public abstract class Item : MonoBehaviour
     /// <summary>
     /// Tooltip that is shown when mouse is over this item in the UI
     /// </summary>
-    public virtual string Tooltip { get; }
+    public virtual string Tooltip { get; } = "Placeholder tooltip";
     protected virtual void FixedUpdate() { }
 
     /// <summary>
@@ -94,7 +94,10 @@ public abstract class Item : MonoBehaviour
     /// <param name="show">Tooltip will show if set to true</param>
     public virtual void ToggleTooltip(bool show)
     {
-        // TODO: Do the tooltip code
+        if (show && string.IsNullOrWhiteSpace(Tooltip)) return;
+
+        TooltipController.Instance.Text = Tooltip;
+        TooltipController.Instance.IsVisible = show;
     }
     /// <summary>
     /// Show tooltip when hovering mouse over item
