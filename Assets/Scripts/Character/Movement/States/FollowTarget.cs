@@ -18,7 +18,7 @@ public class FollowTarget : State
     {
         Target = target;
         CharacterCollider = character.GetComponent<CircleCollider2D>();
-        TargetCollider = character.GetComponent<CircleCollider2D>();
+        TargetCollider = target.GetComponent<CircleCollider2D>();
     }
 
     public override void OnFixedUpdate()

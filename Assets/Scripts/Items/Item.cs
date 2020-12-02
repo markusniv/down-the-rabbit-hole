@@ -132,7 +132,7 @@ public abstract class Item : MonoBehaviour
             Inventory.DropItem(this);
         }
     }
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }

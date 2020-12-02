@@ -44,6 +44,7 @@ public class Wander : State
         if(WalkTimer > 0)
         {
             Character.Movement.Movement = GetDirection;
+            WalkTimer -= Time.fixedDeltaTime;
         }else
         {
             if(CooldownTimer == null)

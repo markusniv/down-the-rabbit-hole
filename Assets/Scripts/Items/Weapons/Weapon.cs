@@ -37,8 +37,6 @@ public abstract class Weapon : Item, ICanHotbar
     private RollWeaponType weaponType;
 
     public string weaponName;
-
-    public SpriteRenderer sr;
     private TrailRenderer tr;
     private Collider2D col;
 
@@ -51,6 +49,13 @@ public abstract class Weapon : Item, ICanHotbar
     public Sprite weaponSprite,
                   weaponSpriteHeld;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        tr = GetComponent<TrailRenderer>();
+        col = GetComponent<Collider2D>();
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -58,9 +63,7 @@ public abstract class Weapon : Item, ICanHotbar
 
         // Get the base components of the weapon. Stab weapons don't have a TrailRenderer so check for that before disabling it for other weapons.
 
-        sr = GetComponent<SpriteRenderer>();
-        tr = GetComponent<TrailRenderer>();
-        col = GetComponent<Collider2D>();
+
 
         if (tr != null)
         {
@@ -93,7 +96,7 @@ public abstract class Weapon : Item, ICanHotbar
                 character = transform.parent.GetComponent<Character>();
                 characterAnimation = transform.parent.GetComponent<Animate>();
                 characterMovement = transform.parent.GetComponent<CharacterMovement>();
-                sr.sprite = weaponSpriteHeld;
+                SpriteRenderer.sprite = weaponSpriteHeld;
                 Hide();
             }
 
@@ -101,8 +104,8 @@ public abstract class Weapon : Item, ICanHotbar
             else
             {
                 characterAnimation = null;
-                sr.sprite = weaponSprite;
-                sr.enabled = true;
+                SpriteRenderer.sprite = weaponSprite;
+                SpriteRenderer.enabled = true;
             }
         }
     }
@@ -126,12 +129,11 @@ public abstract class Weapon : Item, ICanHotbar
     {
         base.OnPickup(pickedUpBy);
         MouseOver = false;
-        transform.SetParent(pickedUpBy.gameObject.transform.GetChild(0));
         transform.localPosition = new Vector2(0, 5);
         character = pickedUpBy;
         characterAnimation = pickedUpBy.gameObject.GetComponent<Animate>();
         characterMovement = pickedUpBy.gameObject.GetComponent<CharacterMovement>();
-        sr.sprite = weaponSpriteHeld;
+        SpriteRenderer.sprite = weaponSpriteHeld;
         transform.localRotation = Quaternion.identity;
         Hide();
     }
@@ -142,7 +144,7 @@ public abstract class Weapon : Item, ICanHotbar
     public override void OnDrop(Character droppedBy)
     {
         base.OnDrop(droppedBy);
-        sr.sprite = weaponSprite;
+        SpriteRenderer.sprite = weaponSprite;
         Show();
     }
     /// <summary>
@@ -151,7 +153,7 @@ public abstract class Weapon : Item, ICanHotbar
     public virtual void Hide()
     {
         col.enabled = false;
-        sr.enabled = false;
+        SpriteRenderer.enabled = false;
         if (tr != null)
         {
             tr.enabled = false;
@@ -164,7 +166,7 @@ public abstract class Weapon : Item, ICanHotbar
     public virtual void Show(bool withoutCollider = false)
     {
         col.enabled = !withoutCollider;
-        sr.enabled = true;
+        SpriteRenderer.enabled = true;
         if (tr != null)
         {
             tr.enabled = true;

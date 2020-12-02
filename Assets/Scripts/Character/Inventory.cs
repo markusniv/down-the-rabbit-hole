@@ -67,6 +67,7 @@ public class Inventory : MonoBehaviour
     /// <param name="item">Item to be added</param>
     public void AddItem(Item item)
     {
+        item.gameObject.transform.SetParent(Character.Combat.Hand);
         item.Inventory = this;
         if (item is Weapon weapon)
         {
@@ -76,6 +77,7 @@ public class Inventory : MonoBehaviour
         }
         item.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         item.gameObject.SetActive(false);
+        
         item.OnPickup(Character);
         if (ActiveItem == null) ActiveItem = item;
         _items.Add(item);

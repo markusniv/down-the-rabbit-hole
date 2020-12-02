@@ -10,7 +10,7 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
     /// <summary>
     /// Characters Base movement. This is always the same.
     /// </summary>
-    protected float BaseMovementSpeed { get; } = 5f;
+    protected virtual float BaseMovementSpeed { get; } = 5f;
 
     /// <summary>
     /// Characters movement speed modifier. This is multiplier for that base movement. Change this to change characters speed.
@@ -110,6 +110,8 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
         Collider = GetComponent<CircleCollider2D>();
         Character = GetComponent<Character>();
     }
+
+    protected virtual void Start() { }
 
     protected virtual void Update()
     {
