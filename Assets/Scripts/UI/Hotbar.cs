@@ -57,7 +57,10 @@ public class Hotbar : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
+        if(Player.Inventory.ActiveItem == null)
+        {
+            Active = null;
+        }
         for (int i = 0; i < items.Length; i++)
         {
             ItemsInHotbar[i] = Instantiate(ItemPrefab, transform).GetComponent<HotbarItem>();

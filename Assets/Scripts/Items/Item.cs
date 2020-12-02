@@ -24,6 +24,11 @@ public abstract class Item : MonoBehaviour
     /// </summary>
     public int Value;
 
+    /// <summary>
+    /// MouseOver tracking boolean. When can disable functionality if mouse is over this item, such as attacking
+    /// </summary>
+    public bool MouseOver;
+
     #region Components
     public SpriteRenderer SpriteRenderer { get; set; }
     #endregion
@@ -75,7 +80,7 @@ public abstract class Item : MonoBehaviour
     public virtual void OnTriggerExit2D(Collider2D other)
     {
 
-        if (RecentlyDroppedBy != other.gameObject) return;
+        if (!other.gameObject.TryGetComponent(out Character character) || character != RecentlyDroppedBy) return;
         RecentlyDroppedBy = null;
     }
 
@@ -104,6 +109,7 @@ public abstract class Item : MonoBehaviour
     /// </summary>
     public virtual void OnMouseEnter()
     {
+        MouseOver = true;
         ToggleTooltip(true);
     }
     /// <summary>
@@ -111,6 +117,7 @@ public abstract class Item : MonoBehaviour
     /// </summary>
     public virtual void OnMouseExit()
     {
+        MouseOver = false;
         ToggleTooltip(false);
     }
 

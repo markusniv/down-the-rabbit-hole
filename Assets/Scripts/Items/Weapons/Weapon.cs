@@ -125,6 +125,7 @@ public abstract class Weapon : Item, ICanHotbar
     public override void OnPickup(Character pickedUpBy)
     {
         base.OnPickup(pickedUpBy);
+        MouseOver = false;
         transform.SetParent(pickedUpBy.gameObject.transform.GetChild(0));
         transform.localPosition = new Vector2(0, 5);
         character = pickedUpBy;
@@ -279,7 +280,7 @@ public abstract class Weapon : Item, ICanHotbar
     /// </summary>
     public void PrimaryUse()
     {
-        if (Inventory.Character.Combat.CurrentState is Idle && Inventory.Character.Combat.AttackCooldown == null)
+        if (Inventory.Character.Combat.CurrentState is Idle && Inventory.Character.Combat.AttackCooldown == null && !MouseOver)
         {
             Inventory.Character.Combat.CurrentState = new Attacking(Inventory.Character);
         }
@@ -289,7 +290,7 @@ public abstract class Weapon : Item, ICanHotbar
     /// </summary>
     public void SecondaryUse()
     {
-        if (!(Inventory.Character.Combat.CurrentState is Idle)) return;
+        if (!(Inventory.Character.Combat.CurrentState is Idle) || MouseOver) return;
         Inventory.Character.Combat.CurrentState = new Blocking(Inventory.Character);
     }
 

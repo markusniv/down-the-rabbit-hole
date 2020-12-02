@@ -34,7 +34,7 @@ public class Inventory : MonoBehaviour
             if (_activeItem != null) _activeItem.gameObject.SetActive(false);
             Character.Combat.CurrentWeapon = value as Weapon;
             _activeItem = value;
-            _activeItem.gameObject.SetActive(true);
+            _activeItem?.gameObject.SetActive(true);
             OnActiveItemChange?.Invoke(); // TODO: Set cursor on invoke
         }
     }
@@ -88,8 +88,10 @@ public class Inventory : MonoBehaviour
     /// <param name="item">Item to be dropped</param>
     public void DropItem(Item item)
     {
+        if (item == ActiveItem) ActiveItem = null;
         item.Inventory = null;
-        item.gameObject.SetActive(false);
+        item.gameObject.SetActive(true);
+        item.RecentlyDroppedBy = Character;
         item.gameObject.transform.SetParent(null);
         item.transform.position = Character.transform.position;
         item.OnDrop(Character);
