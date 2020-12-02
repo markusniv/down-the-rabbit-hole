@@ -28,6 +28,11 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
     public Vector2 Movement;
 
     /// <summary>
+    /// Direction where character is looking.
+    /// </summary>
+    public Vector2 LookDirection;
+
+    /// <summary>
     /// Reference to the room where this character is currently
     /// </summary>
     public Room CurrentRoom;

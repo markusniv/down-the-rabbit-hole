@@ -19,8 +19,6 @@ public class Animate : MonoBehaviour
     public Character Character;
     public Transform Hand;
 
-    public float angle;
-
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -30,17 +28,14 @@ public class Animate : MonoBehaviour
         CharacterCombat = GetComponent<CharacterCombat>();
 
     }
-
-    protected virtual float Angle => Mathf.Round(Mathf.Atan2(CharacterMovement.Movement.y - Vector2.zero.y, CharacterMovement.Movement.x - Vector2.zero.x) * 180 / Mathf.PI / 90);
-
     // Update is called once per frame
     public virtual void Update()
     {
         if (CharacterMovement.CurrentState is Immobile) return;
-        // just Cache
-        angle = Angle;
 
-        if (angle == -1)
+        Character.Movement.LookDirection = Character.Movement.Movement.To4WayDirection();
+
+        if (Character.Movement.LookDirection == Vector2.down)
         {
             down = true;
             up = false;
@@ -48,7 +43,7 @@ public class Animate : MonoBehaviour
             right = false;
             GetComponent<SpriteRenderer>().sprite = Down;
         }else
-        if (angle == 1)
+        if (Character.Movement.LookDirection == Vector2.up)
         {
             down = false;
             up = true;
@@ -56,7 +51,7 @@ public class Animate : MonoBehaviour
             right = false;
             GetComponent<SpriteRenderer>().sprite = Up;
         }else
-        if (angle == 2)
+        if (Character.Movement.LookDirection == Vector2.left)
         {
             down = false;
             up = false;
@@ -64,7 +59,7 @@ public class Animate : MonoBehaviour
             right = false;
             GetComponent<SpriteRenderer>().sprite = Left;
         }else
-        if (angle == 0)
+        if (Character.Movement.LookDirection == Vector2.right)
         {
             down = false;
             up = false;
