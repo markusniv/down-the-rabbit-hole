@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using UnityEngine;
 using static Room;
 using Random = UnityEngine.Random;
@@ -39,7 +37,7 @@ public class Floor : MonoBehaviour
     public void CreateRooms()
     {
         DestroyRooms();
-        var spawnRoom = CreateRoom<SpawnRoom>(new Room.GridLocation(0,0), true);
+        var spawnRoom = CreateRoom<SpawnRoom>(new Room.GridLocation(0, 0), true);
         GameController.Instance.Player.transform.position = spawnRoom.Center;
         CreateSurroundingRooms(spawnRoom);
         CreateRabbitHoleRoom();
@@ -47,18 +45,18 @@ public class Floor : MonoBehaviour
         Camera.main.GetComponent<Animator>().SetTrigger("StartVignetteOpen");
     }
 
-
     /// <summary>
     /// Destroys all child objects and clears <see cref="RoomGrid"/>
     /// </summary>
     public void DestroyRooms()
     {
-        foreach(Transform room in transform)
+        foreach (Transform room in transform)
         {
             Destroy(room.gameObject);
         }
         RoomGrid = new Dictionary<Room.GridLocation, Room>();
     }
+
     /// <summary>
     /// Tries to destroy room at specific location
     /// </summary>
@@ -84,7 +82,7 @@ public class Floor : MonoBehaviour
     /// <returns>Returns created room</returns>
     public Room CreateRoom<T>(Room.GridLocation location, bool replace = true) where T : Room
     {
-        if(replace) TryDestroyRoom(location);
+        if (replace) TryDestroyRoom(location);
         if (!replace && RoomGrid.ContainsKey(location)) return null;
 
         var prefab = PrefabHelper.GetRoomPrefab<T>();
@@ -113,12 +111,13 @@ public class Floor : MonoBehaviour
         var rabbitHoleRoom = CreateRoom<RabbitHoleRoom>(rabbitHole.Key);
         return rabbitHoleRoom;
     }
+
     /// <summary>
     /// This method sets automatically doors to all rooms.
     /// </summary>
     private void SetDoors()
     {
-        foreach(var room in RoomGrid)
+        foreach (var room in RoomGrid)
         {
             room.Value.SetDoors(GetSurroundingRooms(room.Value)?.Select(x => x.Key)?.Aggregate((a, b) => a | b) ?? Room.DoorLocation.None);
         }
@@ -132,12 +131,12 @@ public class Floor : MonoBehaviour
     {
         List<Room.GridLocation> newRoomLocations = new List<Room.GridLocation>();
         // If room has top door
-        if(room.Doors.HasFlag(Room.DoorLocation.Top))
+        if (room.Doors.HasFlag(Room.DoorLocation.Top))
         {
             newRoomLocations.Add(new Room.GridLocation(room.Location.X, room.Location.Y + 1));
         }
         // If room has right door
-        if(room.Doors.HasFlag(Room.DoorLocation.Right))
+        if (room.Doors.HasFlag(Room.DoorLocation.Right))
         {
             newRoomLocations.Add(new Room.GridLocation(room.Location.X + 1, room.Location.Y));
         }
@@ -152,14 +151,13 @@ public class Floor : MonoBehaviour
             newRoomLocations.Add(new Room.GridLocation(room.Location.X - 1, room.Location.Y));
         }
 
-        foreach(var location in newRoomLocations)
+        foreach (var location in newRoomLocations)
         {
             var newRoom = CreateRoom<GenericRoom>(location, false);
             if (newRoom == null) continue;
             CreateSurroundingRooms(newRoom);
         }
     }
-
 
     /// <summary>
     /// This will get all surrounding rooms. This is used to "fix" doors after floor has been created.
@@ -169,7 +167,8 @@ public class Floor : MonoBehaviour
     private Dictionary<Room.DoorLocation, Room> GetSurroundingRooms(Room room)
     {
         var rooms = new Dictionary<Room.DoorLocation, Room>();
-        if (RoomGrid.TryGetValue(new Room.GridLocation(room.Location.X, room.Location.Y + 1), out Room topRoom)) {
+        if (RoomGrid.TryGetValue(new Room.GridLocation(room.Location.X, room.Location.Y + 1), out Room topRoom))
+        {
             rooms.Add(Room.DoorLocation.Top, topRoom);
         }
         if (RoomGrid.TryGetValue(new Room.GridLocation(room.Location.X + 1, room.Location.Y), out Room rightRoom))
