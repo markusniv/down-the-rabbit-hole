@@ -16,7 +16,9 @@ public class SoundManagerScript : MonoBehaviour
         SlowSlash,
         QuickThrust,
         Deflect,
-        Select
+        Select,
+        Pickup,
+        ChestOpen
     }
 
     static AudioSource audioSrc;
@@ -29,7 +31,13 @@ public class SoundManagerScript : MonoBehaviour
         Sounds = new Dictionary<Sound, AudioClip> {
             {Sound.QuickSlash, Resources.Load<AudioClip>("Sounds/Items/Weapon/QuickSlash") },
             {Sound.Deflect, Resources.Load<AudioClip>("Sounds/Items/Weapon/deflect") },
-            {Sound.Select, Resources.Load<AudioClip>("Sounds/UI/select") }
+            {Sound.Select, Resources.Load<AudioClip>("Sounds/UI/select") },
+            {Sound.ChestOpen, Resources.Load<AudioClip>("Sounds/Consumable/ChestOpen") },
+            {Sound.Pickup, Resources.Load<AudioClip>("Sounds/Consumable/PickUpItem") }
+
+
+
+
         };
     }
     /// <summary>
