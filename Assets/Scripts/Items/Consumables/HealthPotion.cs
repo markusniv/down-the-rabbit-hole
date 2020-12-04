@@ -2,7 +2,7 @@
 {
     public override string Tooltip => string.Format("Use to restore <color=green>{0}</color> health", HealthRestoredOnUse);
 
-    public int HealthRestoredOnUse;
+    public int HealthRestoredOnUse= 200;
 
     public override void Consume()
     {
