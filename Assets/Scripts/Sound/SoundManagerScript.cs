@@ -27,7 +27,7 @@ public class SoundManagerScript : MonoBehaviour
     {
         audioSrc = GetComponent<AudioSource>();
         Sounds = new Dictionary<Sound, AudioClip> {
-            {Sound.QuickSlash, Resources.Load<AudioClip>("Sounds/Items/Weapon/QuickSlash") },
+            {Sound.QuickSlash, Resources.Load<AudioClip>("Sounds/Items/Weapon/quickslash") },
             {Sound.Deflect, Resources.Load<AudioClip>("Sounds/Items/Weapon/deflect") },
             {Sound.Select, Resources.Load<AudioClip>("Sounds/UI/select") }
         };

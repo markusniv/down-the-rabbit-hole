@@ -50,6 +50,7 @@ namespace Weapons
 
                 if (!attackStarted)
                 {
+                    SoundManagerScript.PlaySound(SoundManagerScript.Sound.QuickThrust);
                     // Set weapon rotation to the corresponding attack angle
                     hand.position = new Vector2(attackerPosition.x, attackerPosition.y);
                     hand.eulerAngles = new Vector3(0f, 0f, 180);

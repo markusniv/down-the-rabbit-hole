@@ -17,7 +17,6 @@ public class Attacking : State
     public override void OnStateEnter()
     {
         //base.OnStateEnter();
-        // TODO: Play weapons attack sound.
         Character.Combat.InvokeAttackStart(Character.Combat.CurrentWeapon);
         PreviousMovementState = Character.Movement.CurrentState;
         Character.Movement.CurrentState = new Immobile(Character);
