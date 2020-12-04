@@ -37,8 +37,6 @@ public abstract class Weapon : Item, ICanHotbar
     private RollWeaponType weaponType;
 
     public string weaponName;
-
-    public SpriteRenderer sr;
     private TrailRenderer tr;
     private Collider2D col;
 
@@ -51,6 +49,13 @@ public abstract class Weapon : Item, ICanHotbar
     public Sprite weaponSprite,
                   weaponSpriteHeld;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        tr = GetComponent<TrailRenderer>();
+        col = GetComponent<Collider2D>();
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -58,9 +63,7 @@ public abstract class Weapon : Item, ICanHotbar
 
         // Get the base components of the weapon. Stab weapons don't have a TrailRenderer so check for that before disabling it for other weapons.
 
-        sr = GetComponent<SpriteRenderer>();
-        tr = GetComponent<TrailRenderer>();
-        col = GetComponent<Collider2D>();
+
 
         if (tr != null)
         {
@@ -86,24 +89,6 @@ public abstract class Weapon : Item, ICanHotbar
                 damage = weaponType.damage;
                 attackCooldownDefault = weaponType.attackCooldown;
             }
-
-            // If the weapon spawns in a character's inventory, change the sprite and disable sprite and collider
-            if (transform.parent != null)
-            {
-                character = transform.parent.GetComponent<Character>();
-                characterAnimation = transform.parent.GetComponent<Animate>();
-                characterMovement = transform.parent.GetComponent<CharacterMovement>();
-                sr.sprite = weaponSpriteHeld;
-                Hide();
-            }
-
-            // Else the weapon is on the ground, so show basic sprite
-            else
-            {
-                characterAnimation = null;
-                sr.sprite = weaponSprite;
-                sr.enabled = true;
-            }
         }
     }
 
@@ -125,12 +110,11 @@ public abstract class Weapon : Item, ICanHotbar
     public override void OnPickup(Character pickedUpBy)
     {
         base.OnPickup(pickedUpBy);
-        transform.SetParent(pickedUpBy.gameObject.transform.GetChild(0));
+        MouseOver = false;
         transform.localPosition = new Vector2(0, 5);
-        character = pickedUpBy;
         characterAnimation = pickedUpBy.gameObject.GetComponent<Animate>();
         characterMovement = pickedUpBy.gameObject.GetComponent<CharacterMovement>();
-        sr.sprite = weaponSpriteHeld;
+        SpriteRenderer.sprite = weaponSpriteHeld;
         transform.localRotation = Quaternion.identity;
         Hide();
     }
@@ -141,7 +125,7 @@ public abstract class Weapon : Item, ICanHotbar
     public override void OnDrop(Character droppedBy)
     {
         base.OnDrop(droppedBy);
-        sr.sprite = weaponSprite;
+        SpriteRenderer.sprite = weaponSprite;
         Show();
     }
     /// <summary>
@@ -150,7 +134,7 @@ public abstract class Weapon : Item, ICanHotbar
     public virtual void Hide()
     {
         col.enabled = false;
-        sr.enabled = false;
+        SpriteRenderer.enabled = false;
         if (tr != null)
         {
             tr.enabled = false;
@@ -160,10 +144,10 @@ public abstract class Weapon : Item, ICanHotbar
     /// <summary>
     /// This shows the weapon collider, sprite and trailrenderer
     /// </summary>
-    public virtual void Show()
+    public virtual void Show(bool withoutCollider = false)
     {
-        col.enabled = true;
-        sr.enabled = true;
+        col.enabled = !withoutCollider;
+        SpriteRenderer.enabled = true;
         if (tr != null)
         {
             tr.enabled = true;
@@ -208,9 +192,20 @@ public abstract class Weapon : Item, ICanHotbar
     }
 
     /// <summary>
-    /// Abstract class for the weapon's attack, overridden in the different weapon type classes
+    /// Abstract method for the weapon's attack, overridden in the different weapon type classes
     /// </summary>
     public abstract void Attack();
+
+    /// <summary>
+    /// This method moves weapon to block position.
+    /// </summary>
+    public virtual void Block()
+    {
+        var angle = Vector2.SignedAngle(Vector2.up, Inventory.Character.Movement.LookDirection) + 90;
+        hand.localEulerAngles = new Vector3(0, 0, angle);
+        hand.localPosition = Inventory.Character.Movement.LookDirection - (Vector2)hand.transform.up;
+
+    }
 
     /// <summary>
     /// Handle picking up the item and actually hitting characters with weapon if the weapon is in 
@@ -272,7 +267,7 @@ public abstract class Weapon : Item, ICanHotbar
     /// </summary>
     public void PrimaryUse()
     {
-        if (Inventory.Character.Combat.CurrentState is Idle && Inventory.Character.Combat.AttackCooldown == null)
+        if (Inventory.Character.Combat.CurrentState is Idle && Inventory.Character.Combat.AttackCooldown == null && !MouseOver)
         {
             Inventory.Character.Combat.CurrentState = new Attacking(Inventory.Character);
         }
@@ -282,7 +277,7 @@ public abstract class Weapon : Item, ICanHotbar
     /// </summary>
     public void SecondaryUse()
     {
-        if (!(Inventory.Character.Combat.CurrentState is Idle)) return;
+        if (!(Inventory.Character.Combat.CurrentState is Idle) || MouseOver) return;
         Inventory.Character.Combat.CurrentState = new Blocking(Inventory.Character);
     }
 

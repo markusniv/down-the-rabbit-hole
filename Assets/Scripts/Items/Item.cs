@@ -24,6 +24,11 @@ public abstract class Item : MonoBehaviour
     /// </summary>
     public int Value;
 
+    /// <summary>
+    /// MouseOver tracking boolean. When can disable functionality if mouse is over this item, such as attacking
+    /// </summary>
+    public bool MouseOver;
+
     #region Components
     public SpriteRenderer SpriteRenderer { get; set; }
     #endregion
@@ -42,7 +47,7 @@ public abstract class Item : MonoBehaviour
     /// <summary>
     /// Tooltip that is shown when mouse is over this item in the UI
     /// </summary>
-    public virtual string Tooltip { get; }
+    public virtual string Tooltip { get; } = "Placeholder tooltip";
     protected virtual void FixedUpdate() { }
 
     /// <summary>
@@ -75,7 +80,7 @@ public abstract class Item : MonoBehaviour
     public virtual void OnTriggerExit2D(Collider2D other)
     {
 
-        if (RecentlyDroppedBy != other.gameObject) return;
+        if (!other.gameObject.TryGetComponent(out Character character) || character != RecentlyDroppedBy) return;
         RecentlyDroppedBy = null;
     }
 
@@ -94,13 +99,17 @@ public abstract class Item : MonoBehaviour
     /// <param name="show">Tooltip will show if set to true</param>
     public virtual void ToggleTooltip(bool show)
     {
-        // TODO: Do the tooltip code
+        if (show && string.IsNullOrWhiteSpace(Tooltip)) return;
+
+        TooltipController.Instance.Text = Tooltip;
+        TooltipController.Instance.IsVisible = show;
     }
     /// <summary>
     /// Show tooltip when hovering mouse over item
     /// </summary>
     public virtual void OnMouseEnter()
     {
+        MouseOver = true;
         ToggleTooltip(true);
     }
     /// <summary>
@@ -108,6 +117,7 @@ public abstract class Item : MonoBehaviour
     /// </summary>
     public virtual void OnMouseExit()
     {
+        MouseOver = false;
         ToggleTooltip(false);
     }
 
@@ -122,7 +132,7 @@ public abstract class Item : MonoBehaviour
             Inventory.DropItem(this);
         }
     }
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }

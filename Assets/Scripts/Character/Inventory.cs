@@ -34,7 +34,7 @@ public class Inventory : MonoBehaviour
             if (_activeItem != null) _activeItem.gameObject.SetActive(false);
             Character.Combat.CurrentWeapon = value as Weapon;
             _activeItem = value;
-            _activeItem.gameObject.SetActive(true);
+            _activeItem?.gameObject.SetActive(true);
             OnActiveItemChange?.Invoke(); // TODO: Set cursor on invoke
         }
     }
@@ -67,6 +67,7 @@ public class Inventory : MonoBehaviour
     /// <param name="item">Item to be added</param>
     public void AddItem(Item item)
     {
+        item.gameObject.transform.SetParent(Character.Combat.Hand);
         item.Inventory = this;
         if (item is Weapon weapon)
         {
@@ -76,6 +77,7 @@ public class Inventory : MonoBehaviour
         }
         item.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         item.gameObject.SetActive(false);
+        
         item.OnPickup(Character);
         if (ActiveItem == null) ActiveItem = item;
         _items.Add(item);
@@ -88,10 +90,13 @@ public class Inventory : MonoBehaviour
     /// <param name="item">Item to be dropped</param>
     public void DropItem(Item item)
     {
+        if (item == ActiveItem) ActiveItem = null;
         item.Inventory = null;
-        item.gameObject.SetActive(false);
+        item.gameObject.SetActive(true);
+        item.RecentlyDroppedBy = Character;
         item.gameObject.transform.SetParent(null);
         item.transform.position = Character.transform.position;
+        item.transform.eulerAngles = Vector3.zero;
         item.OnDrop(Character);
         _items.Remove(item);
         OnChange?.Invoke();

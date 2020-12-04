@@ -11,6 +11,11 @@ public class Enemy : Character
     private GameObject DeathParticles;
 
     /// <summary>
+    /// Difficulty modifier as percentage. 1 = normal difficulty. 2 = twice as hard.
+    /// </summary>
+    public float DifficultyModifier = 1;
+
+    /// <summary>
     /// Called when health is 0. Enemy will drop all items when it dies.
     /// </summary>
     public override void Die()
