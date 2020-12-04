@@ -259,7 +259,11 @@ public abstract class Weapon : Item, ICanHotbar
             block.OnHit();
             return;
         }
-        character.CurrentHealth -= (int)damage;
+        /// <summary>
+        /// If the power gantlent is equip it will increase the value of the hit by the percentage we gave it.
+        /// </summary>
+        float DamageModifier = Inventory.Character.GetComponent<Character>().DamageModifier;
+        character.CurrentHealth -= (int)damage + (int)(damage * DamageModifier);
         character.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
