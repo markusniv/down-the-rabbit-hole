@@ -7,7 +7,6 @@ public class SpeedPotion : Consumable
     public float SpeedBoost = 2f;
     public override string Tooltip => string.Format("Use to increase speed by <color=green>{0}%</color>", SpeedBoost * 100);
 
-
     public override void Consume()
     {
 

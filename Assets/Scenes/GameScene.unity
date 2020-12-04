@@ -605,26 +605,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PoisonPotion
       objectReference: {fileID: 0}
-    - target: {fileID: 7693458818645571764, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 568e8979ee9a36c4d87058f6be9f4dc0, type: 3}
-    - target: {fileID: 7693458818645571764, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693458818645571764, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5127895
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693458818645571764, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693458818645571764, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
-      propertyPath: m_Color.b
-      value: 0.9245283
-      objectReference: {fileID: 0}
     - target: {fileID: 9172152393113197067, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.948
@@ -671,28 +651,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
---- !u!1 &602245542 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4135956606940276478, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
-  m_PrefabInstance: {fileID: 602245541}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &602245543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602245542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: debf1280e938f0344a6426b29dad6e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
-  RecentlyDroppedBy: {fileID: 0}
-  Value: 0
-  MouseOver: 0
-  Uses: 1
 --- !u!1001 &862778951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -703,6 +661,10 @@ PrefabInstance:
     - target: {fileID: 2012012271550788757, guid: 68920eee57e11584b84cb05acb3b5353, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791426804464217504, guid: 68920eee57e11584b84cb05acb3b5353, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7637097894341706111, guid: 68920eee57e11584b84cb05acb3b5353, type: 3}
       propertyPath: m_LocalPosition.x
