@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -14,20 +16,20 @@ public abstract class Character : MonoBehaviour
     /// Private backing field for <see cref="CurrentHealth"/>. DO NOT SET THIS DIRECTLY.
     /// </summary>
     [SerializeField]
-    private int _currentHealth;
+    private float _currentHealth;
 
     /// <summary>
     /// Current health for character. If this is set below 0, it will call <see cref="Die"/>. Maximum value for this is <see cref="MaxHealth"/>. Values are clamped automatically.
     /// </summary>
-    public int CurrentHealth
+    public float CurrentHealth
     {
         get
         {
             return _currentHealth;
         }set
         {
-            _currentHealth = Mathf.Clamp(value, 0, MaxHealth);
-            if (_currentHealth == 0) Die();
+            _currentHealth = Mathf.Clamp(value, 0f, MaxHealth);
+            if (_currentHealth == 0f) Die();
         }
     }
     /// <summary>
@@ -35,6 +37,23 @@ public abstract class Character : MonoBehaviour
     /// </summary>
     public float DamageModifier;
 
+    private List<StatusEffect> _statusEffects = new List<StatusEffect>();
+    /// <summary>
+    /// Status effects that character currently has
+    /// </summary>
+    IReadOnlyList<StatusEffect> StatusEffects => _statusEffects;
+
+    public virtual void AddStatusEffect(StatusEffect effect)
+    {
+        effect.OnStatusEnter();
+        _statusEffects.Add(effect);
+    }
+
+    public virtual void RemoveStatusEffect(StatusEffect effect)
+    {
+        effect.OnStatusExit();
+        _statusEffects.Remove(effect);
+    }
 
     #region Events
     /// <summary>
@@ -78,10 +97,17 @@ public abstract class Character : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        foreach(var effect in _statusEffects.ToList())
+        {
+            effect.OnUpdate();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-
+        foreach (var effect in _statusEffects.ToList())
+        {
+            effect.OnFixedUpdate();
+        }
     }
 }

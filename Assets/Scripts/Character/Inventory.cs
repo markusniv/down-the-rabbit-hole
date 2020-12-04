@@ -107,6 +107,7 @@ public class Inventory : MonoBehaviour
     /// </summary>
     /// <param name="item"></param>
     public void RemoveItem(Item item) {
+        if (ActiveItem == item) ActiveItem = null;
         _items.Remove(item);
         OnChange?.Invoke();
     }
@@ -132,7 +133,7 @@ public class Inventory : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If this collided with item we can pick up
-        if(other.gameObject.TryGetComponent(out Item item) && item.RecentlyDroppedBy != Character)
+        if(other.gameObject.TryGetComponent(out Item item) && item.RecentlyDroppedBy != Character && item.Inventory == null)
         {
             AddItem(item);
         }
