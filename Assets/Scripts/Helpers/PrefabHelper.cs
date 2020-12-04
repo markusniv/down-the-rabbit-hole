@@ -13,7 +13,6 @@ public static class PrefabHelper
     /// <returns>Returns unity prefab</returns>
     public static GameObject GetRoomPrefab<T>() where T : Room
     {
-        var test = "Prefabs/Floors/Rooms/" + typeof(T).Name;
         return Resources.Load<GameObject>("Prefabs/Floors/Rooms/" + typeof(T).Name);
     }
 }
