@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 /// <summary>
 /// Characters in this state will look for specified character
@@ -30,6 +31,8 @@ public class LookForCharacter : Wander
         Debug.DrawLine(CharacterCollider.bounds.center, CharacterCollider.bounds.center + DirectionToTarget * DetectRadius);
         if(raycastHit.collider != null && raycastHit.collider.TryGetComponent(out Character character) && character == Target)
         {
+            if (character.StatusEffects.Any(x => x is Stealthed)) return;
+
             if (NextState != null) Character.Movement.CurrentState = NextState;
         }
     }

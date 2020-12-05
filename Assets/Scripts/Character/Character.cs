@@ -41,7 +41,7 @@ public abstract class Character : MonoBehaviour
     /// <summary>
     /// Status effects that character currently has
     /// </summary>
-    IReadOnlyList<StatusEffect> StatusEffects => _statusEffects;
+    public IReadOnlyList<StatusEffect> StatusEffects => _statusEffects;
 
     public virtual void AddStatusEffect(StatusEffect effect)
     {
