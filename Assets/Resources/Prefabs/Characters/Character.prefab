@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4794619553415010603}
   - component: {fileID: 8014239252970192613}
   - component: {fileID: 2849410705508880107}
+  - component: {fileID: -6280116543003293807}
   m_Layer: 9
   m_Name: Character
   m_TagString: Untagged
@@ -121,3 +122,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.26}
   serializedVersion: 2
   m_Radius: 0.4371081
+--- !u!95 &-6280116543003293807
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7924128640240484382}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

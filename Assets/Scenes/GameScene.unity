@@ -744,18 +744,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3791426804464217504, guid: 68920eee57e11584b84cb05acb3b5353, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5619861583913795303, guid: 68920eee57e11584b84cb05acb3b5353, type: 3}
-      propertyPath: DeathParticles
+    - target: {fileID: 6831037889446834970, guid: 68920eee57e11584b84cb05acb3b5353, type: 3}
+      propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 1719895221638987626, guid: fc0878538e4b258468afc8f71c6ac080, type: 3}
-    - target: {fileID: 5619861583913795303, guid: 68920eee57e11584b84cb05acb3b5353, type: 3}
-      propertyPath: _currentHealth
-      value: 1000
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 6348531d73f42664d96eb1aac27cbbdf, type: 2}
     - target: {fileID: 7637097894341706111, guid: 68920eee57e11584b84cb05acb3b5353, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.59
@@ -1127,11 +1119,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2574541670496935637, guid: 26d6b30304e45924295cde6fb4c90b0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.03
+      value: -3.43
       objectReference: {fileID: 0}
     - target: {fileID: 2574541670496935637, guid: 26d6b30304e45924295cde6fb4c90b0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.74
+      value: 5.82
       objectReference: {fileID: 0}
     - target: {fileID: 2574541670496935637, guid: 26d6b30304e45924295cde6fb4c90b0b, type: 3}
       propertyPath: m_LocalPosition.z

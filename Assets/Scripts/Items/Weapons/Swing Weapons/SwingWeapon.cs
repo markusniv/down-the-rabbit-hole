@@ -29,31 +29,30 @@ namespace Weapons
         /// </summary>
         public override void Attack()
         {
-            Animate attacker = characterAnimation;
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             sr.enabled = true;
             
             #region Initiate attacks
-            if (attacker.down) InitiateAttack(0,
+            if (Inventory.Character.Movement.LookDirection == Vector2.down) InitiateAttack(0,
                                               -1,
                                               90,
                                               0,
                                               270,
                                               false);
-            if (attacker.up) InitiateAttack(0,
+            if (Inventory.Character.Movement.LookDirection == Vector2.up) InitiateAttack(0,
                                             0.5f,
                                             270,
                                             260,
                                             90,
                                             true);
-            if (attacker.left) InitiateAttack(-1,
+            if (Inventory.Character.Movement.LookDirection == Vector2.left) InitiateAttack(-1,
                                                0,
                                                0,
                                                0,
                                                180,
                                                false);
-            if (attacker.right) InitiateAttack(1,
+            if (Inventory.Character.Movement.LookDirection == Vector2.right) InitiateAttack(1,
                                                0,
                                                180,
                                                0,

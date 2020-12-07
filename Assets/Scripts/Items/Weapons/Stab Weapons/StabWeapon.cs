@@ -35,13 +35,12 @@ namespace Weapons
 
         public override void Attack()
         {
-            Animate attacker = characterAnimation;
             Vector2 attackerPosition = character.transform.position;
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
             sr.enabled = true;
 
-            if (attacker.up)
+            if (Inventory.Character.Movement.LookDirection == Vector2.up)
             {
                 sr.sortingOrder = 2;
             }
@@ -50,7 +49,7 @@ namespace Weapons
                 sr.sortingOrder = 4;
             }
 
-            if (attacker.down)
+            if (Inventory.Character.Movement.LookDirection == Vector2.down)
             {
 
                 // Executed on the first frame of the attack
@@ -93,7 +92,7 @@ namespace Weapons
                     CharacterCombat.AttackCooldown = attackCooldownDefault;
                 }
             }
-            if (attacker.up)
+            if (Inventory.Character.Movement.LookDirection == Vector2.up)
             {
                 // Executed on the first frame of the attack
 
@@ -134,7 +133,7 @@ namespace Weapons
                     CharacterCombat.AttackCooldown = attackCooldownDefault;
                 }
             }
-            if (attacker.right)
+            if (Inventory.Character.Movement.LookDirection == Vector2.right)
             {
                 // Executed on the first frame of the attack
 
@@ -175,7 +174,7 @@ namespace Weapons
                     CharacterCombat.AttackCooldown = attackCooldownDefault;
                 }
             }
-            if (attacker.left)
+            if (Inventory.Character.Movement.LookDirection == Vector2.left)
             {
                 // Executed on the first frame of the attack
 
