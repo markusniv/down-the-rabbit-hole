@@ -53,6 +53,7 @@ public class Enemy : Character
 
     protected override void Start()
     {
+        DifficultyModifier = GameController.Instance.CurrentFloor.FloorNumber;
         SetRandomHealth();
         SetKillScore();
         base.Start();

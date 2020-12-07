@@ -29,7 +29,7 @@ public class Floor : MonoBehaviour
     /// <summary>
     /// Current floor number
     /// </summary>
-    public int FloorNumber = 0;
+    public int FloorNumber = 1;
 
     /// <summary>
     /// Creates rooms under current floor. Existing rooms are destroyed if they exist
