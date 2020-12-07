@@ -1190,6 +1190,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8438102110565723057, guid: a50f9b2399749234abc70c29b2b53b8a, type: 3}
+      propertyPath: hiddenItem
+      value: 
+      objectReference: {fileID: 7726208817642008935, guid: 156987bed9514a343b9593ec6280b458, type: 3}
     - target: {fileID: 8438102110565723059, guid: a50f9b2399749234abc70c29b2b53b8a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.01
@@ -1236,7 +1240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8438102110565723062, guid: a50f9b2399749234abc70c29b2b53b8a, type: 3}
       propertyPath: m_Name
-      value: Chest (1)
+      value: Chest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50f9b2399749234abc70c29b2b53b8a, type: 3}
@@ -1350,10 +1354,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1122201287677523335, guid: c50fe8817adafda499d7912e8ba42ef6, type: 3}
-      propertyPath: BonusHealth
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 2331355071452641463, guid: c50fe8817adafda499d7912e8ba42ef6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.381064
