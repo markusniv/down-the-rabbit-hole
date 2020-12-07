@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StunPotion : Consumable
 {
+    public override string Tooltip => string.Format("Stuns target for a while");
     public override void Consume()
     {
         /// <summary>

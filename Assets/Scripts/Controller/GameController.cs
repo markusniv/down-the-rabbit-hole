@@ -39,7 +39,10 @@ public class GameController : MonoBehaviour
             {
                 foreach (Transform child in inventory.transform)
                 {
-                    child.GetComponent<DisplayInventoryItem>().Item.OnMouseExit();
+                    if (child.GetComponent<DisplayInventoryItem>().Item.MouseOver == true)
+                    {
+                        child.GetComponent<DisplayInventoryItem>().Item.OnMouseExit();
+                    }
                 }
                 inventory.SetActive(false);
             }

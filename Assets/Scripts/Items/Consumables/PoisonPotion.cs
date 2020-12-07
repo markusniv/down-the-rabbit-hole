@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoisonPotion : Consumable
 {
-    public override string Tooltip => string.Format("Poison <color=green>{5}</color>");
+    public override string Tooltip => string.Format("Poisons the target, dealing damage over time");
 
 
     public override void Consume()
