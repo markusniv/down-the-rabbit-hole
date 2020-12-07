@@ -52,6 +52,7 @@ public class EnemyCombat : CharacterCombat
         var createdWeapon = Instantiate(selectedWeapon);
         createdWeapon.name = createdWeapon.name.Replace("(Clone)", "");
         Character.Inventory.AddItem(createdWeapon.GetComponent<Item>());
+        createdWeapon.gameObject.transform.localPosition = new Vector3(0, 1, 0);
     }
 
     /// <summary>
