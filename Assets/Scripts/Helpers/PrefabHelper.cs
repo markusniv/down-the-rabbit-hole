@@ -15,4 +15,9 @@ public static class PrefabHelper
     {
         return Resources.Load<GameObject>("Prefabs/Floors/Rooms/" + typeof(T).Name);
     }
+
+    public static GameObject[] GetEnemies()
+    {
+        return Resources.LoadAll<GameObject>("Prefabs/Characters/Enemies");
+    }
 }

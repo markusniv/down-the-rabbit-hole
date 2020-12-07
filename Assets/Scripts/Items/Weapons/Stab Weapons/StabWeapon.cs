@@ -10,6 +10,13 @@ namespace Weapons
     public class StabWeapon : Weapon
     {
         /// <summary>
+        /// Tooltip for stab weapons
+        /// </summary>
+        public override string Tooltip => string.Format("{0}\n" +
+                                                            "Damage: {1}\n" +
+                                                            "Stab speed: {2}\n" +
+                                                            "Cooldown: {3} seconds", weaponName, damage, stabSpeed, attackCooldownDefault);
+        /// <summary>
         /// Variables for the length of the stab aswell as a check to see if we've reached the edge of the stab
         /// </summary>
         private float stabLength = 1f;

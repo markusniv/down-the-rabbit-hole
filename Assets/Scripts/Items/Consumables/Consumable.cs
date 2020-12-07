@@ -60,11 +60,14 @@ public abstract class Consumable : Item, ICanHotbar
     /// </summary>
     public void SecondaryUse()
     {
-        Thrown = true;
-        ThrownBy = Inventory.Character;
-        ThrownFrom = Inventory.Character.transform.position;
-        ThrownTo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Inventory.DropItem(this);
+        if (!MouseOver)
+        {
+            Thrown = true;
+            ThrownBy = Inventory.Character;
+            ThrownFrom = Inventory.Character.transform.position;
+            ThrownTo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Inventory.DropItem(this);
+        }
     }
 
     protected override void FixedUpdate()
@@ -86,5 +89,15 @@ public abstract class Consumable : Item, ICanHotbar
 
         transform.position += (Vector3)direction * Time.deltaTime * 5f;
 
+    }
+
+    public override void OnPickup(Character pickedUpBy)
+    {
+        if (Thrown && ThrownBy == pickedUpBy) return;
+        base.OnPickup(pickedUpBy);
+        if (Thrown)
+        {
+            Consume();
+        }
     }
 }

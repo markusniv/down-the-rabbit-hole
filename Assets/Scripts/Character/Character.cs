@@ -10,13 +10,18 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Character : MonoBehaviour
 {
-    public int MaxHealth = 1000;
+    public float MaxHealth = 1000;
 
     /// <summary>
     /// Private backing field for <see cref="CurrentHealth"/>. DO NOT SET THIS DIRECTLY.
     /// </summary>
     [SerializeField]
     private float _currentHealth;
+
+    /// <summary>
+    /// Particles that will be shown when <see cref="Character"/> dies
+    /// </summary>
+    public GameObject DeathParticles;
 
     /// <summary>
     /// Current health for character. If this is set below 0, it will call <see cref="Die"/>. Maximum value for this is <see cref="MaxHealth"/>. Values are clamped automatically.
@@ -81,6 +86,8 @@ public abstract class Character : MonoBehaviour
         // Set health to zero just incase this was called without setting CurrentHealth
         _currentHealth = 0;
         OnDeath?.Invoke();
+        Instantiate(DeathParticles, transform.position, Quaternion.identity);
+        GetComponent<CharacterCombat>().CurrentState = new Dead(this);
     }
 
     protected virtual void Awake()

@@ -21,21 +21,50 @@ public class Enemy : Character
     private bool Dead;
 
     /// <summary>
-    /// Particles that will be shown when <see cref="Enemy"/> dies
-    /// </summary>
-    [SerializeField]
-    private GameObject DeathParticles;
-
-    /// <summary>
     /// Difficulty modifier as percentage. 1 = normal difficulty. 2 = twice as hard.
     /// </summary>
     public float DifficultyModifier = 1;
+
+    /// <summary>
+    /// Score that player will be given when this enemy is killed
+    /// </summary>
+    public DifficultyAware KillScore { get; private set; }
+
+    /// <summary>
+    /// Sets random health with <see cref="DifficultyModifier"/> applied
+    /// </summary>
+    private void SetRandomHealth()
+    {
+        MaxHealth = CurrentHealth = Random.Range(100, 300) * DifficultyModifier;
+    }
+
+    /// <summary>
+    /// Setup for <see cref="KillScore"/>. <see cref="KillScore"/> Scales with <see cref="Character.MaxHealth"/> and <see cref="DifficultyModifier"/>
+    /// </summary>
+    private void SetKillScore()
+    {
+        KillScore = new DifficultyAware(
+            MaxHealth / 10,
+            DifficultyModifier,
+            (x) => x.BaseValue * x.DifficultyModifier
+            );
+    }
+
+
+    protected override void Start()
+    {
+        DifficultyModifier = GameController.Instance.CurrentFloor.FloorNumber;
+        SetRandomHealth();
+        SetKillScore();
+        base.Start();
+    }
 
     /// <summary>
     /// Called when health is 0. Enemy will drop all items when it dies.
     /// </summary>
     public override void Die()
     {
+        GameController.Instance.Player.Score += KillScore.Value;
         Dead = true;
         Destroy(myHealthBar);
         base.Die();
@@ -43,7 +72,6 @@ public class Enemy : Character
         {
             Inventory.DropItem(item);
         }
-        Instantiate(DeathParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     /// <summary>
@@ -52,6 +80,7 @@ public class Enemy : Character
     /// <param name="collision">A weapon</param>
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision);
         if (!collision.gameObject.TryGetComponent(out Weapon weapon)) return;
         // If the health bar already exists, destroy it
         if (myHealthBar != null)

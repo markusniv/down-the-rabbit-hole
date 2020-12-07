@@ -66,27 +66,27 @@ public class RollWeaponType : MonoBehaviour
             {
                 case 0:
                     weaponName = " of the Cheetah";
-                    rotationSpeed *= 2;
-                    stabSpeed *= 2;
+                    rotationSpeed *= 1.2f;
+                    stabSpeed *= 1.2f;
                     attackCooldown *= 0.8f;
                     break;
                 case 1:
                     weaponName = " of the Bear";
-                    rotationSpeed *= 0.7f;
+                    rotationSpeed *= 0.8f;
                     stabSpeed *= 0.7f;
-                    damage *= 3;
+                    damage *= 1.5f;
                     attackCooldown *= 1.5f;
                     break;
                 case 2:
                     weaponName = " of the Rabbit";
-                    rotationSpeed *= 2.5f;
-                    stabSpeed *= 2.5f;
+                    rotationSpeed *= 1.5f;
+                    stabSpeed *= 1.5f;
                     damage *= 0.5f;
                     attackCooldown *= 0.5f;
                     break;
                 case 3:
                     weaponName = " of the Sloth";
-                    rotationSpeed *= 3f;
+                    rotationSpeed *= 2f;
                     stabSpeed *= 3f;
                     damage *= 1f;
                     attackCooldown *= 3f;
