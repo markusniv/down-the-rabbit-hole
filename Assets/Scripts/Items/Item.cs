@@ -68,8 +68,6 @@ public abstract class Item : MonoBehaviour
     /// <param name="col">The character who enters the item's collider</param>
     public virtual void OnTriggerEnter2D(Collider2D col)
     {
-        var character = col.gameObject.GetComponent<Character>();
-        if (Inventory != null || character == null || RecentlyDroppedBy != null) return;
     }
 
     /// <summary>

@@ -123,13 +123,13 @@ public class Inventory : MonoBehaviour
     public void DropItem(Item item)
     {
         if (item == ActiveItem) ActiveItem = null;
+        item.OnDrop(Character);
         item.Inventory = null;
         item.gameObject.SetActive(true);
         item.RecentlyDroppedBy = Character;
         item.gameObject.transform.SetParent(null);
         item.transform.position = Character.transform.position;
         item.transform.eulerAngles = Vector3.zero;
-        item.OnDrop(Character);
         _items.Remove(item);
         OnChange?.Invoke();
     }
