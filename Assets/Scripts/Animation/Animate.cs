@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles changing character sprites depending on the movement direction and saves the directions into booleans to use while attacking
+/// </summary>
 public class Animate : MonoBehaviour
 {
     public Sprite Down,
@@ -19,7 +22,6 @@ public class Animate : MonoBehaviour
     public Character Character;
     public Transform Hand;
 
-    // Start is called before the first frame update
     public virtual void Start()
     {
         down = true;
@@ -31,7 +33,6 @@ public class Animate : MonoBehaviour
 
     protected virtual Vector2 LookDirection => Character.Movement.Movement.To4WayDirection();
 
-    // Update is called once per frame
     public virtual void Update()
     {
         if (CharacterMovement.CurrentState is Immobile) return;
