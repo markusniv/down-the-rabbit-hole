@@ -393,6 +393,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -517411204097063231, guid: d8afc22ac097844438244484e1e8a1cb, type: 3}
+      propertyPath: Uses
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3453965884215501333, guid: d8afc22ac097844438244484e1e8a1cb, type: 3}
       propertyPath: m_Name
       value: RandomPotion
