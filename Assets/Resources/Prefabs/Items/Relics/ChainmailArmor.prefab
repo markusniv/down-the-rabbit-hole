@@ -16,7 +16,7 @@ MonoBehaviour:
   RecentlyDroppedBy: {fileID: 0}
   Value: 0
   MouseOver: 0
-  BonusHealth: 0.2
+  BonusHealth: 100
 --- !u!1001 &1646388271381033799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46,11 +46,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.381064
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.8181603
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.z
