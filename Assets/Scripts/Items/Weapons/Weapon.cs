@@ -1,17 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Abstract base class for all weapons
 /// </summary>
 public abstract class Weapon : Item, ICanHotbar
 {
-    /// <summary>
-    /// Base tooltip for all weapons 
-    /// </summary>
-    public override string Tooltip => string.Format("{0}\n" +
-                                                        "Damage: {1}\n" +
-                                                        "Attack speed: {2}\n" +
-                                                        "Cooldown: {3} seconds", weaponName, damage, rotationSpeed, attackCooldownDefault);
     /// <summary>
     /// Attribute variables for all weapon stats
     /// </summary>
@@ -280,6 +274,14 @@ public abstract class Weapon : Item, ICanHotbar
         if (!(Inventory.Character.Combat.CurrentState is Idle) || MouseOver || Inventory.Character.Combat.BlockCooldown != null) return;
         Inventory.Character.Combat.BlockCooldown = 0.2f;
         Inventory.Character.Combat.CurrentState = new Blocking(Inventory.Character);
+    }
+
+    public override void OnClick(PointerEventData eventData)
+    {
+        if ((attackCooldown <= 0) && (attack == false))
+        {
+            base.OnClick(eventData);
+        }
     }
 
 }

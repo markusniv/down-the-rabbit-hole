@@ -13,6 +13,13 @@ namespace Weapons
     /// </summary>
     public class SwingWeapon : Weapon
     {
+        /// <summary>
+        /// Tooltip for swing weapons
+        /// </summary>
+        public override string Tooltip => string.Format("{0}\n" +
+                                                            "Damage: {1}\n" +
+                                                            "Swing speed: {2}\n" +
+                                                            "Cooldown: {3} seconds", weaponName, damage, rotationSpeed, attackCooldownDefault);
         private float z = 1;
         private Vector3 currentEulerAngles;
 

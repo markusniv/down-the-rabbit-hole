@@ -120,9 +120,9 @@ MonoBehaviour:
   RecentlyDroppedBy: {fileID: 0}
   Value: 0
   MouseOver: 0
-  rotationSpeed: 100
+  rotationSpeed: 125
   stabSpeed: 0
-  damage: 50
+  damage: 20
   attackCooldownDefault: 3
   attackCooldown: 0
   character: {fileID: 0}
