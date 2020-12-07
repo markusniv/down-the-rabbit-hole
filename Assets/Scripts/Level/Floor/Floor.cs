@@ -22,6 +22,11 @@ public class Floor : MonoBehaviour
     }
 
     /// <summary>
+    /// Triggered at end of the <see cref="CreateRooms"/>
+    /// </summary>
+    public event Action<int> OnFloorCreated;
+
+    /// <summary>
     /// Grid of rooms. Accessed by using location of the room.
     /// </summary>
     public IDictionary<Room.GridLocation, Room> RoomGrid;
@@ -29,7 +34,7 @@ public class Floor : MonoBehaviour
     /// <summary>
     /// Current floor number
     /// </summary>
-    public int FloorNumber = 0;
+    public int FloorNumber = 1;
 
     /// <summary>
     /// Creates rooms under current floor. Existing rooms are destroyed if they exist
@@ -43,6 +48,7 @@ public class Floor : MonoBehaviour
         CreateRabbitHoleRoom();
         SetDoors();
         Camera.main.GetComponent<Animator>().SetTrigger("StartVignetteOpen");
+        OnFloorCreated?.Invoke(FloorNumber);
     }
 
     /// <summary>

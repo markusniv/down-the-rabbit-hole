@@ -10,7 +10,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Character : MonoBehaviour
 {
-    public int MaxHealth = 1000;
+    public float MaxHealth = 1000;
 
     /// <summary>
     /// Private backing field for <see cref="CurrentHealth"/>. DO NOT SET THIS DIRECTLY.

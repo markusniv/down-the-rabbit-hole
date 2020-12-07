@@ -26,10 +26,45 @@ public class Enemy : Character
     public float DifficultyModifier = 1;
 
     /// <summary>
+    /// Score that player will be given when this enemy is killed
+    /// </summary>
+    public DifficultyAware KillScore { get; private set; }
+
+    /// <summary>
+    /// Sets random health with <see cref="DifficultyModifier"/> applied
+    /// </summary>
+    private void SetRandomHealth()
+    {
+        MaxHealth = CurrentHealth = Random.Range(100, 300) * DifficultyModifier;
+    }
+
+    /// <summary>
+    /// Setup for <see cref="KillScore"/>. <see cref="KillScore"/> Scales with <see cref="Character.MaxHealth"/> and <see cref="DifficultyModifier"/>
+    /// </summary>
+    private void SetKillScore()
+    {
+        KillScore = new DifficultyAware(
+            MaxHealth / 10,
+            DifficultyModifier,
+            (x) => x.BaseValue * x.DifficultyModifier
+            );
+    }
+
+
+    protected override void Start()
+    {
+        DifficultyModifier = GameController.Instance.CurrentFloor.FloorNumber;
+        SetRandomHealth();
+        SetKillScore();
+        base.Start();
+    }
+
+    /// <summary>
     /// Called when health is 0. Enemy will drop all items when it dies.
     /// </summary>
     public override void Die()
     {
+        GameController.Instance.Player.Score += KillScore.Value;
         Dead = true;
         Destroy(myHealthBar);
         base.Die();

@@ -11,6 +11,7 @@ public class EnemyMovement : CharacterMovement
     {
         base.Awake();
         OnRoomEnter += StartWandering;
+        StartWandering(CurrentRoom);
         GameController.Instance.Player.Movement.OnRoomLeave += PlayerLost;
     }
 

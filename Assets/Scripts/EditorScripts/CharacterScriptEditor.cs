@@ -10,6 +10,7 @@ public class CharacterScriptEditor : Editor
     void OnEnable()
     {
         var script = (Character)target;
+        if (script?.Movement == null || script?.Combat == null) return;
         script.Movement.OnStateChange += StateUpdate;
         script.Combat.OnStateChange += StateUpdate;
     }
@@ -23,6 +24,7 @@ public class CharacterScriptEditor : Editor
     {
         DrawDefaultInspector();
         var script = (Character)target;
+        if (script?.Combat == null || script?.Movement == null) return;
         EditorGUILayout.LabelField("Combat State", script.Combat.CurrentState?.GetType().FullName);
         EditorGUILayout.LabelField("Movement State", script.Movement.CurrentState?.GetType().FullName);
     }

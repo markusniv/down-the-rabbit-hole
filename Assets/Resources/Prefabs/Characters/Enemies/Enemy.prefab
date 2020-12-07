@@ -110,9 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 1000
   _currentHealth: 1000
-  DamageModifier: 0
-  healthBar: {fileID: 363309296220247759, guid: d659a81d8d289ba49ac7478476c3425a, type: 3}
   DeathParticles: {fileID: 1719895221638987626, guid: fc0878538e4b258468afc8f71c6ac080, type: 3}
+  DamageModifier: 1
+  healthBar: {fileID: 363309296220247759, guid: d659a81d8d289ba49ac7478476c3425a, type: 3}
   DifficultyModifier: 1
 --- !u!1001 &4346751629446114081
 PrefabInstance:

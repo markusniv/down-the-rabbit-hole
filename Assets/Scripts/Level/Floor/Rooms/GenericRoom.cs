@@ -22,11 +22,21 @@ public class GenericRoom : Room
         base.Create(gridLocation);
     }
     /// <summary>
-    /// Populates this room with 1 to 4 enemies
+    /// Populates this room with enemies
     /// </summary>
     public override void Populate()
     {
         base.Populate();
-        // TODO: Create Enemies
+        var enemyPrefabs = PrefabHelper.GetEnemies();
+
+        var enemyCount = Random.Range(1, 1 + GameController.Instance.CurrentFloor.FloorNumber);
+
+        for(var i = 0; i < enemyCount; i++)
+        {
+            var newEnemy = GameObject.Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], transform);
+            newEnemy.transform.localPosition = new Vector2(Random.Range(2.1f, InnerBounds.size.x), Random.Range(2.1f, InnerBounds.size.y));
+            newEnemy.GetComponent<Enemy>().Movement.CurrentRoom = this;
+        }
+
     }
 }
