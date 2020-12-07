@@ -10,6 +10,7 @@ public class CharacterScriptEditor : Editor
     void OnEnable()
     {
         var script = (Character)target;
+        if (script?.Movement == null || script?.Combat == null) return;
         script.Movement.OnStateChange += StateUpdate;
         script.Combat.OnStateChange += StateUpdate;
     }
