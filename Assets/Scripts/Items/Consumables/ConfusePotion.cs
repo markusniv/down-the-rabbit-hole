@@ -1,15 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-
-public class SpeedReductionPotion : Consumable
+﻿public class ConfusePotion : Consumable
 {
+    public override string Tooltip => string.Format("Confuse for <color=green>{5}</color>S");
 
-
-    public override string Tooltip => string.Format("Use to decrease speed by <color=green>50%</color>");
-
+ 
 
     public override void Consume()
     {
@@ -20,9 +13,10 @@ public class SpeedReductionPotion : Consumable
         /// <summary>
         /// Call the status effect.
         /// </summary>
-        Inventory.Character.AddStatusEffect(new SpeedReducted(Inventory.Character));
+        Inventory.Character.AddStatusEffect(new Confused(Inventory.Character));
+
         base.Consume();
 
-        
     }
+
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonPotion : Consumable
+public class RecoveryPotion : Consumable
 {
-    public override string Tooltip => string.Format("Poison <color=green>{5}</color>");
+    public override string Tooltip => string.Format("Heal you for <color=green>{5}</color>s");
 
 
     public override void Consume()
@@ -12,7 +12,7 @@ public class PoisonPotion : Consumable
         /// <summary>
         /// Call the status effect.
         /// </summary>
-        Inventory.Character.AddStatusEffect(new Poisoned(Inventory.Character));
+        Inventory.Character.AddStatusEffect(new OverTimeHeal(Inventory.Character));
 
         base.Consume();
     }

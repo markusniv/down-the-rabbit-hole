@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Poisoned : StatusEffect
+public class OverTimeHeal : StatusEffect
 {
 
     /// <summary>
@@ -11,11 +11,11 @@ public class Poisoned : StatusEffect
     float Duration = 5f;
 
     /// <summary>
-    /// How much damage per second
+    /// How much Healing per second
     /// </summary>
-    float DamagePerTick = 50f;
+    int Health = 10;
 
-    public Poisoned(Character character) : base(character)
+    public OverTimeHeal(Character character) : base(character)
     {
     }
 
@@ -30,7 +30,7 @@ public class Poisoned : StatusEffect
         /// <summary>
         /// Reduce from current health 50 damage per second for 5 second
         /// </summary>
-        Character.CurrentHealth -= DamagePerTick * Time.fixedDeltaTime;
+        Character.CurrentHealth += Health * Time.fixedDeltaTime;
         /// <summary>
         /// if the duration is 0 or smaller it will stop the effect.
         /// </summary>

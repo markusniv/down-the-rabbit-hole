@@ -26,7 +26,8 @@ public abstract class Character : MonoBehaviour
         get
         {
             return _currentHealth;
-        }set
+        }
+        set
         {
             _currentHealth = Mathf.Clamp(value, 0f, MaxHealth);
             if (_currentHealth == 0f) Die();
@@ -36,6 +37,7 @@ public abstract class Character : MonoBehaviour
     /// To be able to modifie damage, when damage increasing potion has been drank. Values are clamped automatically.
     /// </summary>
     public float DamageModifier;
+
 
     private List<StatusEffect> _statusEffects = new List<StatusEffect>();
     /// <summary>
@@ -97,7 +99,7 @@ public abstract class Character : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        foreach(var effect in _statusEffects.ToList())
+        foreach (var effect in _statusEffects.ToList())
         {
             effect.OnUpdate();
         }
@@ -110,4 +112,9 @@ public abstract class Character : MonoBehaviour
             effect.OnFixedUpdate();
         }
     }
+
+
+
+
+
 }

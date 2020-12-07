@@ -9,7 +9,13 @@ public class SpeedPotion : Consumable
 
     public override void Consume()
     {
-
+        /// <summary>
+        /// If your movement speed is equal or higher then 6 it will return item.
+        /// </summary>
+        if (Inventory.Character.Movement.MovementSpeedModifier >=5 ) return;
+        /// <summary>
+        /// Call the status effect.
+        /// </summary>
         Inventory.Character.AddStatusEffect(new SpeedBoost(Inventory.Character, SpeedBoost));
         base.Consume();
     }

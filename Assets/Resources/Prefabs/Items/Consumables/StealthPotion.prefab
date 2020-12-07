@@ -1,15 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &258582380180128115
+--- !u!114 &-2348400979265016092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386824835640030023}
+  m_GameObject: {fileID: 6277171931949975414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb2ac22bff2a1b54ab857efa3a795070, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fd5f4f278ee55249a0815f1188086a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
@@ -17,7 +17,7 @@ MonoBehaviour:
   Value: 0
   MouseOver: 0
   Uses: 1
---- !u!1001 &1598521611465983042
+--- !u!1001 &2859977626121023603
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -34,23 +34,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Color.r
-      value: 0.9433962
+      value: 0.3679245
       objectReference: {fileID: 0}
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Color.g
-      value: 0.9150092
+      value: 0.3679245
       objectReference: {fileID: 0}
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Color.b
-      value: 0.04004982
+      value: 0.3679245
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8118953162979440389, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Name
-      value: StunPotion
+      value: StealthPotion
       objectReference: {fileID: 0}
     - target: {fileID: 9043126036546474227, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -122,8 +122,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
---- !u!1 &7386824835640030023 stripped
+--- !u!1 &6277171931949975414 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8118953162979440389, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
-  m_PrefabInstance: {fileID: 1598521611465983042}
+  m_PrefabInstance: {fileID: 2859977626121023603}
   m_PrefabAsset: {fileID: 0}

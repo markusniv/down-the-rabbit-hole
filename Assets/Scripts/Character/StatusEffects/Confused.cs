@@ -2,33 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedBoost : StatusEffect
+public class Confused : StatusEffect
 {
-    float SpeedChange = 2f; // How much will increase the status.
+    
 
     float Duration = 5f; // seconds
 
-    public SpeedBoost(Character character, float speedChange = 2f) : base(character)
+    public Confused(Character character) : base(character)
     {
-        SpeedChange = speedChange;
+      
     }
 
     public override void OnStatusEnter()
     {
 
         /// <summary>
-        /// Will increase the speed by 2.
+        /// Make you move reverse order.
         /// </summary>
-        Character.Movement.MovementSpeedModifier += SpeedChange;
+        Character.Movement.MovementSpeedModifier *=-1;
         base.OnStatusEnter();
     }
 
     public override void OnStatusExit()
     {
         /// <summary>
-        /// Will decrease the speed by 2.
+        /// Will make it positive so you can move correctly.
         /// </summary>
-        Character.Movement.MovementSpeedModifier -= SpeedChange;
+        Character.Movement.MovementSpeedModifier *=-1;
         base.OnStatusExit();
     }
 
