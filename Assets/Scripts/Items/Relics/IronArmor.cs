@@ -22,6 +22,7 @@ public class IronArmor : PassiveRelic
 
     }
 
+
     public override void Clear()
     {
         /// <summary>
