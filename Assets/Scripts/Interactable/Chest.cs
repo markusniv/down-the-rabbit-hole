@@ -60,9 +60,7 @@ public class Chest : MonoBehaviour
                     chestItem.name = hiddenItem.name;
                     chestItem.SetActive(true);
                     chestItem.GetComponent<SpriteRenderer>().sortingOrder = 2;
-                    var particle = Instantiate(particleEffect,
-                                                new Vector3(transform.position.x, transform.position.y, -10),
-                                                Quaternion.identity);
+                    var particle = Instantiate(particleEffect, transform.position, Quaternion.identity);
                    
 
                     GetComponent<SpriteRenderer>().sprite = chestOpen;

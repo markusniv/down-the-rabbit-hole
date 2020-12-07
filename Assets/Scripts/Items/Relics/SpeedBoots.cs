@@ -4,7 +4,7 @@ public class SpeedBoots : PassiveRelic
 {
     public float BonusSpeed = 0.2f;
 
-    public override string Tooltip => string.Format("These boots increase your speed by <color=red>2</color>.");
+    public override string Tooltip => string.Format("These boots increase your speed by <color=blue>2</color>%");
 
     public override void Apply()
     {
