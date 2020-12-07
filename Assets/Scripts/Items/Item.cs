@@ -70,7 +70,6 @@ public abstract class Item : MonoBehaviour
     {
         var character = col.gameObject.GetComponent<Character>();
         if (Inventory != null || character == null || RecentlyDroppedBy != null) return;
-        OnPickup(character);
     }
 
     /// <summary>

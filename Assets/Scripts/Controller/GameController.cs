@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private GameObject inventory;
+
     static GameController _instance;
     /// <summary>
     /// Gets main instance of <see cref="GameController"/>. Simple singleton pattern.
@@ -23,5 +27,23 @@ public class GameController : MonoBehaviour
     {
         CurrentFloor = GameObject.Find("Floor").GetComponent<Floor>();
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (inventory.activeSelf == false)
+            {
+                inventory.SetActive(true);
+            } else
+            {
+                foreach (Transform child in inventory.transform)
+                {
+                    child.GetComponent<DisplayInventoryItem>().Item.OnMouseExit();
+                }
+                inventory.SetActive(false);
+            }
+        }
+        
     }
 }
