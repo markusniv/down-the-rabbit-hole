@@ -9,7 +9,7 @@ public class PowerGantlent : PassiveRelic
     public override void Apply()
     {
 
-        //TODO fix if int or float and summarry
+        
         base.Apply();
         Inventory.Character.GetComponent<Character>().DamageModifier += BonusPower;
     }

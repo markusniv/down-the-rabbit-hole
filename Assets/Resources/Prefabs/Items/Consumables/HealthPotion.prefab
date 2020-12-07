@@ -1,15 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5510291174580814898
+--- !u!114 &-7614498255163132544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5173398565184543003}
+  m_GameObject: {fileID: 6629725335188912617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea2e9c95432710440a1a4ce19e667bd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2acc6af272fe26c4a808d27929d97c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
@@ -17,7 +17,8 @@ MonoBehaviour:
   Value: 0
   MouseOver: 0
   Uses: 1
---- !u!1001 &3992382209087204894
+  HealthRestoredOnUse: 200
+--- !u!1001 &3219463451755400940
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -38,11 +39,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Color.g
-      value: 0.5266742
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Color.b
-      value: 0.02352941
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -90,7 +91,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8118953162979440389, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Name
-      value: ConfusePotion
+      value: HealthPotion
       objectReference: {fileID: 0}
     - target: {fileID: 9043126036546474227, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -122,8 +123,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
---- !u!1 &5173398565184543003 stripped
+--- !u!1 &6629725335188912617 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8118953162979440389, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
-  m_PrefabInstance: {fileID: 3992382209087204894}
+  m_PrefabInstance: {fileID: 3219463451755400940}
   m_PrefabAsset: {fileID: 0}

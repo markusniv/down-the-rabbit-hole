@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OverTimeHeal : StatusEffect
+public class OverTimeHealing : StatusEffect
 {
 
     /// <summary>
@@ -13,9 +13,9 @@ public class OverTimeHeal : StatusEffect
     /// <summary>
     /// How much Healing per second
     /// </summary>
-    int Health = 10;
+    float Health = 25f;
 
-    public OverTimeHeal(Character character) : base(character)
+    public OverTimeHealing(Character character) : base(character)
     {
     }
 
