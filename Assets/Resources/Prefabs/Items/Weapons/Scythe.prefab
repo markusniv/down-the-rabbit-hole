@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: c002466d57c59f945a0b59e03f2e92be, type: 3}
   RecentlyDroppedBy: {fileID: 0}
-  Value: 0
+  Value: 600
   MouseOver: 0
   rotationSpeed: 200
   stabSpeed: 0

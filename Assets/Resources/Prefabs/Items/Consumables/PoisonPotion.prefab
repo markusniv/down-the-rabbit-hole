@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   RecentlyDroppedBy: {fileID: 0}
-  Value: 0
+  Value: 100
   MouseOver: 0
   Uses: 1
 --- !u!1001 &5316937499664617979
