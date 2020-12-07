@@ -16,6 +16,7 @@ public class IronArmor : PassiveRelic
         base.Apply();
     }
 
+
     public override void Clear()
     {
         /// <summary>
