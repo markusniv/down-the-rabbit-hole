@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles varying states of the game to control moving between scenes, for example getting back to main menu after player death.
+/// </summary>
 public class SceneHandler : MonoBehaviour
 {
     [SerializeField] GameObject playerObject,
@@ -15,14 +18,16 @@ public class SceneHandler : MonoBehaviour
     private Player player;
 
     private State playerState;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = playerObject.GetComponent<Player>();
         playerState = player.GetComponent<CharacterCombat>().CurrentState;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Follow player state, and if player dies, freeze time, hide UI elements and show death text + allow player to get back to main menu
+    /// </summary>
     void Update()
     {
         playerState = player.GetComponent<CharacterCombat>().CurrentState;

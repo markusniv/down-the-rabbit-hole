@@ -6,12 +6,18 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// Abtract consumable item. Consumable items can be used only few times. Character can use them directly or throw them.
 /// </summary>
+
 public abstract class Consumable : Item, ICanHotbar
 {
     /// <summary>
-    /// How many times this item can be used until its destroyed.
+    /// Sets the Uses to 1.
     /// </summary>
+    
     public int Uses = 1;
+
+    /// <summary>
+    /// Sets Thrown to false.
+    /// </summary>
 
     bool Thrown = false;
 

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Linq;
-
+/// <summary>
+/// Handles getting enemy directions based on player location
+/// </summary>
 public class AnimateEnemy : Animate
 {
 

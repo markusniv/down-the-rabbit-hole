@@ -1,23 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5510291174580814898
+--- !u!114 &-1122201287677523335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5173398565184543003}
+  m_GameObject: {fileID: 7382936401142432834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea2e9c95432710440a1a4ce19e667bd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a9e8eb8855b99d45843dd2d76af2120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   RecentlyDroppedBy: {fileID: 0}
   Value: 0
   MouseOver: 0
-  Uses: 1
---- !u!1001 &3992382209087204894
+  BonusHealth: 100
+--- !u!1001 &1646388271381033799
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -27,30 +27,30 @@ PrefabInstance:
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 568e8979ee9a36c4d87058f6be9f4dc0, type: 3}
+      objectReference: {fileID: 21300000, guid: 8d94ecf22bf8214429392a0e7db3dae2, type: 3}
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.6313726
       objectReference: {fileID: 0}
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Color.g
-      value: 0.5266742
+      value: 0.6156863
       objectReference: {fileID: 0}
     - target: {fileID: 2525717249893968207, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Color.b
-      value: 0.02352941
+      value: 0.5803922
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.381064
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.8181603
       objectReference: {fileID: 0}
     - target: {fileID: 3928131172251749360, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8118953162979440389, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Name
-      value: ConfusePotion
+      value: ChainmailArmor
       objectReference: {fileID: 0}
     - target: {fileID: 9043126036546474227, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -122,8 +122,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
---- !u!1 &5173398565184543003 stripped
+--- !u!1 &7382936401142432834 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8118953162979440389, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
-  m_PrefabInstance: {fileID: 3992382209087204894}
+  m_PrefabInstance: {fileID: 1646388271381033799}
   m_PrefabAsset: {fileID: 0}

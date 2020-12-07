@@ -8,9 +8,9 @@ public class SpeedBoost : StatusEffect
 
     float Duration = 5f; // seconds
 
-    public SpeedBoost(Character character, float speedChange = 2f) : base(character)
+    public SpeedBoost(Character character) : base(character)
     {
-        SpeedChange = speedChange;
+     
     }
 
     public override void OnStatusEnter()

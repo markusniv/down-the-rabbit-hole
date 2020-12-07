@@ -15,9 +15,9 @@ public class Inventory : MonoBehaviour
     private Item _activeItem;
 
     /// <summary>
-    /// Contains all items in <see cref="Inventory"/>. DO NOT MODIFY DIRECTLY.
+    /// Contains all _items in <see cref="Inventory"/>. DO NOT MODIFY DIRECTLY.
     /// </summary>
-    private List<Item> _items = new List<Item>();
+    public List<Item> _items = new List<Item>();
 
 
     /// <summary>
@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
     public Character Character { get; private set; }
 
     /// <summary>
-    /// This is public accessor for <see cref="_items"/>. Use this to read items in <see cref="Inventory"/>.
+    /// This is public accessor for <see cref="_items"/>. Use this to read _items in <see cref="Inventory"/>.
     /// </summary>
     public IReadOnlyList<Item> Items => _items;
     #region Events
@@ -62,10 +62,42 @@ public class Inventory : MonoBehaviour
 
 
     /// <summary>
-    /// Adds <see cref="Item"/> into <see cref="Items"/>.
+    /// Adds <see cref="Item"/> into <see cref="Items"/> after checking if the player already has 8 useable _items in inventory.
+    /// Hotbar limit was set to 8, so no more than 8 consumables and/or weapons can be held at once. The player can however have
+    /// unlimited relics.
     /// </summary>
     /// <param name="item">Item to be added</param>
     public void AddItem(Item item)
+    {
+        if (Character is Player)
+        {
+            if (item is ICanHotbar)
+            {
+                var hotbar = GameObject.Find("Hotbar");
+                Debug.Log("Items in hotbar: " + hotbar.transform.childCount);
+                if (hotbar.transform.childCount == 8)
+                {
+                    return;
+                } else
+                {
+                    CompleteAddItem(item);
+                }
+            }
+            else
+            {
+                CompleteAddItem(item);
+            }
+        }
+        else
+        {
+            CompleteAddItem(item);
+        }
+    }
+    /// <summary>
+    /// Completes adding the item into inventory.
+    /// </summary>
+    /// <param name="item">Item being added.</param>
+    void CompleteAddItem(Item item)
     {
         item.gameObject.transform.SetParent(Character.Combat.Hand);
         item.Inventory = this;
@@ -77,7 +109,7 @@ public class Inventory : MonoBehaviour
         }
         item.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         item.gameObject.SetActive(false);
-        
+
         item.OnPickup(Character);
         if (ActiveItem == null) ActiveItem = item;
         _items.Add(item);

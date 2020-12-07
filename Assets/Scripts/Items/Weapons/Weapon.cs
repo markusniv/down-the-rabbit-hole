@@ -275,13 +275,4 @@ public abstract class Weapon : Item, ICanHotbar
         Inventory.Character.Combat.BlockCooldown = 0.2f;
         Inventory.Character.Combat.CurrentState = new Blocking(Inventory.Character);
     }
-
-    public override void OnClick(PointerEventData eventData)
-    {
-        if ((attackCooldown <= 0) && (attack == false))
-        {
-            base.OnClick(eventData);
-        }
-    }
-
 }

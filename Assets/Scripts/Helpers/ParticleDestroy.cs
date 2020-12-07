@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Destroys particle effect game objects after their animation is done
+/// </summary>
 public class ParticleDestroy : MonoBehaviour
 {
     private ParticleSystem ps;
