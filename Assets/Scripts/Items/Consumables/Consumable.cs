@@ -54,11 +54,14 @@ public abstract class Consumable : Item, ICanHotbar
     /// </summary>
     public void SecondaryUse()
     {
-        Thrown = true;
-        ThrownBy = Inventory.Character;
-        ThrownFrom = Inventory.Character.transform.position;
-        ThrownTo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Inventory.DropItem(this);
+        if (!MouseOver)
+        {
+            Thrown = true;
+            ThrownBy = Inventory.Character;
+            ThrownFrom = Inventory.Character.transform.position;
+            ThrownTo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Inventory.DropItem(this);
+        }
     }
 
     protected override void FixedUpdate()
