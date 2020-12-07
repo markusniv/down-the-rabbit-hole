@@ -40,7 +40,9 @@ public class DisplayInventory : MonoBehaviour
             newItem.GetComponent<DisplayInventoryItem>().Item = item;
             newItem.name = item.name;
             newItem.transform.SetParent(gameObject.transform);
-            newItem.GetComponent<Image>().sprite = item.Icon.GetInstanceID() == 0 ? item.GetComponent<SpriteRenderer>().sprite : item.Icon;
+            var sprite = item.Icon.GetInstanceID() == 0 ? item.GetComponent<SpriteRenderer>().sprite : item.Icon;
+            newItem.GetComponent<Image>().sprite = sprite;
+            newItem.GetComponent<Image>().color = item.GetComponent<SpriteRenderer>().color;
         }
     }
 }

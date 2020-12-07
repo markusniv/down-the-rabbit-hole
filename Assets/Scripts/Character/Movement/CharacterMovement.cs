@@ -37,21 +37,6 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
     /// </summary>
     public Room CurrentRoom;
 
-    private bool _immobile;
-
-    /// <summary>
-    /// Character cannot move if this is set to true. Setting this automatically sets Animator paramater.
-    /// </summary>
-    public bool Immobile { get
-        {
-            return _immobile;
-        }
-        set
-        {
-            _immobile = value;
-        }
-    }
-
     /// <summary>
     /// Characters previous state.
     /// </summary>
@@ -109,6 +94,7 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<CircleCollider2D>();
         Character = GetComponent<Character>();
+        Animator = GetComponent<Animator>();
     }
 
     protected virtual void Start() { }
@@ -121,8 +107,17 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
     protected virtual void FixedUpdate()
     {
         CurrentState?.OnFixedUpdate();
-        if (Immobile) return;
-
+        if (CurrentState is Immobile) return;
+        if (Movement != Vector2.zero)
+        {
+            Animator.SetFloat("AnimationSpeed", 1f);
+            LookDirection = Movement.To4WayDirection();
+            Animator.SetFloat("MovementInX", LookDirection.x);
+            Animator.SetFloat("MovementInY", LookDirection.y);
+        }else
+        {
+            Animator.SetFloat("AnimationSpeed", 0f);
+        }
         Rigidbody.MovePosition(Rigidbody.position + Movement * (BaseMovementSpeed * MovementSpeedModifier) * Time.fixedDeltaTime);
     }
 

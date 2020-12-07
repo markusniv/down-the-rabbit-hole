@@ -72,30 +72,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
   Hand: {fileID: 0}
---- !u!114 &8440640438127446135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5884773767778200383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f53e8e0d37bf97246929175bb60bf3f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Down: {fileID: 8376065006509786415, guid: 8a063bc41bb0079469f6e83f5001131a, type: 3}
-  Up: {fileID: 3421809733870180866, guid: 8a063bc41bb0079469f6e83f5001131a, type: 3}
-  Right: {fileID: -7021505876318606439, guid: 8a063bc41bb0079469f6e83f5001131a, type: 3}
-  Left: {fileID: -1443268486790046223, guid: 8a063bc41bb0079469f6e83f5001131a, type: 3}
-  down: 0
-  up: 0
-  right: 0
-  left: 0
-  CharacterMovement: {fileID: 0}
-  CharacterCombat: {fileID: 0}
-  Character: {fileID: 0}
-  Hand: {fileID: 0}
 --- !u!114 &8873229403307991020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +97,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6280116543003293807, guid: e98e27bf332636a46be757da76f6ab04, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: f00a9aee4889e2d4fbd6aa917fe43708, type: 2}
     - target: {fileID: 2299192690150307316, guid: e98e27bf332636a46be757da76f6ab04, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.03

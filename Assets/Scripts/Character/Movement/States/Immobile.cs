@@ -16,12 +16,10 @@ public class Immobile : State
     {
         base.OnStateEnter();
         Character.Movement.Movement = Vector2.zero;
-        Character.Movement.Immobile = true;
     }
 
     public override void OnStateExit()
     {
         base.OnStateExit();
-        Character.Movement.Immobile = false;
     }
 }
