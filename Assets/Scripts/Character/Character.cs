@@ -19,6 +19,11 @@ public abstract class Character : MonoBehaviour
     private float _currentHealth;
 
     /// <summary>
+    /// Particles that will be shown when <see cref="Character"/> dies
+    /// </summary>
+    public GameObject DeathParticles;
+
+    /// <summary>
     /// Current health for character. If this is set below 0, it will call <see cref="Die"/>. Maximum value for this is <see cref="MaxHealth"/>. Values are clamped automatically.
     /// </summary>
     public float CurrentHealth
@@ -81,6 +86,8 @@ public abstract class Character : MonoBehaviour
         // Set health to zero just incase this was called without setting CurrentHealth
         _currentHealth = 0;
         OnDeath?.Invoke();
+        Instantiate(DeathParticles, transform.position, Quaternion.identity);
+        GetComponent<CharacterCombat>().CurrentState = new Dead(this);
     }
 
     protected virtual void Awake()

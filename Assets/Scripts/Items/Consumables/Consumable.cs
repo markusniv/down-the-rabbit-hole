@@ -81,4 +81,14 @@ public abstract class Consumable : Item, ICanHotbar
         transform.position += (Vector3)direction * Time.deltaTime * 5f;
 
     }
+
+    public override void OnPickup(Character pickedUpBy)
+    {
+        if (Thrown && ThrownBy == pickedUpBy) return;
+        base.OnPickup(pickedUpBy);
+        if (Thrown)
+        {
+            Consume();
+        }
+    }
 }

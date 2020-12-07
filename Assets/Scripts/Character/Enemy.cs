@@ -21,12 +21,6 @@ public class Enemy : Character
     private bool Dead;
 
     /// <summary>
-    /// Particles that will be shown when <see cref="Enemy"/> dies
-    /// </summary>
-    [SerializeField]
-    private GameObject DeathParticles;
-
-    /// <summary>
     /// Difficulty modifier as percentage. 1 = normal difficulty. 2 = twice as hard.
     /// </summary>
     public float DifficultyModifier = 1;
@@ -43,7 +37,6 @@ public class Enemy : Character
         {
             Inventory.DropItem(item);
         }
-        Instantiate(DeathParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     /// <summary>
@@ -52,6 +45,7 @@ public class Enemy : Character
     /// <param name="collision">A weapon</param>
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision);
         if (!collision.gameObject.TryGetComponent(out Weapon weapon)) return;
         // If the health bar already exists, destroy it
         if (myHealthBar != null)
