@@ -3,7 +3,7 @@
 public class IronArmor : PassiveRelic
 {
     public float BonusHealth = 0.2f;
-    private int OriginalValue;
+    private float OriginalValue;
     public override string Tooltip => string.Format("This rusty armor adds <color=red>{0}</color> bonus health", this.BonusHealth);
 
     public override void Apply()

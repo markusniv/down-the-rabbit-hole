@@ -7,6 +7,7 @@ public class Dodging : State
 {
 
     #region Components
+    Character Target;
     Rigidbody2D CharacterRigidBody;
     CircleCollider2D CharacterCollider;
     CircleCollider2D TargetCollider;
@@ -16,11 +17,12 @@ public class Dodging : State
         CharacterRigidBody = character.GetComponent<Rigidbody2D>();
         CharacterCollider = character.GetComponent<CircleCollider2D>();
         TargetCollider = DodgeFrom.GetComponent<CircleCollider2D>();
+        Target = DodgeFrom;
     }
 
     public Vector2 DodgeDestination;
     public float DodgeSpeed = 50f;
-    public float DodgeDistance = 5f;
+    public float DodgeDistance = 6f;
     float DodgeDuration;
 
     public override void OnStateEnter()
@@ -30,12 +32,19 @@ public class Dodging : State
 
         DodgeDestination = CharacterCollider.bounds.center + (-DirectionToTarget) * DodgeDistance;
         DodgeDuration = DistanceToDestination / DodgeSpeed;
+        Target.Combat.OnAttackEnd += RestoreState;
     }
 
     public override void OnStateExit()
     {
         base.OnStateExit();
+        Target.Combat.OnAttackEnd -= RestoreState;
         Character.Movement.CurrentState = Character.Movement.PreviousState;
+    }
+
+    private void RestoreState(Weapon weapon)
+    {
+        Character.Combat.CurrentState = new Idle(Character);
     }
 
     public override void OnUpdate()
@@ -45,11 +54,6 @@ public class Dodging : State
         {
             CharacterRigidBody.MovePosition(CharacterRigidBody.position + (DirectionToDestination * DodgeSpeed * Time.deltaTime));
         }
-        else
-        {
-            Character.Combat.CurrentState = new Idle(Character);
-        }
-
     }
 
     private Vector3 DirectionToTarget => (TargetCollider.bounds.center - CharacterCollider.bounds.center).normalized;

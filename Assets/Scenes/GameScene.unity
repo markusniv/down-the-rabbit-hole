@@ -1428,6 +1428,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 16112268001532219, guid: 7947ed3a412dc25488428077593c1e8b, type: 3}
+      propertyPath: m_DetectChunkCullingBounds
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 16112268001532219, guid: 7947ed3a412dc25488428077593c1e8b, type: 3}
+      propertyPath: m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 16112268001532219, guid: 7947ed3a412dc25488428077593c1e8b, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 16112268001532222, guid: 7947ed3a412dc25488428077593c1e8b, type: 3}
       propertyPath: m_Name
       value: RabbitHoleRoom

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 /// <summary>
 /// Player controlled character. There is only one player at the game.
@@ -7,7 +8,25 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : Character
 {
+    private float _score;
 
+    /// <summary>
+    /// Players current score.
+    /// </summary>
+    public float Score
+    {
+        get
+        {
+            return _score;
+        }
+        set
+        {
+            _score = value;
+            OnScoreChange?.Invoke(_score);
+        }
+    }
+
+    public event Action<float> OnScoreChange;
 
     public override void Die()
     {

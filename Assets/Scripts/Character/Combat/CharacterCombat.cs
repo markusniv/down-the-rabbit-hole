@@ -12,6 +12,8 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// </summary>
     public Weapon CurrentWeapon { get; set; }
 
+    public float? BlockCooldown { get; set; }
+
 
     private float? _attackCooldown;
     /// <summary>
@@ -134,7 +136,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     }
 
     /// <summary>
-    /// Reduces cooldown until its 0.
+    /// Reduces cooldowns until its 0.
     /// </summary>
     protected virtual void ReduceCooldown()
     {
@@ -145,6 +147,14 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
         {
             OnCooldownEnd?.Invoke();
             _attackCooldown = null;
+        }
+
+        if(BlockCooldown > 0f && CurrentState is Idle)
+        {
+            BlockCooldown -= Time.fixedDeltaTime;
+        }else if(BlockCooldown <= 0f && BlockCooldown != null)
+        {
+            BlockCooldown = null;
         }
     }
     /// <summary>

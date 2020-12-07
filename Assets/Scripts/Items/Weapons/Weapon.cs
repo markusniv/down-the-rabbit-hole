@@ -277,7 +277,8 @@ public abstract class Weapon : Item, ICanHotbar
     /// </summary>
     public void SecondaryUse()
     {
-        if (!(Inventory.Character.Combat.CurrentState is Idle) || MouseOver) return;
+        if (!(Inventory.Character.Combat.CurrentState is Idle) || MouseOver || Inventory.Character.Combat.BlockCooldown != null) return;
+        Inventory.Character.Combat.BlockCooldown = 0.2f;
         Inventory.Character.Combat.CurrentState = new Blocking(Inventory.Character);
     }
 
