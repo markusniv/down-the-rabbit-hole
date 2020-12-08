@@ -28,12 +28,6 @@ public class Player : Character
 
     public event Action<float> OnScoreChange;
 
-    public override void Die()
-    {
-        // TODO: Set Death state
-        base.Die();
-    }
-
     protected override void Update()
     {
         base.Update();

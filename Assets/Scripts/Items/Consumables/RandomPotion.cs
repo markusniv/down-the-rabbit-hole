@@ -16,7 +16,19 @@ public class RandomPotion : Consumable
         GameObject[] possiblePotions = Resources.LoadAll<GameObject>("Prefabs/Items/Consumables");
         var consumables = possiblePotions.Select(x => x.GetComponent<Consumable>());
         SelectedPotion = consumables.ElementAt(Random.Range(0, consumables.Count()));
-        SelectedPotion.OnPickup(Inventory.Character);
+        SelectedPotion.Uses = 999999;
+    }
+
+    public override void OnPickup(Character pickedUpBy)
+    {
+        base.OnPickup(pickedUpBy);
+        SelectedPotion.Inventory = Inventory;
+    }
+
+    public override void OnDrop(Character droppedBy)
+    {
+        base.OnDrop(droppedBy);
+        SelectedPotion.Inventory = null;
     }
 
 

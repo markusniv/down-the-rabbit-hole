@@ -15,10 +15,6 @@ public class Enemy : Character
     /// Timer variable used to delete the health bar after a certain period of time
     /// </summary>
     private float healthTimer = 0;
-    /// <summary>
-    /// Boolean to check if the enemy is dead so the health bar can be destroyed
-    /// </summary>
-    private bool Dead;
 
     /// <summary>
     /// Difficulty modifier as percentage. 1 = normal difficulty. 2 = twice as hard.
@@ -65,7 +61,6 @@ public class Enemy : Character
     public override void Die()
     {
         GameController.Instance.Player.Score += KillScore.Value;
-        Dead = true;
         Destroy(myHealthBar);
         base.Die();
         foreach(Item item in Inventory.Items.ToList())
