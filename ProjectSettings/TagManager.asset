@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HealthBar
   - Tooltip
+  - Inventory
   layers:
   - Default
   - TransparentFX

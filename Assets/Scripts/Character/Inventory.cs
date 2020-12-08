@@ -111,7 +111,7 @@ public class Inventory : MonoBehaviour
         }
         item.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         item.gameObject.SetActive(false);
-
+        item.SpriteRenderer.enabled = false;
        
         item.OnPickup(Character);
         if (ActiveItem == null) ActiveItem = item;
@@ -129,6 +129,7 @@ public class Inventory : MonoBehaviour
         item.OnDrop(Character);
         item.Inventory = null;
         item.gameObject.SetActive(true);
+        item.SpriteRenderer.enabled = true;
         item.RecentlyDroppedBy = Character;
         item.gameObject.transform.SetParent(null);
         item.transform.position = Character.transform.position;

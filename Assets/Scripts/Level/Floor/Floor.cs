@@ -159,7 +159,14 @@ public class Floor : MonoBehaviour
 
         foreach (var location in newRoomLocations)
         {
-            var newRoom = CreateRoom<GenericRoom>(location, false);
+            Room newRoom;
+            if(Random.Range(0,100) <= 25)
+            {
+                newRoom = CreateRoom<ChestRoom>(location, false);
+            }else
+            {
+                newRoom = CreateRoom<GenericRoom>(location, false);
+            }
             if (newRoom == null) continue;
             CreateSurroundingRooms(newRoom);
         }

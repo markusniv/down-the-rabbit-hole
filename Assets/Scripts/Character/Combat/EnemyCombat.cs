@@ -1,4 +1,5 @@
 ﻿
+using System.Linq;
 using UnityEngine;
 /// <summary>
 /// Script that manages enemy combat. Changes states according to some events
@@ -39,8 +40,24 @@ public class EnemyCombat : CharacterCombat
         GameController.Instance.Player.Combat.OnAttackStart += OnPlayerAttacking;
 
         AddRandomWeaponToInventory();
-
+        AddRandomConsumableItemsToInventory();
     }
+
+    /// <summary>
+    /// Adds random potion to the inventory
+    /// </summary>
+    void AddRandomConsumableItemsToInventory()
+    {
+        // 50% chance to add potion
+        if(Random.Range(0,1) == 0)
+        {
+            var consumables = PrefabHelper.GetItems<Consumable>();
+            var createdConsumable = Instantiate(consumables.ElementAt(Random.Range(0, consumables.Count())));
+            Character.Inventory.AddItem(createdConsumable.GetComponent<Item>());
+            createdConsumable.transform.localPosition = new Vector3(0, 1, 0);
+        }
+    }
+
     /// <summary>
     /// takes random weapon from Prefabs/Items/Weapons folder and adds it to inventory
     /// </summary>

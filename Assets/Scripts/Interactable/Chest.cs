@@ -41,9 +41,9 @@ public class Chest : MonoBehaviour
         if (enter)
         {
             /// <summary>
-            /// KeyDown will check if you press enter
+            /// KeyDown will check if you press enter or E
             /// </summary>
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E))
             {
                 /// <summary>
                 /// If the chest is close it will continue to next code
@@ -56,7 +56,7 @@ public class Chest : MonoBehaviour
                     close = false;
                     open = true;
 
-                    var chestItem = Instantiate(hiddenItem, transform.position, Quaternion.identity);
+                    var chestItem = Instantiate(hiddenItem, transform.position - new Vector3(0, 2f), Quaternion.identity, transform.parent);
                     chestItem.name = hiddenItem.name;
                     chestItem.SetActive(true);
                     chestItem.GetComponent<SpriteRenderer>().sortingOrder = 2;

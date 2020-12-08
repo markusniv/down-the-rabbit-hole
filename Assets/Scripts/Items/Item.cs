@@ -30,7 +30,15 @@ public abstract class Item : MonoBehaviour
     public bool MouseOver;
 
     #region Components
-    public SpriteRenderer SpriteRenderer { get; set; }
+    SpriteRenderer _spriteRenderer;
+    public SpriteRenderer SpriteRenderer
+    {
+        get
+        {
+            if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
+            return _spriteRenderer;
+        }
+    }
     #endregion
 
     /// <summary>
@@ -62,8 +70,8 @@ public abstract class Item : MonoBehaviour
     /// <param name="pickedUpBy">Who picked this item</param>
     public virtual void OnPickup(Character pickedUpBy)
     {
-        if (this is Consumable consumable && consumable.Thrown) return; 
-        
+        if (this is Consumable consumable && consumable.Thrown) return;
+
         SoundManagerScript.PlaySound(SoundManagerScript.Sound.Pickup);
     }
 
@@ -132,11 +140,11 @@ public abstract class Item : MonoBehaviour
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             Inventory.DropItem(this);
+            DisplayInventory.Instance.MouseOverItem = false;
         }
     }
     protected virtual void Awake()
     {
-        SpriteRenderer = GetComponent<SpriteRenderer>();
     }
     protected virtual void Start() { }
     protected virtual void Update() { }

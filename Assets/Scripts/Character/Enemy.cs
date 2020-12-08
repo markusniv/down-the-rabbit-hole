@@ -54,6 +54,9 @@ public class Enemy : Character
         DifficultyModifier = GameController.Instance.CurrentFloor.FloorNumber;
         SetRandomHealth();
         SetKillScore();
+
+        DamageModifier = 1 + DifficultyModifier * 0.5f;
+
         base.Start();
     }
 
@@ -65,10 +68,12 @@ public class Enemy : Character
         GameController.Instance.Player.Score += KillScore.Value;
         Destroy(myHealthBar);
         base.Die();
-        foreach(Item item in Inventory.Items.ToList())
+        foreach (Item item in Inventory.Items.ToList())
         {
             if (item == null) continue;
+            if (item is Weapon && Random.Range(0, 4) != 0) continue;
             Inventory.DropItem(item);
+
         }
         Destroy(gameObject);
     }

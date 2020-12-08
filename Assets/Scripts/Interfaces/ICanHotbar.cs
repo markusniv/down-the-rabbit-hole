@@ -10,7 +10,7 @@ public interface ICanHotbar
     /// </summary>
     Sprite Icon { get; }
 
-    SpriteRenderer SpriteRenderer { get; set; }
+    SpriteRenderer SpriteRenderer { get; }
 
     /// <summary>
     /// Action to perform when Player presses left click
