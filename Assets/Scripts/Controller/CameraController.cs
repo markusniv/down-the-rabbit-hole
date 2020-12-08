@@ -42,6 +42,6 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         transform.position = Vector2.SmoothDamp(transform.position, Target, ref Velocity, SmoothingTime);
-
+        transform.position = new Vector3(transform.position.x, transform.position.y, -10);
     }
 }
