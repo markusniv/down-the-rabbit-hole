@@ -110,6 +110,7 @@ public class Inventory : MonoBehaviour
         item.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         item.gameObject.SetActive(false);
 
+       
         item.OnPickup(Character);
         if (ActiveItem == null) ActiveItem = item;
         _items.Add(item);

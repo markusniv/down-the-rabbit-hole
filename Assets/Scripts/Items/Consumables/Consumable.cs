@@ -97,6 +97,7 @@ public abstract class Consumable : Item, ICanHotbar
         base.OnPickup(pickedUpBy);
         if (Thrown)
         {
+            SoundManagerScript.PlaySound(SoundManagerScript.Sound.Thrown);
             Consume();
         }
     }
