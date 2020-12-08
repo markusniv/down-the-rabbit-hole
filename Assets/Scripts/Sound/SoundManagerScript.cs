@@ -38,7 +38,8 @@ public class SoundManagerScript : MonoBehaviour
             {Sound.ChestOpen, Resources.Load<AudioClip>("Sounds/Items/Consumable/ChestOpen") },
             {Sound.Pickup, Resources.Load<AudioClip>("Sounds/Items/Consumable/PickUpItem") },
             {Sound.Thrown, Resources.Load<AudioClip>("Sounds/Items/Consumable/Thrown") },
-            {Sound.Onhit, Resources.Load<AudioClip>("Sounds/Items/Weapon/onhit") }
+            {Sound.Onhit, Resources.Load<AudioClip>("Sounds/Items/Weapon/onhit") },
+            {Sound.QuickThrust, Resources.Load<AudioClip>("Sounds/Items/Weapon/QuickThrust") }
 
 
 
