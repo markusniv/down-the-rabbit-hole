@@ -24,6 +24,11 @@ public abstract class Character : MonoBehaviour
     public GameObject DeathParticles;
 
     /// <summary>
+    /// Boolean to check if the character is dead
+    /// </summary>
+    private bool Dead;
+
+    /// <summary>
     /// Current health for character. If this is set below 0, it will call <see cref="Die"/>. Maximum value for this is <see cref="MaxHealth"/>. Values are clamped automatically.
     /// </summary>
     public float CurrentHealth
@@ -35,7 +40,7 @@ public abstract class Character : MonoBehaviour
         set
         {
             _currentHealth = Mathf.Clamp(value, 0f, MaxHealth);
-            if (_currentHealth == 0f) Die();
+            if (_currentHealth == 0f && !Dead) Die();
         }
     }
     /// <summary>
@@ -62,6 +67,15 @@ public abstract class Character : MonoBehaviour
         _statusEffects.Remove(effect);
     }
 
+    /// <summary>
+    /// Removes all status effects safely
+    /// </summary>
+    public virtual void ClearAllStatusEffects()
+    {
+        _statusEffects.ForEach(x => x.OnStatusExit());
+        _statusEffects.Clear();
+    }
+
     #region Events
     /// <summary>
     /// Is Triggered when <see cref="Die"/> is called. This event can be used to track character death.
@@ -83,11 +97,13 @@ public abstract class Character : MonoBehaviour
     /// </summary>
     public virtual void Die()
     {
+        Dead = true;
         // Set health to zero just incase this was called without setting CurrentHealth
         _currentHealth = 0;
+        ClearAllStatusEffects();
         OnDeath?.Invoke();
         Instantiate(DeathParticles, transform.position, Quaternion.identity);
-        GetComponent<CharacterCombat>().CurrentState = new Dead(this);
+        Combat.CurrentState = new Dead(this);
     }
 
     protected virtual void Awake()
