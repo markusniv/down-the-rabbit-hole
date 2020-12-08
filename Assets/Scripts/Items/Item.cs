@@ -62,7 +62,7 @@ public abstract class Item : MonoBehaviour
     /// <param name="pickedUpBy">Who picked this item</param>
     public virtual void OnPickup(Character pickedUpBy)
     {
-        if (this is Consumable consumable && !consumable.Thrown) return; 
+        if (this is Consumable consumable && consumable.Thrown) return; 
         
         SoundManagerScript.PlaySound(SoundManagerScript.Sound.Pickup);
     }
