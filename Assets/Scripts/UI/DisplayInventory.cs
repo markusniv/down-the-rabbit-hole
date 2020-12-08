@@ -22,6 +22,7 @@ public class DisplayInventory : MonoBehaviour
         ItemPrefab = Resources.Load<GameObject>("Prefabs/UI/UI Inventory Item");
         Character = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Character.Inventory.OnChange += UpdateView;
+        gameObject.SetActive(false);
     }
 
     /// <summary>
