@@ -36,7 +36,7 @@ public class Poisoned : StatusEffect
         /// </summary>
         if (Duration <= 0)
         {
-            if (Character.CurrentHealth < 1) Character.CurrentHealth = 1;
+          
             Character.RemoveStatusEffect(this);
         }
         base.OnFixedUpdate();

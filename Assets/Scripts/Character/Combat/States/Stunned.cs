@@ -5,7 +5,7 @@ public class Stunned : State
     /// <summary>
     /// In seconds
     /// </summary>
-    private float Duration = 0.5f;
+    private float Duration = 2f;
 
     public Stunned(Character character) : base(character)
     {

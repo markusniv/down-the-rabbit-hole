@@ -10,7 +10,7 @@ public class SpeedReductionPotion : Consumable
     /// when the mouse is hovering the item this text will show it self.
     /// </summary>
 
-    public override string Tooltip => string.Format("Target speed is decrease by <color=blue>1</color>");
+    public override string Tooltip => string.Format("Target speed is decrease by <color=blue>0.5</color>");
 
 
     public override void Consume()
