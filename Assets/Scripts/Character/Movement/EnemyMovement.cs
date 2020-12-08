@@ -34,6 +34,7 @@ public class EnemyMovement : CharacterMovement
     {
         // Don't do anything if player didn't exit the room where this enemy was
         if (Character.Movement.CurrentRoom != room) return;
+        Character.CurrentHealth = Character.MaxHealth;
         if(Character.Combat is EnemyCombat combat)
         {
             combat.CurrentState = new Idle(Character);
