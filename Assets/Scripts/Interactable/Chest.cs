@@ -31,10 +31,12 @@ public class Chest : MonoBehaviour
         /// </summary>
         close = true;
         open = false;
+        enter = false;
     }
 
     private void Update()
     {
+        Debug.Log(enter);
         /// <summary>
         /// if press enter will go to next code
         /// </summary>
