@@ -17,6 +17,7 @@ MonoBehaviour:
   Value: 0
   MouseOver: 0
   Uses: 1
+  Thrown: 0
   HealthRestoredOnUse: 200
 --- !u!1001 &3219463451755400940
 PrefabInstance:
