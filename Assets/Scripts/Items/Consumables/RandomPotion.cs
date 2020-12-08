@@ -14,7 +14,7 @@ public class RandomPotion : Consumable
     protected override void Start()
     {
         GameObject[] possiblePotions = Resources.LoadAll<GameObject>("Prefabs/Items/Consumables");
-        var consumables = possiblePotions.Select(x => x.GetComponent<Consumable>());
+        var consumables = possiblePotions.Select(x => x.GetComponent<Consumable>()).Where(x => !(x is RandomPotion));
         SelectedPotion = consumables.ElementAt(Random.Range(0, consumables.Count()));
         SelectedPotion.Uses = 999999;
     }
