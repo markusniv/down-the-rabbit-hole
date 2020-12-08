@@ -98,6 +98,9 @@ public class Inventory : MonoBehaviour
     /// <param name="item">Item being added.</param>
     void CompleteAddItem(Item item)
     {
+        // Character who throw this item cannot pick it up mid air
+        if (item is Consumable consumable && consumable.ThrownBy == Character) return;
+
         item.gameObject.transform.SetParent(Character.Combat.Hand);
         item.Inventory = this;
         if (item is Weapon weapon)

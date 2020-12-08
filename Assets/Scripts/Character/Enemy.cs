@@ -67,6 +67,7 @@ public class Enemy : Character
         base.Die();
         foreach(Item item in Inventory.Items.ToList())
         {
+            if (item == null) continue;
             Inventory.DropItem(item);
         }
         Destroy(gameObject);
@@ -125,7 +126,7 @@ public class Enemy : Character
     {
         if (this.StatusEffects.Count > 0)
         {
-            if ((this.StatusEffects[0].ToString() == "Poisoned") && (!healthBarSpawned))
+            if ((this.StatusEffects.Any(x => x is Poisoned)) && (!healthBarSpawned))
             {
                 SpawnHealthbar();
                 healthBarSpawned = true;

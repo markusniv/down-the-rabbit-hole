@@ -23,7 +23,7 @@ public abstract class Consumable : Item, ICanHotbar
 
     Vector2 ThrownFrom;
     Vector2 ThrownTo;
-    Character ThrownBy;
+    public Character ThrownBy;
 
     /// <summary>
     /// Consumes item. Item will be destroyed if <see cref="Uses"/> is 0.
@@ -99,6 +99,8 @@ public abstract class Consumable : Item, ICanHotbar
         {
             SoundManagerScript.PlaySound(SoundManagerScript.Sound.Thrown);
             Consume();
+            Thrown = false;
+            ThrownBy = null;
         }
     }
 }
