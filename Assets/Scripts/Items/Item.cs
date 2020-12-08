@@ -62,8 +62,9 @@ public abstract class Item : MonoBehaviour
     /// <param name="pickedUpBy">Who picked this item</param>
     public virtual void OnPickup(Character pickedUpBy)
     {
-    
-            SoundManagerScript.PlaySound(SoundManagerScript.Sound.Pickup);
+        if (this is Consumable consumable && !consumable.Thrown) return; 
+        
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.Pickup);
     }
 
     /// <summary>
@@ -128,7 +129,7 @@ public abstract class Item : MonoBehaviour
     /// <param name="eventData">Event data</param>
     public virtual void OnClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
             Inventory.DropItem(this);
         }

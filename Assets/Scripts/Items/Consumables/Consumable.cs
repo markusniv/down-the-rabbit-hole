@@ -19,7 +19,7 @@ public abstract class Consumable : Item, ICanHotbar
     /// Sets Thrown to false.
     /// </summary>
 
-    bool Thrown = false;
+    public bool Thrown = false;
 
     Vector2 ThrownFrom;
     Vector2 ThrownTo;
