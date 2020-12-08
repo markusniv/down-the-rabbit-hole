@@ -1122,6 +1122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5997359102881147630, guid: 6f71bd766265ead4c8e582d7dcd96bb7, type: 3}
+      propertyPath: m_Volume
+      value: 0.18
+      objectReference: {fileID: 0}
     - target: {fileID: 5997359102881147631, guid: 6f71bd766265ead4c8e582d7dcd96bb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.243981

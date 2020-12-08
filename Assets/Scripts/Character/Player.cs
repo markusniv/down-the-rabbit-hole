@@ -31,7 +31,7 @@ public class Player : Character
     protected override void Update()
     {
         base.Update();
-        if (Inventory.ActiveItem is ICanHotbar hotbarItem)
+        if (Inventory.ActiveItem is ICanHotbar hotbarItem && !DisplayInventory.Instance.MouseOverItem)
         {
             if (Input.GetMouseButtonDown(0))
             {

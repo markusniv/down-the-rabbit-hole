@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
                         child.GetComponent<DisplayInventoryItem>().Item.OnMouseExit();
                     }
                 }
+                DisplayInventory.Instance.MouseOverItem = false;
                 inventory.SetActive(false);
             }
         }

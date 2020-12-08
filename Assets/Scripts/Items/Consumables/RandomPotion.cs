@@ -11,7 +11,7 @@ public class RandomPotion : Consumable
 
     public Consumable SelectedPotion;
 
-    protected override void Start()
+    protected override void Awake()
     {
         GameObject[] possiblePotions = Resources.LoadAll<GameObject>("Prefabs/Items/Consumables");
         var consumables = possiblePotions.Select(x => x.GetComponent<Consumable>()).Where(x => !(x is RandomPotion));

@@ -7,6 +7,21 @@ using UnityEngine.UI;
 public class DisplayInventory : MonoBehaviour
 {
     /// <summary>
+    /// Indicates if player hovers some item in inventory
+    /// </summary>
+    public bool MouseOverItem;
+
+    private static DisplayInventory _instance;
+    public static DisplayInventory Instance
+    {
+        get
+        {
+            if (_instance == null) _instance = GameObject.FindGameObjectWithTag("Inventory").GetComponent<DisplayInventory>();
+            return _instance;
+        }
+    }
+
+    /// <summary>
     /// Whos inventory we want to display
     /// </summary>
     public Character Character;
@@ -22,6 +37,7 @@ public class DisplayInventory : MonoBehaviour
         ItemPrefab = Resources.Load<GameObject>("Prefabs/UI/UI Inventory Item");
         Character = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Character.Inventory.OnChange += UpdateView;
+        _instance = this;
         gameObject.SetActive(false);
     }
 

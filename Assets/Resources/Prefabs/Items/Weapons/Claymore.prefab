@@ -123,7 +123,7 @@ MonoBehaviour:
   rotationSpeed: 130
   stabSpeed: 0
   damage: 65
-  attackCooldownDefault: 3
+  attackCooldownDefault: 1.5
   attackCooldown: 0
   character: {fileID: 0}
   characterAnimation: {fileID: 0}

@@ -27,11 +27,13 @@ public class DisplayInventoryItem : MonoBehaviour, IPointerClickHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        DisplayInventory.Instance.MouseOverItem = true;
         Item.OnMouseEnter();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        DisplayInventory.Instance.MouseOverItem = false;
         Item.OnMouseExit();
     }
 }
