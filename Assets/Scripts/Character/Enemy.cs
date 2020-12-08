@@ -75,7 +75,6 @@ public class Enemy : Character
     /// <param name="collision">A weapon</param>
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
         if (!collision.gameObject.TryGetComponent(out Weapon weapon)) return;
         // If the health bar already exists, destroy it
         if (myHealthBar != null)

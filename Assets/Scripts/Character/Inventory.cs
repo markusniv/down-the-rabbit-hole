@@ -74,7 +74,6 @@ public class Inventory : MonoBehaviour
             if (item is ICanHotbar)
             {
                 var hotbar = GameObject.Find("Hotbar");
-                Debug.Log("Items in hotbar: " + hotbar.transform.childCount);
                 if (hotbar.transform.childCount == 8)
                 {
                     return;

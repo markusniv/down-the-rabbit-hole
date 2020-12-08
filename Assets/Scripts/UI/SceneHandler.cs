@@ -22,7 +22,7 @@ public class SceneHandler : MonoBehaviour
     void Start()
     {
         player = playerObject.GetComponent<Player>();
-        playerState = player.GetComponent<CharacterCombat>().CurrentState;
+        playerState = player.Combat.CurrentState;
     }
 
     /// <summary>
@@ -30,8 +30,7 @@ public class SceneHandler : MonoBehaviour
     /// </summary>
     void Update()
     {
-        playerState = player.GetComponent<CharacterCombat>().CurrentState;
-        Debug.Log(playerState);
+        playerState = player.Combat.CurrentState;
         if (playerState is Dead)
         {
             playerObject.SetActive(false);
