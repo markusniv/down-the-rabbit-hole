@@ -18,7 +18,8 @@ public class SoundManagerScript : MonoBehaviour
         Deflect,
         Select,
         Pickup,
-        ChestOpen
+        ChestOpen,
+        Thrown
     }
 
     static AudioSource audioSrc;
@@ -33,7 +34,9 @@ public class SoundManagerScript : MonoBehaviour
             {Sound.Deflect, Resources.Load<AudioClip>("Sounds/Items/Weapon/deflect") },
             {Sound.Select, Resources.Load<AudioClip>("Sounds/UI/select") },
             {Sound.ChestOpen, Resources.Load<AudioClip>("Sounds/Items/Consumable/ChestOpen") },
-            {Sound.Pickup, Resources.Load<AudioClip>("Sounds/Items/Consumable/PickUpItem") }
+            {Sound.Pickup, Resources.Load<AudioClip>("Sounds/Items/Consumable/PickUpItem") },
+            {Sound.Thrown, Resources.Load<AudioClip>("Sounds/Items/Consumable/Thrown") }
+
 
 
 

@@ -19,9 +19,9 @@ public class PoisonPotion : Consumable
         /// <summary>
         /// Call the status effect.
         /// </summary>
-        Inventory.Character.CurrentHealth -= 250;
+       // Inventory.Character.CurrentHealth -= 250;
     
-       // Inventory.Character.AddStatusEffect(new Poisoned(Inventory.Character));
+        Inventory.Character.AddStatusEffect(new Poisoned(Inventory.Character));
 
         base.Consume();
     }
