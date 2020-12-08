@@ -36,6 +36,7 @@ public class Blocking : State
     public void OnHit()
     {
         // TODO: play block sound
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.Deflect);
     }
 
     public override void OnFixedUpdate()
