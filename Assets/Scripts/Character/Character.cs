@@ -26,7 +26,7 @@ public abstract class Character : MonoBehaviour
     /// <summary>
     /// Boolean to check if the character is dead
     /// </summary>
-    private bool Dead;
+    public bool Dead;
 
     /// <summary>
     /// Current health for character. If this is set below 0, it will call <see cref="Die"/>. Maximum value for this is <see cref="MaxHealth"/>. Values are clamped automatically.
