@@ -36,7 +36,6 @@ public class Chest : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(enter);
         /// <summary>
         /// if press enter will go to next code
         /// </summary>
