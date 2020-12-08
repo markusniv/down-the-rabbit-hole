@@ -19,7 +19,8 @@ public class SoundManagerScript : MonoBehaviour
         Select,
         Pickup,
         ChestOpen,
-        Thrown
+        Thrown,
+        Onhit
     }
 
     static AudioSource audioSrc;
@@ -28,6 +29,7 @@ public class SoundManagerScript : MonoBehaviour
     /// </summary>
     void Start()
     {
+        DontDestroyOnLoad(transform.gameObject);
         audioSrc = GetComponent<AudioSource>();
         Sounds = new Dictionary<Sound, AudioClip> {
             {Sound.QuickSlash, Resources.Load<AudioClip>("Sounds/Items/Weapon/quickslash") },
@@ -35,8 +37,8 @@ public class SoundManagerScript : MonoBehaviour
             {Sound.Select, Resources.Load<AudioClip>("Sounds/UI/select") },
             {Sound.ChestOpen, Resources.Load<AudioClip>("Sounds/Items/Consumable/ChestOpen") },
             {Sound.Pickup, Resources.Load<AudioClip>("Sounds/Items/Consumable/PickUpItem") },
-            {Sound.Thrown, Resources.Load<AudioClip>("Sounds/Items/Consumable/Thrown") }
-
+            {Sound.Thrown, Resources.Load<AudioClip>("Sounds/Items/Consumable/Thrown") },
+            {Sound.Onhit, Resources.Load<AudioClip>("Sounds/Items/Weapon/onhit") }
 
 
 
