@@ -13,12 +13,12 @@ public class Poisoned : StatusEffect
     /// <summary>
     /// How much damage per second
     /// </summary>
-    float DamagePerTick = 50f;
+    float DamagePerTick =0.05f;
 
     public Poisoned(Character character) : base(character)
     {
     }
-
+    
 
     public override void OnFixedUpdate()
     {
@@ -30,12 +30,13 @@ public class Poisoned : StatusEffect
         /// <summary>
         /// Reduce from current health 50 damage per second for 5 second
         /// </summary>
-        Character.CurrentHealth -= DamagePerTick * Time.fixedDeltaTime;
+        Character.CurrentHealth -= Character.CurrentHealth* DamagePerTick * Time.fixedDeltaTime;
         /// <summary>
         /// if the duration is 0 or smaller it will stop the effect.
         /// </summary>
         if (Duration <= 0)
         {
+            if (Character.CurrentHealth < 1) Character.CurrentHealth = 1;
             Character.RemoveStatusEffect(this);
         }
         base.OnFixedUpdate();

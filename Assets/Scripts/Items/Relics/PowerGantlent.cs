@@ -7,7 +7,7 @@ public class PowerGantlent : PassiveRelic
     /// <summary>
     /// Set BonusPower to 0.2f
     /// </summary>
-    public float BonusPower = 0.2f;
+    public float BonusPower = 0.1f;
     /// <summary>
     /// when the mouse is hovering the item this text will show it self.
     /// </summary>
