@@ -28,7 +28,7 @@ public class Poisoned : StatusEffect
         /// </summary>
         Duration -= Time.fixedDeltaTime;
         /// <summary>
-        /// Reduce from current health 50 damage per second for 5 second
+        /// Reduce from current health 10 damage per second for 5 second
         /// </summary>
         Character.CurrentHealth -= DamagePerTick * Time.fixedDeltaTime;
         /// <summary>

@@ -19,12 +19,21 @@ public class PowerGantlent : PassiveRelic
         /// Apply when equiqment
         /// </summary>
         base.Apply();
+        /// <summary>
+        /// Add to damage modifier 0.1
+        /// </summary>
         Inventory.Character.GetComponent<Character>().DamageModifier += BonusPower;
     }
     public override void Clear()
     {
 
+        /// <summary>
+        /// Reduce to damage modifier 0.1
+        /// </summary>
         Inventory.Character.GetComponent<Character>().DamageModifier -= BonusPower;
+        /// <summary>
+        /// Clear the equipment when removed
+        /// </summary>
         base.Clear();
     }
 }
