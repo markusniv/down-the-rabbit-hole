@@ -29,6 +29,8 @@ public class Enemy : Character
     /// <summary>
     /// Sets random health with <see cref="DifficultyModifier"/> applied
     /// </summary>
+
+    private bool healthBarSpawned = false;
     private void SetRandomHealth()
     {
         MaxHealth = CurrentHealth = Random.Range(100, 300) * DifficultyModifier;
@@ -84,14 +86,19 @@ public class Enemy : Character
         // If the enemy is not dead, spawn health bar and store it in myHealthBar variable
         if (!Dead)
         {
-            healthTimer = 1;
-            myHealthBar = Instantiate(healthBar, GameObject.Find("UI").transform);
-            myHealthBar.GetComponent<Healthbar>().character = this;
-            myHealthBar.GetComponent<Healthbar>().SyncHealth();
-
-            MoveHealthBar();
+            SpawnHealthbar();
         }
 
+    }
+
+    void SpawnHealthbar()
+    {
+        healthTimer = 1;
+        myHealthBar = Instantiate(healthBar, GameObject.Find("UI").transform);
+        myHealthBar.GetComponent<Healthbar>().character = this;
+        myHealthBar.GetComponent<Healthbar>().SyncHealth();
+
+        MoveHealthBar();
     }
     /// <summary>
     /// Move the health bar around in the UI canvas so that it moves with the enemy in the game world
@@ -116,9 +123,17 @@ public class Enemy : Character
     /// </summary>
     protected override void Update()
     {
-
+        if (this.StatusEffects.Count > 0)
+        {
+            if ((this.StatusEffects[0].ToString() == "Poisoned") && (!healthBarSpawned))
+            {
+                SpawnHealthbar();
+                healthBarSpawned = true;
+            }
+        }
         if (healthTimer < 0 && myHealthBar != null)
         {
+            healthBarSpawned = false;
             Destroy(myHealthBar);
         }
         else
