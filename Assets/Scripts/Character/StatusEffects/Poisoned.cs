@@ -13,7 +13,7 @@ public class Poisoned : StatusEffect
     /// <summary>
     /// How much damage per second
     /// </summary>
-    float DamagePerTick =0.1f;
+    float DamagePerTick =10f;
 
     public Poisoned(Character character) : base(character)
     {

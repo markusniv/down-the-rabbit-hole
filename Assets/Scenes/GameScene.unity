@@ -740,6 +740,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 602245543, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
+      propertyPath: Uses
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4135956606940276478, guid: 34a4248cd0c0cfb45bd6fbd36c888fbc, type: 3}
       propertyPath: m_Name
       value: PoisonPotion

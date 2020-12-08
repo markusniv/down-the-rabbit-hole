@@ -17,6 +17,7 @@ MonoBehaviour:
   Value: 0
   MouseOver: 0
   Uses: 1
+  Thrown: 0
 --- !u!1001 &5316937499664617979
 PrefabInstance:
   m_ObjectHideFlags: 0
