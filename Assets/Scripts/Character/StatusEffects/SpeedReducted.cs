@@ -7,7 +7,7 @@ public class SpeedReducted: StatusEffect
     /// <summary>
     /// Will be decrease by 1
     /// </summary>   
-    float Reduce = 1f;
+    float Reduce = 0.5f;
     /// <summary>
     /// The duration how long it will take effect.
     /// </summary>
