@@ -60,7 +60,11 @@ public abstract class Item : MonoBehaviour
     /// This is called when this item is added to inventory.
     /// </summary>
     /// <param name="pickedUpBy">Who picked this item</param>
-    public virtual void OnPickup(Character pickedUpBy) { }
+    public virtual void OnPickup(Character pickedUpBy)
+    {
+    
+            SoundManagerScript.PlaySound(SoundManagerScript.Sound.Pickup);
+    }
 
     /// <summary>
     /// Pick up the item when entering its collider if the item wasn't recently dropped.

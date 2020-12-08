@@ -64,7 +64,7 @@ public class Chest : MonoBehaviour
                    
 
                     GetComponent<SpriteRenderer>().sprite = chestOpen;
-                   // SoundManagerScript.PlaySound(SoundManagerScript.Sound.ChestOpen);
+                   SoundManagerScript.PlaySound(SoundManagerScript.Sound.ChestOpen);
                 }
             }
         }

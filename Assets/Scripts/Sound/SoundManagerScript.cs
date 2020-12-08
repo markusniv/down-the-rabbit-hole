@@ -32,8 +32,8 @@ public class SoundManagerScript : MonoBehaviour
             {Sound.QuickSlash, Resources.Load<AudioClip>("Sounds/Items/Weapon/quickslash") },
             {Sound.Deflect, Resources.Load<AudioClip>("Sounds/Items/Weapon/deflect") },
             {Sound.Select, Resources.Load<AudioClip>("Sounds/UI/select") },
-            {Sound.ChestOpen, Resources.Load<AudioClip>("Sounds/Consumable/ChestOpen") },
-            {Sound.Pickup, Resources.Load<AudioClip>("Sounds/Consumable/PickUpItem") }
+            {Sound.ChestOpen, Resources.Load<AudioClip>("Sounds/Items/Consumable/ChestOpen") },
+            {Sound.Pickup, Resources.Load<AudioClip>("Sounds/Items/Consumable/PickUpItem") }
 
 
 

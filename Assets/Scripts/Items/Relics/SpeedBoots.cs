@@ -2,7 +2,7 @@
 
 public class SpeedBoots : PassiveRelic
 {
-    public float BonusSpeed = 0.2f;
+    public float BonusSpeed = 0.1f;
 
     public override string Tooltip => string.Format("These boots increase your speed by <color=blue>2</color>%");
 
@@ -10,7 +10,7 @@ public class SpeedBoots : PassiveRelic
     {
         base.Apply();
         /// <summary>
-        /// Adds to as a passive equipment 0,2% more speed
+        /// Adds to as a passive equipment 0,1% more speed
         /// </summary>
         Inventory.Character.GetComponent<CharacterMovement>().MovementSpeedModifier += (Inventory.Character.GetComponent<CharacterMovement>().MovementSpeedModifier * BonusSpeed);
     }
@@ -18,7 +18,7 @@ public class SpeedBoots : PassiveRelic
     public override void Clear()
     {
         /// <summary>
-        /// remove the 0,2% speed when removing equipment.
+        /// remove the 0,1% speed when removing equipment.
         /// </summary>
         Inventory.Character.GetComponent<CharacterMovement>().MovementSpeedModifier -= (Inventory.Character.GetComponent<CharacterMovement>().MovementSpeedModifier * BonusSpeed);
 
