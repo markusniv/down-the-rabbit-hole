@@ -11,7 +11,7 @@ public class PowerGauntlets : PassiveRelic
     /// <summary>
     /// when the mouse is hovering the item this text will show it self.
     /// </summary>
-    public override string Tooltip => string.Format("These gauntlets increase your power by <color=red>20%</color>.");
+    public override string Tooltip => string.Format("These gauntlets increase your power by <color=red>{0}%</color>.", BonusPower * 100);
     public override void Apply()
     {
 
