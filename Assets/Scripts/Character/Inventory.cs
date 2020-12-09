@@ -169,8 +169,10 @@ public class Inventory : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If this collided with item we can pick up
-        if(other.gameObject.TryGetComponent(out Item item) && item.RecentlyDroppedBy != Character && item.Inventory == null & Character is Player)
+        if(other.gameObject.TryGetComponent(out Item item) && item.RecentlyDroppedBy != Character && item.Inventory == null)
         {
+            // Enemy can pick up consumable ONLY if it was thrown
+            if (!(Character is Player) && item is Consumable consumable && !consumable.Thrown) return;
             AddItem(item);
         }
     }
