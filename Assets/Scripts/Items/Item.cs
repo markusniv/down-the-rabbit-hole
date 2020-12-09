@@ -146,6 +146,11 @@ public abstract class Item : MonoBehaviour
     protected virtual void Awake()
     {
     }
-    protected virtual void Start() { }
+    protected virtual void Start() {
+        if (this is Consumable)
+        {
+            _icon = GetComponent<SpriteRenderer>().sprite;
+        }
+    }
     protected virtual void Update() { }
 }

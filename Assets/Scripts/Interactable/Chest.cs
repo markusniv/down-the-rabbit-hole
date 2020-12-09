@@ -31,6 +31,7 @@ public class Chest : MonoBehaviour
         /// </summary>
         close = true;
         open = false;
+        enter = false;
     }
 
     private void Update()

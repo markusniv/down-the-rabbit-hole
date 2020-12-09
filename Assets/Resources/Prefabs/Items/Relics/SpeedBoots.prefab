@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd14a988981a71242967597283ac8856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 530b0034650c80d42b6aebf4c5ee8d23, type: 3}
   RecentlyDroppedBy: {fileID: 0}
   Value: 0
   MouseOver: 0

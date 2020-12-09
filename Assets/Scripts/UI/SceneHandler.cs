@@ -43,6 +43,8 @@ public class SceneHandler : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Time.timeScale = 1;
+                Destroy(GameObject.Find("SoundManager"));
+                Destroy(GameObject.Find("MusicManager"));
                 SceneManager.LoadScene("Main Menu");
             }
         }
