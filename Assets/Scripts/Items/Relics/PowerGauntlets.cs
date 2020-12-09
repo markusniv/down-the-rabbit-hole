@@ -5,13 +5,13 @@ public class PowerGauntlets : PassiveRelic
 {
 
     /// <summary>
-    /// Set BonusPower to 0.2f
+    /// Set BonusPower to 30f
     /// </summary>
-    public float BonusPower = 0.1f;
+    public float BonusPower = 30f;
     /// <summary>
     /// when the mouse is hovering the item this text will show it self.
     /// </summary>
-    public override string Tooltip => string.Format("These gauntlets increase your power by <color=red>{0}%</color>.", BonusPower * 100);
+    public override string Tooltip => string.Format("These gauntlets increase your power by <color=red>{0}</color>.", BonusPower);
     public override void Apply()
     {
 
@@ -22,7 +22,7 @@ public class PowerGauntlets : PassiveRelic
         /// <summary>
         /// Add to damage modifier 0.1
         /// </summary>
-        Inventory.Character.DamageModifier += BonusPower;
+        Inventory.Character.FlatDamageModifier += BonusPower;
     }
     public override void Clear()
     {
@@ -30,7 +30,7 @@ public class PowerGauntlets : PassiveRelic
         /// <summary>
         /// Reduce to damage modifier 0.1
         /// </summary>
-        Inventory.Character.DamageModifier -= BonusPower;
+        Inventory.Character.FlatDamageModifier -= BonusPower;
         /// <summary>
         /// Clear the equipment when removed
         /// </summary>

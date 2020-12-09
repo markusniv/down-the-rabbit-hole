@@ -44,9 +44,19 @@ public abstract class Character : MonoBehaviour
         }
     }
     /// <summary>
-    /// To be able to modifie damage, when damage increasing potion has been drank. Values are clamped automatically.
+    /// To be able to modify damage, when character has damage increasing relic. Values are clamped automatically.
     /// </summary>
-    public float DamageModifier;
+    public float DamageModifier = 1f;
+
+    /// <summary>
+    /// Flat modifier. Increases characters all damage by flat ammount.
+    /// </summary>
+    public float FlatDamageModifier = 0f;
+
+    /// <summary>
+    /// Gets Characters actual damage. <see cref="DamageModifier"/> and <see cref="FlatDamageModifier"/> Has been applied to this
+    /// </summary>
+    public Func<float, float> Damage => (BaseDamage) => (BaseDamage * DamageModifier) * FlatDamageModifier;
 
 
     private List<StatusEffect> _statusEffects = new List<StatusEffect>();

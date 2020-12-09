@@ -15,6 +15,9 @@ public class Blocking : State
         Duration = duration;
     }
 
+    /// <summary>
+    /// Immobilize character, show weapon without collider and do block animation
+    /// </summary>
     public override void OnStateEnter()
     {
         base.OnStateEnter();
@@ -23,6 +26,9 @@ public class Blocking : State
         Character.Combat.CurrentWeapon?.Block();
     }
 
+    /// <summary>
+    /// Restore movemement state and hide the weapon
+    /// </summary>
     public override void OnStateExit()
     {
         base.OnStateExit();
@@ -31,14 +37,17 @@ public class Blocking : State
     }
 
     /// <summary>
-    /// Called on successful block
+    /// Called on successful block. Plays deflect sound
     /// </summary>
     public void OnHit()
     {
-        // TODO: play block sound
         SoundManagerScript.PlaySound(SoundManagerScript.Sound.Deflect);
     }
 
+
+    /// <summary>
+    /// Calculates when this state should end
+    /// </summary>
     public override void OnFixedUpdate()
     {
         base.OnFixedUpdate();

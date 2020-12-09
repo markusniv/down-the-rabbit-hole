@@ -12,6 +12,7 @@ public class Dodging : State
     CircleCollider2D CharacterCollider;
     CircleCollider2D TargetCollider;
     #endregion
+
     public Dodging(Character character, Character DodgeFrom) : base(character)
     {
         CharacterRigidBody = character.GetComponent<Rigidbody2D>();
@@ -20,11 +21,28 @@ public class Dodging : State
         Target = DodgeFrom;
     }
 
+    /// <summary>
+    /// Destination where this character will move to during dodge
+    /// </summary>
     public Vector2 DodgeDestination;
+    /// <summary>
+    /// Dodge speed. Shoud be quite high so dodge is fast.
+    /// </summary>
     public float DodgeSpeed = 50f;
+    /// <summary>
+    /// how far away from target should this character dodge.
+    /// </summary>
     public float DodgeDistance = 6f;
+
+    /// <summary>
+    /// Timer how long we should move.
+    /// </summary>
     float DodgeDuration;
 
+
+    /// <summary>
+    /// Immobilizes character, sets dodge destination and duration. Adds listener for <see cref="CharacterCombat.OnAttackEnd"/> which ends the dodge after attack has ended.
+    /// </summary>
     public override void OnStateEnter()
     {
         base.OnStateEnter();
@@ -35,6 +53,9 @@ public class Dodging : State
         Target.Combat.OnAttackEnd += RestoreState;
     }
 
+    /// <summary>
+    /// Removes listener and restores movement state.
+    /// </summary>
     public override void OnStateExit()
     {
         base.OnStateExit();
@@ -42,6 +63,10 @@ public class Dodging : State
         Character.Movement.CurrentState = Character.Movement.PreviousState;
     }
 
+    /// <summary>
+    /// Restores state when attack ends
+    /// </summary>
+    /// <param name="weapon">What weapon was used to attack</param>
     private void RestoreState(Weapon weapon)
     {
         Character.Combat.CurrentState = new Idle(Character);

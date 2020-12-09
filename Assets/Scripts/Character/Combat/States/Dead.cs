@@ -7,12 +7,19 @@ public class Dead : State
     {
     }
 
+    /// <summary>
+    /// Immobilize character
+    /// </summary>
     public override void OnStateEnter()
     {
         base.OnStateEnter();
         Character.Movement.CurrentState = new Immobile(Character);
     }
 
+
+    /// <summary>
+    /// Restore movement state incase character is revived somehow
+    /// </summary>
     public override void OnStateExit()
     {
         base.OnStateExit();

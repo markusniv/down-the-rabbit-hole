@@ -252,8 +252,8 @@ public abstract class Weapon : Item, ICanHotbar
         /// If the power gantlent is equip it will increase the value of the hit by the percentage we gave it.
         /// </summary>
         SoundManagerScript.PlaySound(SoundManagerScript.Sound.Onhit);
-        float DamageModifier = Inventory.Character.GetComponent<Character>().DamageModifier;
-        character.CurrentHealth -= (int)damage + (int)(damage * DamageModifier);
+
+        character.CurrentHealth -= Inventory.Character.Damage(damage);
         character.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
