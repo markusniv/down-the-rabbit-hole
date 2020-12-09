@@ -4,9 +4,9 @@
 public class PowerGauntlets : PassiveRelic
 {
     /// <summary>
-    /// Set BonusPower to 30f
+    /// Set BonusPower to 5f
     /// </summary>
-    public float BonusPower = 30f;
+    public float BonusPower = 5f;
 
     /// <inheritdoc/>
     public override string Tooltip => string.Format("These gauntlets increase your power by <color=red>{0}</color>.", BonusPower);

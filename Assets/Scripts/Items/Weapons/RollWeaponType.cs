@@ -23,7 +23,12 @@ public class RollWeaponType : MonoBehaviour
         OfTheCheetah,
         OfTheBear,
         OfTheRabbit,
-        OfTheSloth
+        OfTheSloth,
+        OfTheTiger,
+        OfTheSnail,
+        OfTheLion,
+        OfTheSoldier,
+        OfThePeasant
     }
 
     public int random;
@@ -70,9 +75,9 @@ public class RollWeaponType : MonoBehaviour
 
                 case 1:
                     weaponName = " of the Bear";
-                    rotationSpeed *= 0.8f;
-                    stabSpeed *= 0.7f;
-                    damage *= 1.5f;
+                    rotationSpeed *= 1.8f;
+                    stabSpeed *= 1.7f;
+                    damage *= 1.6f;
                     attackCooldown *= 1.5f;
                     break;
 
@@ -90,6 +95,41 @@ public class RollWeaponType : MonoBehaviour
                     stabSpeed *= 3f;
                     damage *= 1f;
                     attackCooldown *= 3f;
+                    break;
+                case 4:
+                    weaponName = " of the Tiger";
+                    rotationSpeed *= 1.3f;
+                    stabSpeed *= 1.3f;
+                    damage *= 1.3f;
+                    attackCooldown *= 0.9f;
+                    break;
+                case 5:
+                    weaponName = " of the Snail";
+                    rotationSpeed *= 3f;
+                    stabSpeed *= 4f;
+                    damage *= 0.7f;
+                    attackCooldown *= 3f;
+                    break;
+                case 6:
+                    weaponName = " of the Lion";
+                    rotationSpeed *= 1.4f;
+                    stabSpeed *= 1.4f;
+                    damage *= 1.5f;
+                    attackCooldown *= 1.0f;
+                    break;
+                case 7:
+                    weaponName = " of the Soldier";
+                    rotationSpeed *= 1f;
+                    stabSpeed *= 1;
+                    damage *= 1.8f;
+                    attackCooldown *= 1.6f;
+                    break;
+                case 8:
+                    weaponName = " of the Peasant";
+                    rotationSpeed *= 1.5f;
+                    stabSpeed *= 1.5f;
+                    damage *= 0.8f;
+                    attackCooldown *= 1.6f;
                     break;
             }
         }

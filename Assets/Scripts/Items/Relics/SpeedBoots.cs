@@ -7,9 +7,8 @@ public class SpeedBoots : PassiveRelic
     /// Normalized movement speed bonus. 0.1f = 10% increase
     /// </summary>
     public float BonusSpeed = 0.1f;
-
     /// <inheritdoc/>
-    public override string Tooltip => string.Format("These boots increase your speed by <color=blue>2</color>%");
+    public override string Tooltip => string.Format("These boots increase your speed by <color=blue>{0}</color>%",BonusSpeed*100);
 
     /// <summary>
     /// Adds speed bonus

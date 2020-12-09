@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7690181678936398635
+--- !u!114 &-95872569881406956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a58d9c461b81445a27d9a432f5da4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: dd67ebe235c58fe4eb7299de65bd4d6c, type: 3}
+  _icon: {fileID: 0}
   RecentlyDroppedBy: {fileID: 0}
   Value: 0
   MouseOver: 0
-  BonusPower: 0.2
+  BonusPower: 5
 --- !u!1001 &8896930470539151511
 PrefabInstance:
   m_ObjectHideFlags: 0
