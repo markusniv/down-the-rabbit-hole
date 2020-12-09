@@ -169,7 +169,7 @@ public class Inventory : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If this collided with item we can pick up
-        if(other.gameObject.TryGetComponent(out Item item) && item.RecentlyDroppedBy != Character && item.Inventory == null)
+        if(other.gameObject.TryGetComponent(out Item item) && item.RecentlyDroppedBy != Character && item.Inventory == null & Character is Player)
         {
             AddItem(item);
         }
