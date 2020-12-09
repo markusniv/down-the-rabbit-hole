@@ -83,8 +83,8 @@ public class RollWeaponType : MonoBehaviour
 
                 case 2:
                     weaponName = " of the Rabbit";
-                    rotationSpeed *= 1.5f;
-                    stabSpeed *= 1.5f;
+                    rotationSpeed *= 0.6f;
+                    stabSpeed *= 0.6f;
                     damage *= 0.5f;
                     attackCooldown *= 0.5f;
                     break;
@@ -107,7 +107,7 @@ public class RollWeaponType : MonoBehaviour
                     weaponName = " of the Snail";
                     rotationSpeed *= 3f;
                     stabSpeed *= 4f;
-                    damage *= 0.7f;
+                    damage *= 0.8f;
                     attackCooldown *= 3f;
                     break;
                 case 6:
