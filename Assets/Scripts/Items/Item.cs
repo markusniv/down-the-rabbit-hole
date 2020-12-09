@@ -71,8 +71,10 @@ public abstract class Item : MonoBehaviour
     public virtual void OnPickup(Character pickedUpBy)
     {
         if (this is Consumable consumable && consumable.Thrown) return;
-
-        SoundManagerScript.PlaySound(SoundManagerScript.Sound.Pickup);
+        if (pickedUpBy is Player)
+        {
+            SoundManagerScript.PlaySound(SoundManagerScript.Sound.Pickup);
+        }
     }
 
     /// <summary>
