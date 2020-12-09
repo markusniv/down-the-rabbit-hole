@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+
 /// <summary>
 /// Basic sound manager to store all sound effects and to call them from here whenever needed
 /// </summary>
 public class SoundManagerScript : MonoBehaviour
 {
+    private static Dictionary<Sound, AudioClip> Sounds;
 
-    static Dictionary<Sound, AudioClip> Sounds;
     // Enum that stores each sound effect
     public enum Sound
     {
@@ -24,11 +23,12 @@ public class SoundManagerScript : MonoBehaviour
         NotEnoughPoints
     }
 
-    static AudioSource audioSrc;
+    private static AudioSource audioSrc;
+
     /// <summary>
     /// Store each sound effect into a dictionary
     /// </summary>
-    void Start()
+    private void Start()
     {
         DontDestroyOnLoad(transform.gameObject);
         audioSrc = GetComponent<AudioSource>();
@@ -42,12 +42,9 @@ public class SoundManagerScript : MonoBehaviour
             {Sound.Thrown, Resources.Load<AudioClip>("Sounds/Items/Consumable/Thrown") },
             {Sound.Onhit, Resources.Load<AudioClip>("Sounds/Items/Weapon/onhit") },
             {Sound.QuickThrust, Resources.Load<AudioClip>("Sounds/Items/Weapon/QuickThrust") }
-
-
-
-
         };
     }
+
     /// <summary>
     /// Play the called sound effect
     /// </summary>

@@ -1,4 +1,7 @@
-﻿public abstract class PassiveRelic : Relic
+﻿/// <summary>
+/// Abstract definition of passive relics
+/// </summary>
+public abstract class PassiveRelic : Relic
 {
     /// <summary>
     /// This is called when this item is added to inventory.
@@ -19,12 +22,17 @@
         Clear();
         base.OnDrop(droppedBy);
     }
-
+    /// <summary>
+    /// Defines what happens when this item is picked up
+    /// </summary>
     public virtual void Apply()
     {
 
     }
 
+    /// <summary>
+    /// Defines what happens when this item is dropped
+    /// </summary>
     public virtual void Clear()
     {
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -12,24 +10,26 @@ public class NotEnoughScore : MonoBehaviour
     /// Text field of the object, showing what is required to open the chest
     /// </summary>
     private Text notEnoughText;
+
     /// <summary>
     /// Timer to hide the object
     /// </summary>
     public float timer;
-    
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         notEnoughText = GetComponent<Text>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (timer >= 0)
         {
             timer -= Time.deltaTime;
-        } else
+        }
+        else
         {
             notEnoughText.text = "";
         }
@@ -39,5 +39,4 @@ public class NotEnoughScore : MonoBehaviour
     {
         notEnoughText.text = text;
     }
-
 }

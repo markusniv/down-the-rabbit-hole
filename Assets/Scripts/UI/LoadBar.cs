@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// A load bar for loading screens
@@ -18,11 +16,12 @@ public class LoadBar : MonoBehaviour
     [SerializeField] private MenuController menu;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         var load = GetComponentsInChildren<RectTransform>();
         loading = load[1];
     }
+
     /// <summary>
     /// Resize the loading bar according to the loading information from the MenuController
     /// </summary>
@@ -31,6 +30,5 @@ public class LoadBar : MonoBehaviour
         var MaxWidth = (transform as RectTransform).sizeDelta.x;
         var per = (float)menu.load / 1f;
         loading.sizeDelta = new Vector2(MaxWidth * per, loading.sizeDelta.y);
-        
     }
 }

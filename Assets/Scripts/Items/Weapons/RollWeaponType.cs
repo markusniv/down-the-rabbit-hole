@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Weapons;
+﻿using UnityEngine;
 
 /// <summary>
 /// This class takes a weapon prefab and rolls a random type for it, giving it a new name and stats
@@ -53,7 +50,7 @@ public class RollWeaponType : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        // If the weapon type is already given (to allow the creation of premade special weapons), do not roll a 
+        // If the weapon type is already given (to allow the creation of premade special weapons), do not roll a
         // weapon type.
         if (!gameObject.name.Contains("Of"))
         {
@@ -75,6 +72,7 @@ public class RollWeaponType : MonoBehaviour
                     stabSpeed *= 1.2f;
                     attackCooldown *= 0.8f;
                     break;
+
                 case 1:
                     weaponName = " of the Bear";
                     rotationSpeed *= 1.8f;
@@ -82,6 +80,7 @@ public class RollWeaponType : MonoBehaviour
                     damage *= 1.6f;
                     attackCooldown *= 1.5f;
                     break;
+
                 case 2:
                     weaponName = " of the Rabbit";
                     rotationSpeed *= 1.5f;
@@ -89,6 +88,7 @@ public class RollWeaponType : MonoBehaviour
                     damage *= 0.5f;
                     attackCooldown *= 0.5f;
                     break;
+
                 case 3:
                     weaponName = " of the Sloth";
                     rotationSpeed *= 2f;

@@ -1,7 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Shows cooldown text when player attacks
+/// </summary>
 public class ShowCooldown : MonoBehaviour
 {
     /// <summary>
@@ -39,6 +41,9 @@ public class ShowCooldown : MonoBehaviour
         CooldownText.enabled = false;
     }
 
+    /// <summary>
+    /// Updates cooldown text if attack is on cooldown
+    /// </summary>
     void FixedUpdate()
     {
         if (GameController.Instance.Player.Combat.AttackCooldown == null) return;
