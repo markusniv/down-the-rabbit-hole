@@ -97,7 +97,7 @@ public class RollWeaponType : MonoBehaviour
                     attackCooldown *= 3f;
                     break;
                 case 4:
-                    weaponName = "of the Tiger";
+                    weaponName = " of the Tiger";
                     rotationSpeed *= 1.3f;
                     stabSpeed *= 1.3f;
                     damage *= 1.3f;
@@ -111,21 +111,21 @@ public class RollWeaponType : MonoBehaviour
                     attackCooldown *= 3f;
                     break;
                 case 6:
-                    weaponName = "of the Lion";
+                    weaponName = " of the Lion";
                     rotationSpeed *= 1.4f;
                     stabSpeed *= 1.4f;
                     damage *= 1.5f;
                     attackCooldown *= 1.0f;
                     break;
                 case 7:
-                    weaponName = "of the Soldier";
+                    weaponName = " of the Soldier";
                     rotationSpeed *= 1f;
                     stabSpeed *= 1;
                     damage *= 1.8f;
                     attackCooldown *= 1.6f;
                     break;
                 case 8:
-                    weaponName = "of the Peasant";
+                    weaponName = " of the Peasant";
                     rotationSpeed *= 1.5f;
                     stabSpeed *= 1.5f;
                     damage *= 0.8f;
