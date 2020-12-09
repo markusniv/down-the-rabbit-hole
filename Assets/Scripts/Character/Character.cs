@@ -56,7 +56,7 @@ public abstract class Character : MonoBehaviour
     /// <summary>
     /// Gets Characters actual damage. <see cref="DamageModifier"/> and <see cref="FlatDamageModifier"/> Has been applied to this
     /// </summary>
-    public Func<float, float> Damage => (BaseDamage) => (BaseDamage * DamageModifier) * FlatDamageModifier;
+    public Func<float, float> Damage => (BaseDamage) => (BaseDamage * DamageModifier) + FlatDamageModifier;
 
 
     private List<StatusEffect> _statusEffects = new List<StatusEffect>();
