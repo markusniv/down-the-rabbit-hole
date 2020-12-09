@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// </summary>
 public class TooltipController : MonoBehaviour
 {
-    static TooltipController _instance;
+    private static TooltipController _instance;
 
     /// <summary>
     /// Gets main instance of <see cref="Tooltip"/>. Simple singleton pattern.
@@ -40,12 +40,15 @@ public class TooltipController : MonoBehaviour
 
     [SerializeField]
     private Text TextComponent;
+
     [SerializeField]
     private GameObject Background;
+
     [SerializeField]
     private GameObject Border;
 
     private string _text;
+
     /// <summary>
     /// Sets and Gets current text of the tooltip
     /// </summary>
@@ -71,10 +74,12 @@ public class TooltipController : MonoBehaviour
         };
     }
 
+    /// <summary>
+    /// Moves tooltip if it is shown
+    /// </summary>
     private void Update()
     {
         if (!IsVisible) return;
-        transform.position = Input.mousePosition + (transform.position - Background.transform.position) + new Vector3(20,5);        
+        transform.position = Input.mousePosition + (transform.position - Background.transform.position) + new Vector3(20, 5);
     }
-
 }

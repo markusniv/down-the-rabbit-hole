@@ -9,6 +9,10 @@ public class DisplayInventoryItem : MonoBehaviour, IPointerClickHandler, IPointe
 {
     public Item Item { get; set; }
 
+    /// <summary>
+    /// Drops or uses item on click
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (Item is Weapon)
@@ -25,12 +29,20 @@ public class DisplayInventoryItem : MonoBehaviour, IPointerClickHandler, IPointe
         }
     }
 
+    /// <summary>
+    /// Sets mouse over booleans
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         DisplayInventory.Instance.MouseOverItem = true;
         Item.OnMouseEnter();
     }
 
+    /// <summary>
+    /// Resets Mouse over booleans
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         DisplayInventory.Instance.MouseOverItem = false;

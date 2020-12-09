@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
@@ -12,6 +10,7 @@ public abstract class Item : MonoBehaviour
     /// Icon used in UI (Inventory and hotbar)
     /// </summary>
     [SerializeField] private Sprite _icon = null;
+
     public Sprite Icon => _icon;
 
     /// <summary>
@@ -30,7 +29,9 @@ public abstract class Item : MonoBehaviour
     public bool MouseOver;
 
     #region Components
-    SpriteRenderer _spriteRenderer;
+
+    private SpriteRenderer _spriteRenderer;
+
     public SpriteRenderer SpriteRenderer
     {
         get
@@ -39,13 +40,8 @@ public abstract class Item : MonoBehaviour
             return _spriteRenderer;
         }
     }
-    #endregion
 
-    /// <summary>
-    /// Cursor that is used when this item is active
-    /// </summary>
-    // TODO: Finish this implementation
-    public virtual object Cursor { get; }
+    #endregion Components
 
     /// <summary>
     /// Reference to the Inventory where this item is stored. This value is null if item is on the ground.
@@ -56,7 +52,10 @@ public abstract class Item : MonoBehaviour
     /// Tooltip that is shown when mouse is over this item in the UI
     /// </summary>
     public virtual string Tooltip { get; } = "Placeholder tooltip";
-    protected virtual void FixedUpdate() { }
+
+    protected virtual void FixedUpdate()
+    {
+    }
 
     /// <summary>
     /// This is called when this item is dropped from inventory
@@ -91,7 +90,6 @@ public abstract class Item : MonoBehaviour
     /// <param name="other">The character who leaves the item's collider</param>
     public virtual void OnTriggerExit2D(Collider2D other)
     {
-
         if (!other.gameObject.TryGetComponent(out Character character) || character != RecentlyDroppedBy) return;
         RecentlyDroppedBy = null;
     }
@@ -116,6 +114,7 @@ public abstract class Item : MonoBehaviour
         TooltipController.Instance.Text = Tooltip;
         TooltipController.Instance.IsVisible = show;
     }
+
     /// <summary>
     /// Show tooltip when hovering mouse over item
     /// </summary>
@@ -124,6 +123,7 @@ public abstract class Item : MonoBehaviour
         MouseOver = true;
         ToggleTooltip(true);
     }
+
     /// <summary>
     /// Hide tooltip when not hovering mouse over item
     /// </summary>
@@ -145,14 +145,20 @@ public abstract class Item : MonoBehaviour
             DisplayInventory.Instance.MouseOverItem = false;
         }
     }
+
     protected virtual void Awake()
     {
     }
-    protected virtual void Start() {
+
+    protected virtual void Start()
+    {
         if (this is Consumable)
         {
             _icon = GetComponent<SpriteRenderer>().sprite;
         }
     }
-    protected virtual void Update() { }
+
+    protected virtual void Update()
+    {
+    }
 }

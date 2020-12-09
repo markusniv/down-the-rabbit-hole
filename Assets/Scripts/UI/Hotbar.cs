@@ -78,7 +78,7 @@ public class Hotbar : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if player tries to change active item
+    /// Changes active item if player uses scroll or number keys
     /// </summary>
     void CheckActiveItemChange()
     {

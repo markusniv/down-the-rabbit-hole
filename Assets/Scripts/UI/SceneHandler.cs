@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 /// <summary>
 /// Handles varying states of the game to control moving between scenes, for example getting back to main menu after player death.
 /// </summary>
 public class SceneHandler : MonoBehaviour
 {
-    [SerializeField] GameObject playerObject,
+    [SerializeField]
+    private GameObject playerObject,
                                 deathText,
                                 pressAnyKeyText,
                                 hotBar,
@@ -19,7 +17,7 @@ public class SceneHandler : MonoBehaviour
 
     private State playerState;
 
-    void Start()
+    private void Start()
     {
         player = playerObject.GetComponent<Player>();
         playerState = player.Combat.CurrentState;
@@ -28,7 +26,7 @@ public class SceneHandler : MonoBehaviour
     /// <summary>
     /// Follow player state, and if player dies, freeze time, hide UI elements and show death text + allow player to get back to main menu
     /// </summary>
-    void Update()
+    private void Update()
     {
         playerState = player.Combat.CurrentState;
         if (playerState is Dead)

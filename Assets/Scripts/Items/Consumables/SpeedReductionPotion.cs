@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-
+﻿
+/// <summary>
+/// Potion that will slow the character
+/// </summary>
 public class SpeedReductionPotion : Consumable
 {
     /// <summary>
@@ -12,23 +10,19 @@ public class SpeedReductionPotion : Consumable
 
     public override string Tooltip => string.Format("Target speed is decrease by <color=blue>0.5</color>");
 
-
+    /// <summary>
+    /// Consumes the items and Adds status effect
+    /// </summary>
     public override void Consume()
     {
-        /// <summary>
-        /// If your movement speed is equal or lower then 0 it will return item.
-        /// </summary>
-       
-        if (Inventory.Character.Movement.MovementSpeedModifier <= 0) return;
-        
-        /// <summary>
-        /// Call the status effect.
-        /// </summary>
-        
-        Inventory.Character.AddStatusEffect(new SpeedReducted(Inventory.Character));
-        
-        base.Consume();
+        // If your movement speed is equal or lower then 0 it will return item.
 
-        
+        if (Inventory.Character.Movement.MovementSpeedModifier <= 0) return;
+
+        // Adds the status effect.
+
+        Inventory.Character.AddStatusEffect(new SpeedReducted(Inventory.Character));
+
+        base.Consume();
     }
 }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 
 /// <summary>
 /// Abstract base class for all weapons
@@ -19,6 +18,7 @@ public abstract class Weapon : Item, ICanHotbar
     /// The character holding the weapon and their hand which is the Character object of all weapons
     /// </summary>
     public Character character;
+
     public CharacterCombat CharacterCombat;
     public CharacterMovement characterMovement;
     public Transform hand;
@@ -37,7 +37,7 @@ public abstract class Weapon : Item, ICanHotbar
                 attackStarted;
 
     /// <summary>
-    /// Base weapon sprite and the sprite of the weapon when held  
+    /// Base weapon sprite and the sprite of the weapon when held
     /// </summary>
     public Sprite weaponSprite,
                   weaponSpriteHeld;
@@ -56,15 +56,12 @@ public abstract class Weapon : Item, ICanHotbar
 
         // Get the base components of the weapon. Stab weapons don't have a TrailRenderer so check for that before disabling it for other weapons.
 
-
-
         if (tr != null)
         {
             tr.enabled = false;
         }
 
         attack = false;
-
 
         // Check if the weapon doesn't have a predetermined type already set
 
@@ -92,7 +89,6 @@ public abstract class Weapon : Item, ICanHotbar
     {
         if (attack)
         {
-
         }
     }
 
@@ -110,6 +106,7 @@ public abstract class Weapon : Item, ICanHotbar
         transform.localRotation = Quaternion.identity;
         Hide();
     }
+
     /// <summary>
     /// Override default OnDrop, changing sprite to the regular weapon sprite
     /// </summary>
@@ -120,6 +117,7 @@ public abstract class Weapon : Item, ICanHotbar
         SpriteRenderer.sprite = weaponSprite;
         Show();
     }
+
     /// <summary>
     /// This hides the weapon collider, sprite and trailrenderer
     /// </summary>
@@ -133,6 +131,7 @@ public abstract class Weapon : Item, ICanHotbar
             tr.Clear();
         }
     }
+
     /// <summary>
     /// This shows the weapon collider, sprite and trailrenderer
     /// </summary>
@@ -145,6 +144,7 @@ public abstract class Weapon : Item, ICanHotbar
             tr.enabled = true;
         }
     }
+
     /// <summary>
     /// If the weapon is in inventory and it is not attacking, or if
     /// the item is on ground, do base.OnMouseEnter, e.g. show item details
@@ -163,6 +163,7 @@ public abstract class Weapon : Item, ICanHotbar
             base.OnMouseEnter();
         }
     }
+
     /// <summary>
     /// If the weapon is in inventory and it is not attacking, or if
     /// the item is on ground, do base.OnMouseExit, e.g. stop showing item details
@@ -180,7 +181,6 @@ public abstract class Weapon : Item, ICanHotbar
         {
             base.OnMouseExit();
         }
-
     }
 
     /// <summary>
@@ -196,11 +196,10 @@ public abstract class Weapon : Item, ICanHotbar
         var angle = Vector2.SignedAngle(Vector2.up, Inventory.Character.Movement.LookDirection) + 90;
         hand.localEulerAngles = new Vector3(0, 0, angle);
         hand.localPosition = Inventory.Character.Movement.LookDirection - (Vector2)hand.transform.up;
-
     }
 
     /// <summary>
-    /// Handle picking up the item and actually hitting characters with weapon if the weapon is in 
+    /// Handle picking up the item and actually hitting characters with weapon if the weapon is in
     /// someone's inventory. Disallow enemies from hitting each other, only allow player to hit enemies
     /// and enemy hit player
     /// </summary>
@@ -265,6 +264,7 @@ public abstract class Weapon : Item, ICanHotbar
             Inventory.Character.Combat.CurrentState = new Attacking(Inventory.Character);
         }
     }
+
     /// <summary>
     /// Secondary item use, e.g. right mouse button, start a block
     /// </summary>
