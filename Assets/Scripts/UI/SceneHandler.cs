@@ -55,6 +55,7 @@ public class SceneHandler : MonoBehaviour
         {
             if (!paused)
             {
+                playerObject.SetActive(false);
                 hotBar.SetActive(false);
                 healthBar.SetActive(false);
                 pausedText.SetActive(true);
@@ -65,6 +66,7 @@ public class SceneHandler : MonoBehaviour
             }
             else
             {
+                playerObject.SetActive(true);
                 hotBar.SetActive(true);
                 healthBar.SetActive(true);
                 pausedText.SetActive(false);
