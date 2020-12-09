@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -55,7 +57,6 @@ public class SceneHandler : MonoBehaviour
         {
             if (!paused)
             {
-                playerObject.SetActive(false);
                 hotBar.SetActive(false);
                 healthBar.SetActive(false);
                 pausedText.SetActive(true);
@@ -63,16 +64,16 @@ public class SceneHandler : MonoBehaviour
                 Time.timeScale = 0;
 
                 paused = true;
+                ToggleAllScripts(false);
             }
             else
             {
-                playerObject.SetActive(true);
                 hotBar.SetActive(true);
                 healthBar.SetActive(true);
                 pausedText.SetActive(false);
                 pressKeyPause.SetActive(false);
                 Time.timeScale = 1;
-
+                ToggleAllScripts(true);
                 paused = false;
             }
         }
@@ -80,11 +81,21 @@ public class SceneHandler : MonoBehaviour
         {
             if (paused)
             {
+                ToggleAllScripts(true);
                 Time.timeScale = 1;
                 Destroy(GameObject.Find("SoundManager"));
                 Destroy(GameObject.Find("MusicManager"));
                 SceneManager.LoadScene("Main Menu");
             }
+        }
+    }
+
+    void ToggleAllScripts(bool enabled)
+    {
+        var allscripts = GameObject.FindObjectsOfType<MonoBehaviour>().Where(x => !(x is SceneHandler) && x.GetType().Assembly == this.GetType().Assembly);
+        foreach (var script in allscripts)
+        {
+            script.enabled = enabled;
         }
     }
 }

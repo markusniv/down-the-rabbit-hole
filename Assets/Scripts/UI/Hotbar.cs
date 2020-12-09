@@ -34,6 +34,7 @@ public class Hotbar : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
         CheckActiveItemChange();
     }
 

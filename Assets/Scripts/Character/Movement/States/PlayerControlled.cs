@@ -14,6 +14,7 @@ public class PlayerControlled : State
     /// </summary>
     public override void OnUpdate()
     {
+        if (Time.timeScale == 0f) return; 
         Character.Movement.Movement.x = Input.GetAxisRaw("Horizontal");
         Character.Movement.Movement.y = Input.GetAxisRaw("Vertical");
     }

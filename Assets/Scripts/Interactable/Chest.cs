@@ -50,6 +50,7 @@ public class Chest : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
         // if press enter will go to next code
         if (enter)
         {

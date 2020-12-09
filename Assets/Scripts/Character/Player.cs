@@ -33,6 +33,7 @@ public class Player : Character
     /// </summary>
     protected override void Update()
     {
+        if (Time.timeScale == 0f) return;
         base.Update();
         if (Inventory.ActiveItem is ICanHotbar hotbarItem && !DisplayInventory.Instance.MouseOverItem)
         {
