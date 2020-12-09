@@ -22,7 +22,7 @@ public class PowerGauntlets : PassiveRelic
         /// <summary>
         /// Add to damage modifier 0.1
         /// </summary>
-        Inventory.Character.GetComponent<Character>().DamageModifier += BonusPower;
+        Inventory.Character.DamageModifier += BonusPower;
     }
     public override void Clear()
     {
@@ -30,7 +30,7 @@ public class PowerGauntlets : PassiveRelic
         /// <summary>
         /// Reduce to damage modifier 0.1
         /// </summary>
-        Inventory.Character.GetComponent<Character>().DamageModifier -= BonusPower;
+        Inventory.Character.DamageModifier -= BonusPower;
         /// <summary>
         /// Clear the equipment when removed
         /// </summary>
