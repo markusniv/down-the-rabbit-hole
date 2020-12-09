@@ -3,7 +3,7 @@ using UnityEngine;
 using Weapons;
 
 /// <summary>
-/// Abstract base class for character combat
+/// Abstract base class for character combat. Has state machine for controlling different combat states
 /// </summary>
 public abstract class CharacterCombat : MonoBehaviour, IStateMachine
 {
@@ -12,6 +12,9 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// </summary>
     public Weapon CurrentWeapon { get; set; }
 
+    /// <summary>
+    /// Timer for block cooldown
+    /// </summary>
     public float? BlockCooldown { get; set; }
 
 
@@ -136,7 +139,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     }
 
     /// <summary>
-    /// Reduces cooldowns until its 0.
+    /// Reduces cooldowns until they are 0.
     /// </summary>
     protected virtual void ReduceCooldown()
     {

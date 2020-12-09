@@ -44,12 +44,12 @@ public class EnemyCombat : CharacterCombat
     }
 
     /// <summary>
-    /// Adds random potion to the inventory
+    /// Adds random potion to the inventory. There is 50% chance to add potion to inventory
     /// </summary>
     void AddRandomConsumableItemsToInventory()
     {
         // 50% chance to add potion
-        if(Random.Range(0,2) == 0)
+        if(Random.value < 0.5f)
         {
             var consumables = PrefabHelper.GetItems<Consumable>();
             var createdConsumable = Instantiate(consumables.ElementAt(Random.Range(0, consumables.Count())));
@@ -59,7 +59,7 @@ public class EnemyCombat : CharacterCombat
     }
 
     /// <summary>
-    /// takes random weapon from Prefabs/Items/Weapons folder and adds it to inventory
+    /// Takes random weapon from Prefabs/Items/Weapons folder and adds it to inventory
     /// </summary>
     void AddRandomWeaponToInventory()
     {

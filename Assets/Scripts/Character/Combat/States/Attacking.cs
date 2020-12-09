@@ -12,26 +12,30 @@ public class Attacking : State
     {
     }
 
-    private State PreviousMovementState;
-
+    /// <summary>
+    /// Start the attack, immobilize character and show current weapon
+    /// </summary>
     public override void OnStateEnter()
     {
-        //base.OnStateEnter();
         Character.Combat.InvokeAttackStart(Character.Combat.CurrentWeapon);
-        PreviousMovementState = Character.Movement.CurrentState;
         Character.Movement.CurrentState = new Immobile(Character);
-
         Character.Combat.CurrentWeapon?.Show();
     }
 
+    /// <summary>
+    /// End the attack, restore previous movement state and hide the weapon
+    /// </summary>
     public override void OnStateExit()
     {
-        //base.OnStateExit();
         Character.Combat.InvokeAttackEnd(Character.Combat.CurrentWeapon);
         Character.Movement.CurrentState = Character.Movement.PreviousState;
         Character.Combat.CurrentWeapon.Hide();
     }
 
+
+    /// <summary>
+    /// Animate the attack on each frame
+    /// </summary>
     public override void OnUpdate()
     {
         Character.Combat.CurrentWeapon?.Attack();

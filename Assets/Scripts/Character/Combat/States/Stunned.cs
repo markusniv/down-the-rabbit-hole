@@ -11,18 +11,27 @@ public class Stunned : State
     {
     }
 
+    /// <summary>
+    /// Immobilize character
+    /// </summary>
     public override void OnStateEnter()
     {
         Character.Movement.CurrentState = new Immobile(Character);
         base.OnStateEnter();
     }
 
+    /// <summary>
+    /// Restore movement state
+    /// </summary>
     public override void OnStateExit()
     {
         Character.Movement.CurrentState = Character.Movement.PreviousState;
         base.OnStateExit();
     }
 
+    /// <summary>
+    /// Calculates how long this stun should last
+    /// </summary>
     public override void OnFixedUpdate()
     {
         Duration -= Time.fixedDeltaTime;
