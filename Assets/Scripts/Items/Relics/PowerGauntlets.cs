@@ -5,9 +5,9 @@ public class PowerGauntlets : PassiveRelic
 {
 
     /// <summary>
-    /// Set BonusPower to 30f
+    /// Set BonusPower to 5f
     /// </summary>
-    public float BonusPower = 30f;
+    public float BonusPower = 5f;
     /// <summary>
     /// when the mouse is hovering the item this text will show it self.
     /// </summary>
