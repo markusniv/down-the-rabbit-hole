@@ -1,33 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
+/// <summary>
+/// Restores health over time
+/// </summary>
 public class RecoveryPotion : Consumable
 {
     /// <summary>
     /// when the mouse is hovering the item this text will show it self.
     /// </summary>
-  
+
     public override string Tooltip => string.Format("Heals target for <color=red>5</color> seconds");
+
     /// <summary>
-    /// Override consume method.
+    /// Consumes the potion and adds status effect to the character
     /// </summary>
-    
     public override void Consume()
     {
-        /// <summary>
-        /// If the your health is full it will not use the item.
-        /// </summary>
-    
+        // If the your health is full it will not use the item.
+
         if (Inventory.Character.CurrentHealth == Inventory.Character.MaxHealth) return;
-       
-        /// <summary>
-        /// Call the status effect.
-        /// </summary>
-        
+
+        // Call the status effect.
+
         Inventory.Character.AddStatusEffect(new OverTimeHealing(Inventory.Character));
 
         base.Consume();
     }
-
 }

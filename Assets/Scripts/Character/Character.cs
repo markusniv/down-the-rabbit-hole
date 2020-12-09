@@ -65,12 +65,20 @@ public abstract class Character : MonoBehaviour
     /// </summary>
     public IReadOnlyList<StatusEffect> StatusEffects => _statusEffects;
 
+    /// <summary>
+    /// Adds status effect to the character
+    /// </summary>
+    /// <param name="effect">Effect to be added</param>
     public virtual void AddStatusEffect(StatusEffect effect)
     {
         effect.OnStatusEnter();
         _statusEffects.Add(effect);
     }
 
+    /// <summary>
+    /// Removes status effect from character
+    /// </summary>
+    /// <param name="effect">Effect to remove</param>
     public virtual void RemoveStatusEffect(StatusEffect effect)
     {
         effect.OnStatusExit();
@@ -129,7 +137,9 @@ public abstract class Character : MonoBehaviour
     {
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Runs <see cref="StatusEffect.OnUpdate"/>
+    /// </summary>
     protected virtual void Update()
     {
         foreach (var effect in _statusEffects.ToList())
@@ -138,6 +148,9 @@ public abstract class Character : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Runs <see cref="StatusEffect.OnFixedUpdate"/>
+    /// </summary>
     protected virtual void FixedUpdate()
     {
         foreach (var effect in _statusEffects.ToList())

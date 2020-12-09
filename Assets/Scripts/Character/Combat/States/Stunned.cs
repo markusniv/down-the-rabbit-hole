@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Characters in this state are stunned and cannot perform any actions
+/// </summary>
 public class Stunned : State
 {
     /// <summary>

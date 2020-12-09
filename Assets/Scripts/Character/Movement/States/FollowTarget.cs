@@ -5,10 +5,19 @@ using UnityEngine;
 /// </summary>
 public class FollowTarget : State
 {
+    /// <summary>
+    /// Specifies which target to follow
+    /// </summary>
     public Character Target { get; set; }
 
+    /// <summary>
+    /// Character won't get closer than this
+    /// </summary>
     public float FollowDistance = 2f;
 
+    /// <summary>
+    /// Is True when distance between character and target is equal to <see cref="FollowDistance"/>
+    /// </summary>
     public bool AtRange { get; private set; }
 
     CircleCollider2D CharacterCollider;
@@ -21,6 +30,9 @@ public class FollowTarget : State
         TargetCollider = target.GetComponent<CircleCollider2D>();
     }
 
+    /// <summary>
+    /// Moves closer to target when not in range and stands still if in range
+    /// </summary>
     public override void OnFixedUpdate()
     {
         base.OnFixedUpdate();

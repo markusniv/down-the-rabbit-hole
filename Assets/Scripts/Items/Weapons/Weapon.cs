@@ -19,7 +19,6 @@ public abstract class Weapon : Item, ICanHotbar
     /// The character holding the weapon and their hand which is the Character object of all weapons
     /// </summary>
     public Character character;
-    public Animate characterAnimation;
     public CharacterCombat CharacterCombat;
     public CharacterMovement characterMovement;
     public Transform hand;
@@ -106,7 +105,6 @@ public abstract class Weapon : Item, ICanHotbar
         base.OnPickup(pickedUpBy);
         MouseOver = false;
         transform.localPosition = new Vector2(0, 5);
-        characterAnimation = pickedUpBy.gameObject.GetComponent<Animate>();
         characterMovement = pickedUpBy.gameObject.GetComponent<CharacterMovement>();
         SpriteRenderer.sprite = weaponSpriteHeld;
         transform.localRotation = Quaternion.identity;

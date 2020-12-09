@@ -97,6 +97,9 @@ public class EnemyCombat : CharacterCombat
         }
     }
 
+    /// <summary>
+    /// Tries attacking each time FixedUpdate is called
+    /// </summary>
     protected override void FixedUpdate()
     {
         base.FixedUpdate();

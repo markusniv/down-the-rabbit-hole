@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Definition of enemy
+/// </summary>
 public class Enemy : Character
 {
     /// <summary>
@@ -31,6 +34,10 @@ public class Enemy : Character
     /// </summary>
 
     private bool healthBarSpawned = false;
+
+    /// <summary>
+    /// Sets random health based on <see cref="DifficultyModifier"/>
+    /// </summary>
     private void SetRandomHealth()
     {
         MaxHealth = CurrentHealth = Random.Range(100, 300) * DifficultyModifier;
@@ -48,7 +55,9 @@ public class Enemy : Character
             );
     }
 
-
+    /// <summary>
+    /// Sets <see cref="DifficultyModifier"/> and randomises values
+    /// </summary>
     protected override void Start()
     {
         DifficultyModifier = GameController.Instance.CurrentFloor.FloorNumber;
@@ -97,6 +106,9 @@ public class Enemy : Character
 
     }
 
+    /// <summary>
+    /// Spawns health bar and moves it to the correct place
+    /// </summary>
     void SpawnHealthbar()
     {
         healthTimer = 1;

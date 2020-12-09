@@ -1,68 +1,64 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Characters with this status are slowed down
+/// </summary>
 public class Slowdown : StatusEffect
 {
-
     /// <summary>
     /// The duration how long it will take effect.
     /// </summary>
-    float Duration = 5f;
+    private float Duration = 5f;
 
     /// <summary>
     /// Slowdown per 0.1.
     /// </summary>
-    float Reduce = 0.1f;
-    float OriginalSpeed;
+    private float Reduce = 0.1f;
 
+    private float OriginalSpeed;
 
     public Slowdown(Character character) : base(character)
     {
-
     }
 
+    /// <summary>
+    /// Saves original speed.
+    /// </summary>
     public override void OnStatusEnter()
     {
-
-        /// <summary>
-        /// Gets the value of the original speed so we can return it.
-        /// </summary>
+        // Gets the value of the original speed so we can return it.
         OriginalSpeed = Character.Movement.MovementSpeedModifier;
 
         base.OnStatusEnter();
     }
+
+    /// <summary>
+    /// Restores movement to normal
+    /// </summary>
     public override void OnStatusExit()
     {
-        /// <summary>
-        /// The speed will return to the original values that it has
-        /// </summary>
+        // The speed will return to the original values that it has
         Character.Movement.MovementSpeedModifier = OriginalSpeed;
         base.OnStatusExit();
     }
 
-
+    /// <summary>
+    /// Reduces movement speed over time and removes this effect after <see cref="Duration"/> is 0
+    /// </summary>
     public override void OnFixedUpdate()
     {
-
-        /// <summary>
-        /// Reduces the duration with current time per second 
-        /// </summary>
+        // Reduces the duration with current time per second
         Duration -= Time.fixedDeltaTime;
-        /// <summary>
-        /// Reduce the the movement speed by 50% of the original movement
-        /// </summary>
-        Character.Movement.MovementSpeedModifier -= OriginalSpeed *Reduce * Time.fixedDeltaTime;
-        /// <summary>
-        /// if the duration is 0 or smaller it will stop the effect.
-        /// </summary>
-     
-            if (Duration <= 0)
-            {
+        // Reduce the the movement speed by 50% of the original movement
+        Character.Movement.MovementSpeedModifier -= OriginalSpeed * Reduce * Time.fixedDeltaTime;
 
-                Character.RemoveStatusEffect(this);
-            }
-        
+        // if the duration is 0 or smaller it will stop the effect.
+
+        if (Duration <= 0)
+        {
+            Character.RemoveStatusEffect(this);
+        }
+
         base.OnFixedUpdate();
     }
 }

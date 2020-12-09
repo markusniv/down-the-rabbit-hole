@@ -36,6 +36,8 @@ public class Floor : MonoBehaviour
     /// </summary>
     public int FloorNumber = 1;
 
+    public int MaxRoomCount = 15;
+
     /// <summary>
     /// Creates rooms under current floor. Existing rooms are destroyed if they exist
     /// </summary>
@@ -135,6 +137,7 @@ public class Floor : MonoBehaviour
     /// <param name="room">Rooms will be created around this room.</param>
     private void CreateSurroundingRooms(Room room)
     {
+        if (RoomGrid.Count > MaxRoomCount) return;
         List<Room.GridLocation> newRoomLocations = new List<Room.GridLocation>();
         // If room has top door
         if (room.Doors.HasFlag(Room.DoorLocation.Top))

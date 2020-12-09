@@ -1,42 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Characters with this status will take damage over time
+/// </summary>
 public class Poisoned : StatusEffect
 {
-
     /// <summary>
     /// The duration how long it will take effect.
     /// </summary>
-    float Duration = 5f;
+    private float Duration = 5f;
 
     /// <summary>
     /// How much damage per second
     /// </summary>
-    float DamagePerTick =10f;
+    private float DamagePerTick = 10f;
 
     public Poisoned(Character character) : base(character)
     {
     }
-    
 
+    /// <summary>
+    /// Deals damage over time and removes this effect if <see cref="Duration"/> is 0
+    /// </summary>
     public override void OnFixedUpdate()
     {
-
-        /// <summary>
-        /// Reduces the duration with current time per second 
-        /// </summary>
+        // Reduces the duration with current time per second
         Duration -= Time.fixedDeltaTime;
-        /// <summary>
-        /// Reduce from current health 10 damage per second for 5 second
-        /// </summary>
+        // Reduce from current health 10 damage per second for 5 second
         Character.CurrentHealth -= DamagePerTick * Time.fixedDeltaTime;
-        /// <summary>
-        /// if the duration is 0 or smaller it will stop the effect.
-        /// </summary>
+
+        // if the duration is 0 or smaller it will stop the effect.
         if (Duration <= 0)
         {
-          
             Character.RemoveStatusEffect(this);
         }
         base.OnFixedUpdate();

@@ -45,7 +45,9 @@ MonoBehaviour:
   MaxHealth: 1000
   _currentHealth: 1000
   DeathParticles: {fileID: 1719895221638987626, guid: fc0878538e4b258468afc8f71c6ac080, type: 3}
-  DamageModifier: 0
+  Dead: 0
+  DamageModifier: 1
+  FlatDamageModifier: 0
 --- !u!114 &6921602426253586108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0086cfc2a4279c46a84c116f864bcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _items: []
 --- !u!1 &3383651218989941476
 GameObject:
   m_ObjectHideFlags: 0

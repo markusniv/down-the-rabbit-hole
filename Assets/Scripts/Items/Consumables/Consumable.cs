@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
@@ -12,7 +10,7 @@ public abstract class Consumable : Item, ICanHotbar
     /// <summary>
     /// Sets the Uses to 1.
     /// </summary>
-    
+
     public int Uses = 1;
 
     /// <summary>
@@ -21,8 +19,8 @@ public abstract class Consumable : Item, ICanHotbar
 
     public bool Thrown = false;
 
-    Vector2 ThrownFrom;
-    Vector2 ThrownTo;
+    private Vector2 ThrownFrom;
+    private Vector2 ThrownTo;
     public Character ThrownBy;
 
     /// <summary>
@@ -41,7 +39,7 @@ public abstract class Consumable : Item, ICanHotbar
     public override void OnClick(PointerEventData eventData)
     {
         base.OnClick(eventData);
-        if(eventData.button == PointerEventData.InputButton.Left)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             Consume();
         }
@@ -70,27 +68,37 @@ public abstract class Consumable : Item, ICanHotbar
         }
     }
 
+    /// <summary>
+    /// Destroys item if reaches throw destination
+    /// </summary>
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+        if (!Thrown) return;
         var distance = Vector2.Distance(gameObject.transform.position, ThrownTo);
-        if(distance < 1f)
+        if (distance < 1f)
         {
             Destroy(this.gameObject);
         }
     }
 
+    /// <summary>
+    /// Rotates potion if it was thrown
+    /// </summary>
     protected override void Update()
     {
         base.Update();
-        if(!Thrown) return;
+        if (!Thrown) return;
         var direction = (ThrownTo - ThrownFrom).normalized;
         transform.Rotate(new Vector3(0, 0, 1000f * Time.deltaTime));
 
         transform.position += (Vector3)direction * Time.deltaTime * 5f;
-
     }
 
+    /// <summary>
+    /// Consumes item if it was thrown
+    /// </summary>
+    /// <param name="pickedUpBy">Who picked up this item</param>
     public override void OnPickup(Character pickedUpBy)
     {
         if (Thrown && ThrownBy == pickedUpBy) return;

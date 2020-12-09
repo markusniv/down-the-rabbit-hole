@@ -1,13 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// Attacking state. Characters in this state are currently attacking.
 /// </summary>
 public class Attacking : State
 {
-
     public Attacking(Character character) : base(character)
     {
     }
@@ -32,13 +27,11 @@ public class Attacking : State
         Character.Combat.CurrentWeapon.Hide();
     }
 
-
     /// <summary>
     /// Animate the attack on each frame
     /// </summary>
     public override void OnUpdate()
     {
         Character.Combat.CurrentWeapon?.Attack();
-
     }
 }

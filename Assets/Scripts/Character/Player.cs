@@ -28,6 +28,9 @@ public class Player : Character
 
     public event Action<float> OnScoreChange;
 
+    /// <summary>
+    /// Checks if player wants to use items
+    /// </summary>
     protected override void Update()
     {
         base.Update();

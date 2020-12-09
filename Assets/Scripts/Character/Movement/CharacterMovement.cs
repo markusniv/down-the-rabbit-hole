@@ -89,6 +89,9 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
 
     #endregion Events
 
+    /// <summary>
+    /// Initializes components
+    /// </summary>
     protected virtual void Awake()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
@@ -99,11 +102,18 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
 
     protected virtual void Start() { }
 
+    /// <summary>
+    /// Runs <see cref="State.OnUpdate"/>
+    /// </summary>
     protected virtual void Update()
     {
         CurrentState?.OnUpdate();
     }
 
+    /// <summary>
+    /// Runs <see cref="State.OnFixedUpdate"/>. Sets <see cref="LookDirection"/> and Updates <see cref="Animator"/> with correct movement values.
+    /// Moves character to <see cref="Movement"/> direction with speed of <see cref="MovementSpeed"/>
+    /// </summary>
     protected virtual void FixedUpdate()
     {
         CurrentState?.OnFixedUpdate();
@@ -118,7 +128,7 @@ public abstract class CharacterMovement : MonoBehaviour, IStateMachine
         {
             Animator.SetFloat("AnimationSpeed", 0f);
         }
-        Rigidbody.MovePosition(Rigidbody.position + Movement * (BaseMovementSpeed * MovementSpeedModifier) * Time.fixedDeltaTime);
+        Rigidbody.MovePosition(Rigidbody.position + Movement * MovementSpeed * Time.fixedDeltaTime);
     }
 
     /// <summary>

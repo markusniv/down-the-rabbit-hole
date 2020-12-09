@@ -6,10 +6,20 @@ using UnityEngine;
 /// </summary>
 public class LookForCharacter : Wander
 {
+
+    /// <summary>
+    /// Target who to look for
+    /// </summary>
     public Character Target;
 
+    /// <summary>
+    /// How far this character can detect target
+    /// </summary>
     public float DetectRadius = 5f;
 
+    /// <summary>
+    /// Character enters this state when it detects <see cref="Target"/>
+    /// </summary>
     public State NextState;
 
     Collider2D CharacterCollider;
@@ -23,6 +33,9 @@ public class LookForCharacter : Wander
         TargetCollider = target.GetComponent<Collider2D>();
     }
 
+    /// <summary>
+    /// Tries to find <see cref="Target"/>. Does raycast around the character and if it hits <see cref="Target"/> this character will move to the next state
+    /// </summary>
     public override void OnFixedUpdate()
     {
         base.OnFixedUpdate();

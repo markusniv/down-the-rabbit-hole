@@ -1,41 +1,48 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Characters with this status will be confused and will move backwards
+/// Characters with this status will have their speed reduced
 /// </summary>
-public class Confused : StatusEffect
+public class SpeedReducted : StatusEffect
 {
     /// <summary>
-    /// Effect duration in seconds
+    /// Will be decrease by 0.5f
     /// </summary>
-    private float Duration = 5f; // seconds
+    private float Reduce = 0.5f;
 
-    public Confused(Character character) : base(character)
+    /// <summary>
+    /// The duration how long it will take effect.
+    /// </summary>
+    private float Duration = 5f;
+
+    public SpeedReducted(Character character) : base(character)
     {
     }
 
-
     /// <summary>
-    /// Reverses <see cref="CharacterMovement.MovementSpeedModifier"/>
+    /// Reduces movement by <see cref="Reduce"/>
     /// </summary>
     public override void OnStatusEnter()
     {
-        Character.Movement.MovementSpeedModifier *= -1;
+        // Reduce by 0.5f.
+        Character.Movement.MovementSpeedModifier -= Reduce;
+
         base.OnStatusEnter();
     }
 
     /// <summary>
-    /// Restores <see cref="CharacterMovement.MovementSpeedModifier"/> to positive
+    /// Restores Movement speed
     /// </summary>
     public override void OnStatusExit()
     {
+        // The speed will return to the original values that it has
+        Character.Movement.MovementSpeedModifier += Reduce;
 
-        Character.Movement.MovementSpeedModifier *= -1;
         base.OnStatusExit();
     }
 
     /// <summary>
-    /// Calculates when this effect should end
+    /// Removes effect when <see cref="Duration"/> is 0
     /// </summary>
     public override void OnFixedUpdate()
     {
@@ -47,6 +54,7 @@ public class Confused : StatusEffect
         {
             Character.RemoveStatusEffect(this);
         }
+
         base.OnFixedUpdate();
     }
 }

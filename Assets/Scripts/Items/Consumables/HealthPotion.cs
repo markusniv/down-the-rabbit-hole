@@ -1,4 +1,7 @@
-﻿public class HealthPotion : Consumable
+﻿/// <summary>
+/// Potion that heals instantly
+/// </summary>
+public class HealthPotion : Consumable
 {
 
     /// <summary>
@@ -14,20 +17,16 @@
     public int HealthRestoredOnUse= 200;
     
     /// <summary>
-    /// Override consume method.
+    /// Consumes item and instantly restores health by <see cref="HealthRestoredOnUse"/>
     /// </summary>
 
     public override void Consume()
     {
-        /// <summary>
-        /// If the your health is full it will not use the item.
-        /// </summary>
+        // If the your health is full it will not use the item.
         
         if (Inventory.Character.CurrentHealth == Inventory.Character.MaxHealth) return;
         
-        /// <summary>
-        /// Adds to the current health 200 
-        /// </summary>
+        // Adds to the current health 200 
         
         Inventory.Character.CurrentHealth += HealthRestoredOnUse;
         base.Consume();

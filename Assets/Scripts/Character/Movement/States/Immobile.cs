@@ -11,7 +11,9 @@ public class Immobile : State
     {
     }
 
-
+    /// <summary>
+    /// Sets movement to zero
+    /// </summary>
     public override void OnStateEnter()
     {
         base.OnStateEnter();

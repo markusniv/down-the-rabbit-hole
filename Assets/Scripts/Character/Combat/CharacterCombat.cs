@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Weapons;
 
 /// <summary>
 /// Abstract base class for character combat. Has state machine for controlling different combat states
@@ -17,8 +16,8 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// </summary>
     public float? BlockCooldown { get; set; }
 
-
     private float? _attackCooldown;
+
     /// <summary>
     /// Current attack cooldown in seconds. Invokes cooldown start when setting this value.
     /// </summary>
@@ -44,6 +43,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// Private backing field for <see cref="CurrentState"/>. DO NOT SET DIRECTLY.
     /// </summary>
     private State _currentState;
+
     public State CurrentState
     {
         get
@@ -61,6 +61,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     }
 
     #region Components
+
     /// <summary>
     /// Reference to the main Character script
     /// </summary>
@@ -70,51 +71,63 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     /// Reference to the hand that should be inside the character
     /// </summary>
     public Transform Hand;
-    #endregion
+
+    #endregion Components
 
     #region Events
+
     /// <summary>
     /// Triggered when character changes states.
     /// </summary>
     public event Action<State> OnStateChange;
+
     /// <summary>
     /// Triggered when an attack ends
     /// </summary>
     public event Action<Weapon> OnAttackEnd;
+
     /// <summary>
     /// Triggered when an attack starts
     /// </summary>
     public event Action<Weapon> OnAttackStart;
+
     /// <summary>
     /// Triggered at the end of an attack to initiate cooldown
     /// </summary>
     public event Action OnCooldownStart;
+
     /// <summary>
     /// Triggered when a cooldown is finished
     /// </summary>
     public event Action OnCooldownEnd;
-    #endregion
+
+    #endregion Events
 
     #region InvokingEvents
+
     /// <summary>
     /// Invoke an attack with the current equipped weapon
     /// </summary>
     /// <param name="weapon">Current weapon</param>
     public void InvokeAttackStart(Weapon weapon) => OnAttackStart?.Invoke(weapon);
+
     /// <summary>
     /// Invoke the end of an attack with the current equipped weapon
     /// </summary>
     /// <param name="weapon">Current weapon</param>
     public void InvokeAttackEnd(Weapon weapon) => OnAttackEnd?.Invoke(weapon);
+
     /// <summary>
     /// Invoke cooldown start at the end of an attack for the current weapon
     /// </summary>
     public void InvokeCooldownStart() => OnCooldownStart?.Invoke();
+
     /// <summary>
     /// Invoke the end of cooldown for the current weapon when cooldown timer finishes
     /// </summary>
     public void InvokeCooldownEnd() => OnCooldownEnd?.Invoke();
-    #endregion
+
+    #endregion InvokingEvents
 
     /// <summary>
     /// Get the character component of this character, set its state to Idle and get its hand gameObject
@@ -129,6 +142,7 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
     protected virtual void Start()
     {
     }
+
     /// <summary>
     /// Handle counting cooldown down if cooldown is active
     /// </summary>
@@ -146,20 +160,23 @@ public abstract class CharacterCombat : MonoBehaviour, IStateMachine
         if (AttackCooldown > 0f)
         {
             _attackCooldown -= Time.fixedDeltaTime;
-        }else if(AttackCooldown <= 0f && AttackCooldown != null)
+        }
+        else if (AttackCooldown <= 0f && AttackCooldown != null)
         {
             OnCooldownEnd?.Invoke();
             _attackCooldown = null;
         }
 
-        if(BlockCooldown > 0f && CurrentState is Idle)
+        if (BlockCooldown > 0f && CurrentState is Idle)
         {
             BlockCooldown -= Time.fixedDeltaTime;
-        }else if(BlockCooldown <= 0f && BlockCooldown != null)
+        }
+        else if (BlockCooldown <= 0f && BlockCooldown != null)
         {
             BlockCooldown = null;
         }
     }
+
     /// <summary>
     /// Check for state changes
     /// </summary>

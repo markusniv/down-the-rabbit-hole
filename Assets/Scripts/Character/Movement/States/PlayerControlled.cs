@@ -9,6 +9,9 @@ public class PlayerControlled : State
     {
     }
 
+    /// <summary>
+    /// Gets movement from input system
+    /// </summary>
     public override void OnUpdate()
     {
         Character.Movement.Movement.x = Input.GetAxisRaw("Horizontal");

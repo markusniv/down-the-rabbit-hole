@@ -1,46 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Characters with this status get speed boost for some duration
+/// </summary>
 public class SpeedBoost : StatusEffect
 {
-    float SpeedChange = 2f; // How much will increase the status.
+    /// <summary>
+    /// How much speed is changed
+    /// </summary>
+    private float SpeedChange = 2f;
 
-    float Duration = 5f; // seconds
+    /// <summary>
+    /// Duration of this effect in seconds
+    /// </summary>
+    private float Duration = 5f; // seconds
 
     public SpeedBoost(Character character) : base(character)
     {
-     
     }
 
+    /// <summary>
+    /// Increases <see cref="CharacterMovement.MovementSpeedModifier"/> by <see cref="SpeedChange"/>
+    /// </summary>
     public override void OnStatusEnter()
     {
-
-        /// <summary>
-        /// Will increase the speed by 2.
-        /// </summary>
+        // Will increase the speed by 2.
         Character.Movement.MovementSpeedModifier += SpeedChange;
         base.OnStatusEnter();
     }
 
+    /// <summary>
+    /// Decreases <see cref="CharacterMovement.MovementSpeedModifier"/> by <see cref="SpeedChange"/>
+    /// </summary>
     public override void OnStatusExit()
     {
-        /// <summary>
-        /// Will decrease the speed by 2.
-        /// </summary>
+        // Will decrease the speed by 2.
         Character.Movement.MovementSpeedModifier -= SpeedChange;
         base.OnStatusExit();
     }
 
+    /// <summary>
+    /// Removes effect after <see cref="Duration"/> is 0
+    /// </summary>
     public override void OnFixedUpdate()
     {
-        /// <summary>
-        /// Reduces the duration with current time per second 
-        /// </summary>
+        // Reduces the duration with current time per second
         Duration -= Time.fixedDeltaTime;
-        /// <summary>
-        /// if the duration is 0 or smaller it will stop the effect.
-        /// </summary>
+        // if the duration is 0 or smaller it will stop the effect.
         if (Duration <= 0)
         {
             Character.RemoveStatusEffect(this);
@@ -48,4 +54,3 @@ public class SpeedBoost : StatusEffect
         base.OnFixedUpdate();
     }
 }
-

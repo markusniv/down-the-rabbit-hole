@@ -7,6 +7,9 @@ public class EnemyMovement : CharacterMovement
 
     protected override float BaseMovementSpeed => 3f;
 
+    /// <summary>
+    /// Setup event listeners for Player OnRoomLeave. Start wandering state.
+    /// </summary>
     protected override void Start()
     {
         base.Awake();

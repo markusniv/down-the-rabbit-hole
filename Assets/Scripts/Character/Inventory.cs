@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Weapons;
-
 
 /// <summary>
 /// This class is used as characters inventory. Each character should have Inventory component.
@@ -18,7 +16,6 @@ public class Inventory : MonoBehaviour
     /// Contains all _items in <see cref="Inventory"/>. DO NOT MODIFY DIRECTLY.
     /// </summary>
     public List<Item> _items = new List<Item>();
-
 
     /// <summary>
     /// This contains reference to current active item. Public accessor for <see cref="_activeItem"/>
@@ -48,7 +45,9 @@ public class Inventory : MonoBehaviour
     /// This is public accessor for <see cref="_items"/>. Use this to read _items in <see cref="Inventory"/>.
     /// </summary>
     public IReadOnlyList<Item> Items => _items;
+
     #region Events
+
     /// <summary>
     /// This event is triggered always when <see cref=""/>
     /// </summary>
@@ -58,8 +57,8 @@ public class Inventory : MonoBehaviour
     /// This event is triggered always when item is removed or added to inventory
     /// </summary>
     public event Action OnChange;
-    #endregion
 
+    #endregion Events
 
     /// <summary>
     /// Adds <see cref="Item"/> into <see cref="Items"/> after checking if the player already has 8 useable _items in inventory.
@@ -77,7 +76,8 @@ public class Inventory : MonoBehaviour
                 if (hotbar.transform.childCount == 8)
                 {
                     return;
-                } else
+                }
+                else
                 {
                     CompleteAddItem(item);
                 }
@@ -92,11 +92,12 @@ public class Inventory : MonoBehaviour
             CompleteAddItem(item);
         }
     }
+
     /// <summary>
     /// Completes adding the item into inventory.
     /// </summary>
     /// <param name="item">Item being added.</param>
-    void CompleteAddItem(Item item)
+    private void CompleteAddItem(Item item)
     {
         // Character who throw this item cannot pick it up mid air
         if (item is Consumable consumable && consumable.ThrownBy == Character) return;
@@ -112,7 +113,7 @@ public class Inventory : MonoBehaviour
         item.gameObject.transform.localPosition = new Vector3(0, 1, 0);
         item.gameObject.SetActive(false);
         item.SpriteRenderer.enabled = false;
-       
+
         item.OnPickup(Character);
         if (ActiveItem == null) ActiveItem = item;
         _items.Add(item);
@@ -142,7 +143,8 @@ public class Inventory : MonoBehaviour
     /// Removes item from inventory. DO NOT USE TO DROP ITEM.
     /// </summary>
     /// <param name="item"></param>
-    public void RemoveItem(Item item) {
+    public void RemoveItem(Item item)
+    {
         if (ActiveItem == item) ActiveItem = null;
         _items.Remove(item);
         OnChange?.Invoke();
@@ -156,10 +158,8 @@ public class Inventory : MonoBehaviour
         Character = GetComponent<Character>();
     }
 
-
     private void FixedUpdate()
     {
-        
     }
 
     /// <summary>
@@ -169,7 +169,7 @@ public class Inventory : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If this collided with item we can pick up
-        if(other.gameObject.TryGetComponent(out Item item) && item.RecentlyDroppedBy != Character && item.Inventory == null)
+        if (other.gameObject.TryGetComponent(out Item item) && item.RecentlyDroppedBy != Character && item.Inventory == null)
         {
             // Enemy can pick up consumable ONLY if it was thrown
             if (!(Character is Player) && item is Consumable consumable && !consumable.Thrown) return;

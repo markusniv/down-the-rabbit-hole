@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿/// <summary>
+/// Potion that will increase movement speed of character
+/// </summary>
 public class SpeedPotion : Consumable
 {
     /// <summary>
@@ -10,21 +9,16 @@ public class SpeedPotion : Consumable
     public override string Tooltip => string.Format("Target Speed increase by <color=blue>2</color>");
 
     /// <summary>
-    /// Override consume method.
+    /// Consumes the item and adds the status effect
     /// </summary>
-
     public override void Consume()
     {
-        /// <summary>
-        /// If your movement speed is equal or higher then 6 it will return item.
-        /// </summary>
-        
-        if (Inventory.Character.Movement.MovementSpeedModifier >=5 ) return;
-        
-        /// <summary>
-        /// Call the status effect.
-        /// </summary>
-        
+        // If your movement speed is equal or higher then 6 it will return item.
+
+        if (Inventory.Character.Movement.MovementSpeedModifier >= 5) return;
+
+        // Add the status effect.
+
         Inventory.Character.AddStatusEffect(new SpeedBoost(Inventory.Character));
         base.Consume();
     }
