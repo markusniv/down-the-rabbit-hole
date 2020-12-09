@@ -9,7 +9,9 @@ public class SceneHandler : MonoBehaviour
     [SerializeField]
     private GameObject playerObject = null,
                                 deathText = null,
+                                pausedText = null,
                                 pressAnyKeyText = null,
+                                pressKeyPause = null,
                                 hotBar = null,
                                 healthBar = null;
 
@@ -17,10 +19,13 @@ public class SceneHandler : MonoBehaviour
 
     private State playerState;
 
+    private bool paused;
+
     private void Start()
     {
         player = playerObject.GetComponent<Player>();
         playerState = player.Combat.CurrentState;
+        paused = false;
     }
 
     /// <summary>
@@ -39,6 +44,39 @@ public class SceneHandler : MonoBehaviour
             Time.timeScale = 0;
 
             if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Time.timeScale = 1;
+                Destroy(GameObject.Find("SoundManager"));
+                Destroy(GameObject.Find("MusicManager"));
+                SceneManager.LoadScene("Main Menu");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!paused)
+            {
+                hotBar.SetActive(false);
+                healthBar.SetActive(false);
+                pausedText.SetActive(true);
+                pressKeyPause.SetActive(true);
+                Time.timeScale = 0;
+
+                paused = true;
+            }
+            else
+            {
+                hotBar.SetActive(true);
+                healthBar.SetActive(true);
+                pausedText.SetActive(false);
+                pressKeyPause.SetActive(false);
+                Time.timeScale = 1;
+
+                paused = false;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            if (paused)
             {
                 Time.timeScale = 1;
                 Destroy(GameObject.Find("SoundManager"));
