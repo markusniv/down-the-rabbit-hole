@@ -49,7 +49,7 @@ public class EnemyCombat : CharacterCombat
     void AddRandomConsumableItemsToInventory()
     {
         // 50% chance to add potion
-        if(Random.Range(0,1) == 0)
+        if(Random.Range(0,2) == 0)
         {
             var consumables = PrefabHelper.GetItems<Consumable>();
             var createdConsumable = Instantiate(consumables.ElementAt(Random.Range(0, consumables.Count())));
@@ -87,7 +87,7 @@ public class EnemyCombat : CharacterCombat
         if (Random.Range(0, 101) < DefensiveActionChance.Value)
         {
             // 50%/50% chance to either dodge or block
-            if (Random.Range(0, 2) == 0)
+            if (Random.value < 0.5f)
             {
                 Character.Combat.CurrentState = new Blocking(Character);
             }else
