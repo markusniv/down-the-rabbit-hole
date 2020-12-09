@@ -12,7 +12,7 @@ public class SpeedBoots : PassiveRelic
         /// <summary>
         /// Adds to as a passive equipment 0,1% more speed
         /// </summary>
-        Inventory.Character.GetComponent<CharacterMovement>().MovementSpeedModifier += (Inventory.Character.GetComponent<CharacterMovement>().MovementSpeedModifier * BonusSpeed);
+        Inventory.Character.Movement.MovementSpeedModifier +=  BonusSpeed;
     }
 
     public override void Clear()
@@ -20,7 +20,7 @@ public class SpeedBoots : PassiveRelic
         /// <summary>
         /// remove the 0,1% speed when removing equipment.
         /// </summary>
-        Inventory.Character.GetComponent<CharacterMovement>().MovementSpeedModifier -= (Inventory.Character.GetComponent<CharacterMovement>().MovementSpeedModifier * BonusSpeed);
+        Inventory.Character.Movement.MovementSpeedModifier -= BonusSpeed;
 
 
         base.Clear();
