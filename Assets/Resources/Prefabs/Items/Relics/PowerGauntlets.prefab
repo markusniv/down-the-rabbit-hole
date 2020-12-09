@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a58d9c461b81445a27d9a432f5da4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: dd67ebe235c58fe4eb7299de65bd4d6c, type: 3}
   RecentlyDroppedBy: {fileID: 0}
   Value: 0
   MouseOver: 0
@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8118953162979440389, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_Name
-      value: WeaponGauntlent
+      value: PowerGauntlets
       objectReference: {fileID: 0}
     - target: {fileID: 9043126036546474227, guid: 3b8e50fa7b1bfa54db46827b61aa5ce4, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x

@@ -1,7 +1,7 @@
 ﻿using Weapons;
 using UnityEngine;
 
-public class PowerGantlent : PassiveRelic
+public class PowerGauntlets : PassiveRelic
 {
 
     /// <summary>
@@ -11,7 +11,7 @@ public class PowerGantlent : PassiveRelic
     /// <summary>
     /// when the mouse is hovering the item this text will show it self.
     /// </summary>
-    public override string Tooltip => string.Format("These Gantlent increase your power by <color=red>20%</color>.");
+    public override string Tooltip => string.Format("These gauntlets increase your power by <color=red>20%</color>.");
     public override void Apply()
     {
 
