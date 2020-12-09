@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 public class SceneHandler : MonoBehaviour
 {
     [SerializeField]
-    private GameObject playerObject,
-                                deathText,
-                                pressAnyKeyText,
-                                hotBar,
-                                healthBar;
+    private GameObject playerObject = null,
+                                deathText = null,
+                                pressAnyKeyText = null,
+                                hotBar = null,
+                                healthBar = null;
 
     private Player player;
 

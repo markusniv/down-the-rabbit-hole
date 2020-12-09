@@ -39,13 +39,13 @@ public class TooltipController : MonoBehaviour
     }
 
     [SerializeField]
-    private Text TextComponent;
+    private Text TextComponent = null;
 
     [SerializeField]
-    private GameObject Background;
+    private GameObject Background = null;
 
     [SerializeField]
-    private GameObject Border;
+    private GameObject Border = null;
 
     private string _text;
 

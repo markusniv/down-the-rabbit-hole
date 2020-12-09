@@ -2,7 +2,7 @@
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject inventory = null;
 
     private static GameController _instance;
 

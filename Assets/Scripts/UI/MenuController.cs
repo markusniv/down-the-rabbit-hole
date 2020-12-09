@@ -12,17 +12,17 @@ public class MenuController : MonoBehaviour
     /// <summary>
     /// All the text elements in the menu
     /// </summary>
-    [SerializeField] private Text loadingText, progressText;
+    [SerializeField] private Text loadingText = null, progressText = null;
 
     /// <summary>
     /// All the buttons in the menu
     /// </summary>
-    [SerializeField] private Button start, exit, options, back;
+    [SerializeField] private Button start = null, exit = null, options = null, back = null;
 
     /// <summary>
     /// The load bar for loading the next scene
     /// </summary>
-    [SerializeField] private GameObject loadBar;
+    [SerializeField] private GameObject loadBar = null;
 
     public float load = 0;
 

@@ -13,7 +13,7 @@ public class LoadBar : MonoBehaviour
     /// <summary>
     /// The controller object in the menu that gives the needed information to manipulate the load bar
     /// </summary>
-    [SerializeField] private MenuController menu;
+    [SerializeField] private MenuController menu = null;
 
     // Start is called before the first frame update
     private void Start()
