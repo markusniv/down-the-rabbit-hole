@@ -791,6 +791,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4772884979398529749, guid: b890d702990ae8945b043f22c03076a7, type: 3}
+      propertyPath: m_Text
+      value: (i / tab) Inventory (c) Compass
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772884979398529749, guid: b890d702990ae8945b043f22c03076a7, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772884979398529749, guid: b890d702990ae8945b043f22c03076a7, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485952454396863798, guid: b890d702990ae8945b043f22c03076a7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 646.11145
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485952454396863798, guid: b890d702990ae8945b043f22c03076a7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b890d702990ae8945b043f22c03076a7, type: 3}
 --- !u!1001 &2081938040555096536
