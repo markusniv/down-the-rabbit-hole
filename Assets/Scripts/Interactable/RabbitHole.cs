@@ -5,6 +5,11 @@
 /// </summary>
 public class RabbitHole : MonoBehaviour
 {
+
+    public void Start()
+    {
+        RabbitHoleCompass.RabbitHoleLocation = transform.position;
+    }
     /// <summary>
     /// Transition time
     /// </summary>

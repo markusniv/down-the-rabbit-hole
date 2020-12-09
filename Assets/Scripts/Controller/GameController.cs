@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
 
     public Player Player;
 
+    public GameObject Compass;
     private void Awake()
     {
         CurrentFloor = GameObject.Find("Floor").GetComponent<Floor>();
@@ -49,5 +50,6 @@ public class GameController : MonoBehaviour
                 inventory.SetActive(false);
             }
         }
+        Compass.SetActive(Input.GetKey(KeyCode.C));
     }
 }
