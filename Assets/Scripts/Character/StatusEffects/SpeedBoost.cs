@@ -8,7 +8,7 @@ public class SpeedBoost : StatusEffect
     /// <summary>
     /// How much speed is changed
     /// </summary>
-    private float SpeedChange = 2f;
+    private float SpeedChange = 1f;
 
     /// <summary>
     /// Duration of this effect in seconds
@@ -24,7 +24,7 @@ public class SpeedBoost : StatusEffect
     /// </summary>
     public override void OnStatusEnter()
     {
-        // Will increase the speed by 2.
+        // Will increase the speed by 1.
         Character.Movement.MovementSpeedModifier += SpeedChange;
         base.OnStatusEnter();
     }
@@ -34,7 +34,7 @@ public class SpeedBoost : StatusEffect
     /// </summary>
     public override void OnStatusExit()
     {
-        // Will decrease the speed by 2.
+        // Will decrease the speed by 1.
         Character.Movement.MovementSpeedModifier -= SpeedChange;
         base.OnStatusExit();
     }

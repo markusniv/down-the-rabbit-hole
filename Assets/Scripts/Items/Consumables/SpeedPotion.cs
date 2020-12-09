@@ -6,7 +6,7 @@ public class SpeedPotion : Consumable
     /// <summary>
     /// when the mouse is hovering the item this text will show it self.
     /// </summary>
-    public override string Tooltip => string.Format("Target Speed increase by <color=blue>2</color> for 5 seconds");
+    public override string Tooltip => string.Format("Target Speed increase by <color=blue>1</color> for 5 seconds");
 
     /// <summary>
     /// Consumes the item and adds the status effect
