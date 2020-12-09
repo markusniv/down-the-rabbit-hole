@@ -16,7 +16,7 @@ public class MenuController : MonoBehaviour
     /// <summary>
     /// All the buttons in the menu
     /// </summary>
-    [SerializeField] private Button start, exit;
+    [SerializeField] private Button start, exit, options, back;
     /// <summary>
     /// The load bar for loading the next scene
     /// </summary>
@@ -31,6 +31,8 @@ public class MenuController : MonoBehaviour
     {
         start.onClick.AddListener(() => SoundManagerScript.PlaySound(SoundManagerScript.Sound.Select));
         exit.onClick.AddListener(() => SoundManagerScript.PlaySound(SoundManagerScript.Sound.Select));
+        options.onClick.AddListener(() => SoundManagerScript.PlaySound(SoundManagerScript.Sound.Select));
+        back.onClick.AddListener(() => SoundManagerScript.PlaySound(SoundManagerScript.Sound.Select));
         start.onClick.AddListener(LoadButton);
         exit.onClick.AddListener(() => Application.Quit());
     }

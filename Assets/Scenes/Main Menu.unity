@@ -1593,6 +1593,8 @@ MonoBehaviour:
   progressText: {fileID: 999386089}
   start: {fileID: 747575441}
   exit: {fileID: 1400065776}
+  options: {fileID: 923078910}
+  back: {fileID: 703076878}
   loadBar: {fileID: 1044594151}
   load: 0
 --- !u!114 &1027144580

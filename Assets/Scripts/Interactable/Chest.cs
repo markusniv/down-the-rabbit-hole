@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 /// <summary>
-/// Script that controls chest
+/// This class handles everything regarding the chest objects in the game. The chests have an item inside of them, and require
+/// the player to be near them and have enough points to open. 
 /// </summary>
 public class Chest : MonoBehaviour
 {
@@ -28,16 +29,20 @@ public class Chest : MonoBehaviour
     /// Sets both enter and exit to false.
     /// </summary>
     public bool enter, exit;
-
     /// <summary>
-    /// Sets for close true and open false.
+    /// Get the player to check if enough points to open chest
     /// </summary>
-    private void Start()
+    [SerializeField] Player player;
+    /// <summary>
+    /// Required score to open chest, multiplied by floor number
+    /// </summary>
+    public static float scoreRequired = 20;
+    void Start()
     {
-
         close = true;
         open = false;
         enter = false;
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     /// <summary>
@@ -54,18 +59,30 @@ public class Chest : MonoBehaviour
                 // If the chest is close it will continue to next code
                 if (close)
                 {
-                    // Will change the close to false and open to true.
-                    close = false;
-                    open = true;
+                    if (player.Score > scoreRequired * GameController.Instance.CurrentFloor.FloorNumber)
+                    {
+                        // Will change the close to false and open to true.
+                        close = false;
+                        open = true;
 
-                    var chestItem = Instantiate(hiddenItem, transform.position - new Vector3(0, 2f), Quaternion.identity, transform.parent);
-                    chestItem.name = hiddenItem.name;
-                    chestItem.SetActive(true);
-                    chestItem.GetComponent<SpriteRenderer>().sortingOrder = 2;
-                    var particle = Instantiate(particleEffect, transform.position, Quaternion.identity);
+                        var chestItem = Instantiate(hiddenItem, transform.position - new Vector3(0, 2f), Quaternion.identity, transform.parent);
+                        chestItem.name = hiddenItem.name;
+                        chestItem.SetActive(true);
+                        chestItem.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                        var particle = Instantiate(particleEffect, transform.position, Quaternion.identity);
 
-                    GetComponent<SpriteRenderer>().sprite = chestOpen;
-                    SoundManagerScript.PlaySound(SoundManagerScript.Sound.ChestOpen);
+
+                        GetComponent<SpriteRenderer>().sprite = chestOpen;
+                        SoundManagerScript.PlaySound(SoundManagerScript.Sound.ChestOpen);
+                        player.Score -= scoreRequired * GameController.Instance.CurrentFloor.FloorNumber;
+                    } else
+                    {
+                        var Points = GameObject.Find("NotEnoughPoints");
+                        var pointText = "Score required:\n" + scoreRequired * GameController.Instance.CurrentFloor.FloorNumber;
+                        Points.GetComponent<NotEnoughScore>().ShowText(pointText);
+                        Points.GetComponent<NotEnoughScore>().timer = 2;
+                        SoundManagerScript.PlaySound(SoundManagerScript.Sound.NotEnoughPoints);
+                    }
                 }
             }
         }
