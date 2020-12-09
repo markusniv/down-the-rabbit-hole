@@ -59,7 +59,7 @@ public class Chest : MonoBehaviour
                 // If the chest is close it will continue to next code
                 if (close)
                 {
-                    if (player.Score > scoreRequired * GameController.Instance.CurrentFloor.FloorNumber)
+                    if (player.Score > scoreRequired * (GameController.Instance.CurrentFloor.FloorNumber * 2))
                     {
                         // Will change the close to false and open to true.
                         close = false;
@@ -78,7 +78,7 @@ public class Chest : MonoBehaviour
                     } else
                     {
                         var Points = GameObject.Find("NotEnoughPoints");
-                        var pointText = "Score required:\n" + scoreRequired * GameController.Instance.CurrentFloor.FloorNumber;
+                        var pointText = "Score required:\n" + scoreRequired * (GameController.Instance.CurrentFloor.FloorNumber * 2);
                         Points.GetComponent<NotEnoughScore>().ShowText(pointText);
                         Points.GetComponent<NotEnoughScore>().timer = 2;
                         SoundManagerScript.PlaySound(SoundManagerScript.Sound.NotEnoughPoints);
