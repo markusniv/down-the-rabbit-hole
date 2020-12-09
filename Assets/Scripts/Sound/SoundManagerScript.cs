@@ -20,7 +20,8 @@ public class SoundManagerScript : MonoBehaviour
         Pickup,
         ChestOpen,
         Thrown,
-        Onhit
+        Onhit,
+        NotEnoughPoints
     }
 
     static AudioSource audioSrc;
@@ -36,6 +37,7 @@ public class SoundManagerScript : MonoBehaviour
             {Sound.Deflect, Resources.Load<AudioClip>("Sounds/Items/Weapon/deflect") },
             {Sound.Select, Resources.Load<AudioClip>("Sounds/UI/select") },
             {Sound.ChestOpen, Resources.Load<AudioClip>("Sounds/Items/Consumable/ChestOpen") },
+            {Sound.NotEnoughPoints, Resources.Load<AudioClip>("Sounds/NotEnoughPoints") },
             {Sound.Pickup, Resources.Load<AudioClip>("Sounds/Items/Consumable/PickUpItem") },
             {Sound.Thrown, Resources.Load<AudioClip>("Sounds/Items/Consumable/Thrown") },
             {Sound.Onhit, Resources.Load<AudioClip>("Sounds/Items/Weapon/onhit") },
