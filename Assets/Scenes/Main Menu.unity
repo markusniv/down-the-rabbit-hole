@@ -208,7 +208,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1136,7 +1136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5997359102881147630, guid: 6f71bd766265ead4c8e582d7dcd96bb7, type: 3}
       propertyPath: m_Volume
-      value: 0.18
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5997359102881147631, guid: 6f71bd766265ead4c8e582d7dcd96bb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1305,7 +1305,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.8
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2707,6 +2707,10 @@ PrefabInstance:
     - target: {fileID: 1680521193702509866, guid: a2595fc91ce36804c97b8333a42b1daa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680521193702509867, guid: a2595fc91ce36804c97b8333a42b1daa, type: 3}
+      propertyPath: m_Volume
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1680521193702509868, guid: a2595fc91ce36804c97b8333a42b1daa, type: 3}
       propertyPath: m_Name
